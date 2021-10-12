@@ -5,10 +5,7 @@
  */
 package grupos.modelos;
 
-/**
- *
- * @author zss y bxdgal
- */
+
 public enum Rol {
     ADMINISTRADOR("Administrador"),
     COLABORADOR("Colaborador");

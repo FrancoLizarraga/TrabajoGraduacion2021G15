@@ -5,10 +5,7 @@
  */
 package autores.modelos;
 
-/**
- *
- * @author zss y bxdgal
- */
+
 public enum Cargo {
     TITULAR("Titular"),
     ASOCIADO("Asociado"),

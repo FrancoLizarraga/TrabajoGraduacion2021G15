@@ -5,10 +5,7 @@
  */
 package publicaciones.modelos;
 
-/**
- *
- * @author zss y bxdgal
- */
+
 public class Publicacion {
     
 }

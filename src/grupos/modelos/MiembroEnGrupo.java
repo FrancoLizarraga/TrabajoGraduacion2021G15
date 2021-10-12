@@ -5,10 +5,7 @@
  */
 package grupos.modelos;
 
-/**
- *
- * @author zss y bxdgal
- */
+
 public class MiembroEnGrupo {
     
 }
