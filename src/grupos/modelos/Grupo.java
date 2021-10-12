@@ -5,10 +5,13 @@
  */
 package grupos.modelos;
 
+import java.util.ArrayList;
+
 public class Grupo {
 
      private String nombre;
      private String descripcion;
+     private ArrayList<MiembroEnGrupo> miembrosEnGrupo; // QUIZAS DEBA SER UN "LIST" COMO EN EN PUBLICACION.
 
     public Grupo(String nombre, String descripcion) {
         this.nombre = nombre;
