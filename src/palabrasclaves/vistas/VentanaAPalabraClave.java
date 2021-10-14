@@ -42,7 +42,7 @@ public class VentanaAPalabraClave extends JDialog {
 
         jLabel1.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombre del nivel");
+        txtNombre.setToolTipText("Nombre de la palabra clave");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");

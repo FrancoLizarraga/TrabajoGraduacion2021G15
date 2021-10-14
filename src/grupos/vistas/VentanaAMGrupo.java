@@ -44,7 +44,7 @@ public class VentanaAMGrupo extends JDialog {
 
         jLabel1.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombre del nivel");
+        txtNombre.setToolTipText("Nombre del grupo");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");

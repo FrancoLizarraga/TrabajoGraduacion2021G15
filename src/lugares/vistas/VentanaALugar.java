@@ -42,7 +42,7 @@ public class VentanaALugar extends JDialog {
 
         jLabel1.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombre del nivel");
+        txtNombre.setToolTipText("Nombre del lugar");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");

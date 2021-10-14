@@ -76,7 +76,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Nombre del nivel"/>
+        <Property name="toolTipText" type="java.lang.String" value="Nombre del grupo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">

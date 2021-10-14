@@ -49,11 +49,11 @@ public class VentanaAMAlumno extends JDialog {
 
         jLabel1.setText("Apellidos:");
 
-        txtApellidos.setToolTipText("Apellidos del profesor");
+        txtApellidos.setToolTipText("Apellidos del alumno");
 
         jLabel2.setText("Nombres:");
 
-        txtNombres.setToolTipText("Nombres del profesor");
+        txtNombres.setToolTipText("Nombres del alumno");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -68,7 +68,7 @@ public class VentanaAMAlumno extends JDialog {
 
         jLabel4.setText("Documento:");
 
-        txtDNI.setToolTipText("Documento del profesor");
+        txtDNI.setToolTipText("Documento del alumno");
 
         jLabel6.setText("Clave:");
 

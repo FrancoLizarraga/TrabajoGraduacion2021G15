@@ -42,7 +42,7 @@ public class VentanaAIdioma extends JDialog {
 
         jLabel1.setText("Nombre:");
 
-        txtNombre.setToolTipText("Nombre del nivel");
+        txtNombre.setToolTipText("Nombre del idioma");
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
