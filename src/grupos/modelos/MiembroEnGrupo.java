@@ -5,17 +5,17 @@
  */
 package grupos.modelos;
 
+import autores.modelos.Autor;
 import autores.modelos.Profesor;
-import java.util.List;
-import palabrasclaves.modelos.PalabraClave;
+import java.util.Objects;
 
 public class MiembroEnGrupo {
-    private Profesor profesor;
+    private Autor autor; // Cambié de tipo "Profesor" a tipo "Autor" para tomar Profesores y Alumnos.
     private Grupo grupo;
     private Rol rol;
 
-    public MiembroEnGrupo(Profesor profesor, Grupo grupo, Rol rol) {
-        this.profesor = profesor;
+    public MiembroEnGrupo(Autor autor, Grupo grupo, Rol rol) {
+        this.autor = autor;
         this.grupo = grupo;
         this.rol = rol;
     }
@@ -36,12 +36,37 @@ public class MiembroEnGrupo {
         this.grupo = grupo;
     }
 
-    public Profesor verProfesor() {
-        return profesor;
+    public Autor verProfesor() {
+        return autor;
     }
 
     public void asignarProfesor(Profesor profesor) {
-        this.profesor = profesor;
+        this.autor = autor;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.autor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {               //Esto pide el punto 6?
+        if (this == obj) {                            //No termino de entender el segundo apartado del punto 6
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MiembroEnGrupo other = (MiembroEnGrupo) obj;
+        if (!Objects.equals(this.autor, other.autor)) {
+            return false;
+        }
+        return true;
     }
     
 }
