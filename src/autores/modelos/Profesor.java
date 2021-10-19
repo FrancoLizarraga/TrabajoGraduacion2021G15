@@ -67,6 +67,31 @@ public class Profesor {
     public void asignarCargo(Cargo cargo) {
         this.cargo = cargo;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.dni;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Profesor other = (Profesor) obj;
+        if (this.dni != other.dni) {
+            return false;
+        }
+        return true;
+    }
     
     
 }

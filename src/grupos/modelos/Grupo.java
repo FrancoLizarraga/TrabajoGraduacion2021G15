@@ -6,6 +6,7 @@
 package grupos.modelos;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Grupo {
 
@@ -36,5 +37,30 @@ public class Grupo {
 
     public void asignarDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Grupo other = (Grupo) obj;
+        if (!Objects.equals(this.nombre.toLowerCase(), other.nombre.toLowerCase())) {
+            return false;
+        }
+        return true;
     }
 }

@@ -51,13 +51,23 @@ public class ControladorPrincipal {
         Grupo grupo3 = new Grupo("Grupo 3", "Descripción 3");
         Grupo grupo4 = new Grupo("Grupo 4", "Descripción 4");
         Grupo grupo5 = new Grupo("Grupo 5", "Descripción 5");
+        Grupo grupo6 = new Grupo("grupo 6", "Descripción 6");
+        Grupo grupo7 = new Grupo("Grupo 6", "Descripción 5");
 
-        
-        grupos.add(grupo1);
-        grupos.add(grupo2);
-        grupos.add(grupo3);
-        grupos.add(grupo4);
-        grupos.add(grupo5);
+        if(!grupos.contains(grupo1))
+            grupos.add(grupo1);
+        if(!grupos.contains(grupo2))
+            grupos.add(grupo2);
+        if(!grupos.contains(grupo3))
+            grupos.add(grupo3);
+        if(!grupos.contains(grupo4))
+            grupos.add(grupo4);
+        if(!grupos.contains(grupo5))
+            grupos.add(grupo5);
+        if(!grupos.contains(grupo6))
+            grupos.add(grupo6);
+        if(!grupos.contains(grupo7))
+            grupos.add(grupo7);
       
         System.out.println("----Grupos----");
         for(Grupo g : grupos)
@@ -70,12 +80,23 @@ public class ControladorPrincipal {
         Alumno alumno3 = new Alumno(3, "Apellido3", "Nombre3", "Clave3", "3");
         Alumno alumno4 = new Alumno(4, "Apellido4", "Nombre4", "Clave4", "4");
         Alumno alumno5 = new Alumno(5, "Apellido5", "Nombre5", "Clave5", "5");
+        Alumno alumno6 = new Alumno(6, "Apellido6", "Nombre5", "Clave5", "6");
+        Alumno alumno7 = new Alumno(5, "Apellido7", "Nombre7", "Clave7", "7");
 
-        alumnos.add(alumno1);
-        alumnos.add(alumno2);
-        alumnos.add(alumno3);
-        alumnos.add(alumno4);
-        alumnos.add(alumno5);
+        if(!alumnos.contains(alumno1))
+            alumnos.add(alumno1);
+        if(!alumnos.contains(alumno2))
+            alumnos.add(alumno2);
+        if(!alumnos.contains(alumno3))
+            alumnos.add(alumno3);
+        if(!alumnos.contains(alumno4))
+            alumnos.add(alumno4);
+        if(!alumnos.contains(alumno5))
+            alumnos.add(alumno5);
+        if(!alumnos.contains(alumno6))
+            alumnos.add(alumno6);
+        if(!alumnos.contains(alumno7))
+            alumnos.add(alumno7);
         
         System.out.println("\n----Alumnos----\n");
         for(Alumno a : alumnos)
@@ -88,12 +109,23 @@ public class ControladorPrincipal {
         Profesor profesor3 = new Profesor(30, "Apellido30", "Nombre30", "Clave30", Cargo.ADJUNTO);
         Profesor profesor4 = new Profesor(40, "Apellido40", "Nombre40", "Clave40", Cargo.JTP);
         Profesor profesor5 = new Profesor(50, "Apellido50", "Nombre50", "Clave50", Cargo.ADG);
+        Profesor profesor6 = new Profesor(50, "Apellido60", "Nombre60", "Clave60", Cargo.ADJUNTO);
+        Profesor profesor7 = new Profesor(70, "Apellido70", "Nombre70", "Clave70", Cargo.TITULAR);
 
-        profesores.add(profesor1);
-        profesores.add(profesor2);
-        profesores.add(profesor3);
-        profesores.add(profesor4);
-        profesores.add(profesor5);
+        if(!profesores.contains(profesor1))
+            profesores.add(profesor1);
+        if(!profesores.contains(profesor2))
+            profesores.add(profesor2);
+        if(!profesores.contains(profesor3))
+            profesores.add(profesor3);
+        if(!profesores.contains(profesor4))
+            profesores.add(profesor4);
+        if(!profesores.contains(profesor5))
+            profesores.add(profesor5);
+        if(!profesores.contains(profesor6))
+            profesores.add(profesor6);
+        if(!profesores.contains(profesor7))
+            profesores.add(profesor7);
         
         System.out.println("\n----Profesores----\n");
         for(Profesor p : profesores)
@@ -107,13 +139,24 @@ public class ControladorPrincipal {
         Tipo tipo3 = new Tipo("Tipo 3");
         Tipo tipo4 = new Tipo("Tipo 4");
         Tipo tipo5 = new Tipo("Tipo 5");
-
-        tipos.add(tipo1);
-        tipos.add(tipo2);
-        tipos.add(tipo3);
-        tipos.add(tipo4);
-        tipos.add(tipo5);
-
+        Tipo tipo6 = new Tipo("Tipo 4");
+        Tipo tipo7 = new Tipo("tipo 2"); //con minuscula
+        
+        if(!tipos.contains(tipo1))
+            tipos.add(tipo1);
+        if(!tipos.contains(tipo2))
+            tipos.add(tipo2);
+        if(!tipos.contains(tipo3))
+            tipos.add(tipo3);
+        if(!tipos.contains(tipo4))
+            tipos.add(tipo4);
+        if(!tipos.contains(tipo5))
+            tipos.add(tipo5);
+        if(!tipos.contains(tipo6))
+            tipos.add(tipo6);
+        if(!tipos.contains(tipo7))
+            tipos.add(tipo7);
+        
         for(Tipo t : tipos)
             System.out.println(t);
     
@@ -126,12 +169,23 @@ public class ControladorPrincipal {
         Lugar lugar3 = new Lugar("Lugar 3");
         Lugar lugar4 = new Lugar("Lugar 4");
         Lugar lugar5 = new Lugar("Lugar 5");
+        Lugar lugar6 = new Lugar("Lugar 2");
+        Lugar lugar7 = new Lugar("lugar 3");
 
+        if(!lugares.contains(lugar1))
         lugares.add(lugar1);
+        if(!lugares.contains(lugar2))
         lugares.add(lugar2);
+        if(!lugares.contains(lugar3))
         lugares.add(lugar3);
+        if(!lugares.contains(lugar4))
         lugares.add(lugar4);
+        if(!lugares.contains(lugar5))
         lugares.add(lugar5);
+        if(!lugares.contains(lugar6))
+        lugares.add(lugar6);
+        if(!lugares.contains(lugar7))
+        lugares.add(lugar7);
 
         for(Lugar l : lugares)
             System.out.println(l);
@@ -144,12 +198,23 @@ public class ControladorPrincipal {
         Idioma idioma3 = new Idioma("Idioma 3");
         Idioma idioma4 = new Idioma("Idioma 4");
         Idioma idioma5 = new Idioma("Idioma 5");
+        Idioma idioma6 = new Idioma("Idioma 5");
+        Idioma idioma7 = new Idioma("Idioma 2");
 
-        idiomas.add(idioma1);
-        idiomas.add(idioma2);
-        idiomas.add(idioma3);
-        idiomas.add(idioma4);
-        idiomas.add(idioma5);
+        if(!idiomas.contains(idioma1))
+            idiomas.add(idioma1);
+        if(!idiomas.contains(idioma2))
+            idiomas.add(idioma2);
+        if(!idiomas.contains(idioma3))
+            idiomas.add(idioma3);
+        if(!idiomas.contains(idioma4))
+            idiomas.add(idioma4);
+        if(!idiomas.contains(idioma5))
+            idiomas.add(idioma5);
+        if(!idiomas.contains(idioma6))
+            idiomas.add(idioma6);
+        if(!idiomas.contains(idioma7))
+            idiomas.add(idioma7);
 
         for(Idioma i : idiomas)
             System.out.println(i);        
@@ -162,12 +227,23 @@ public class ControladorPrincipal {
         PalabraClave palabraClave3 = new PalabraClave("PalabraClave3");
         PalabraClave palabraClave4 = new PalabraClave("PalabraClave4");
         PalabraClave palabraClave5 = new PalabraClave("PalabraClave5");
+        PalabraClave palabraClave6 = new PalabraClave("PalabraClave5"); 
+        PalabraClave palabraClave7 = new PalabraClave("PalabraClave1");
 
-        palabrasClaves.add(palabraClave1);
-        palabrasClaves.add(palabraClave2);
-        palabrasClaves.add(palabraClave3);
-        palabrasClaves.add(palabraClave4);
-        palabrasClaves.add(palabraClave5);
+        if(!palabrasClaves.contains(palabraClave1))
+            palabrasClaves.add(palabraClave1);
+        if(!palabrasClaves.contains(palabraClave2))
+            palabrasClaves.add(palabraClave2);
+        if(!palabrasClaves.contains(palabraClave3))
+            palabrasClaves.add(palabraClave3);
+        if(!palabrasClaves.contains(palabraClave4))
+            palabrasClaves.add(palabraClave4);
+        if(!palabrasClaves.contains(palabraClave5))
+            palabrasClaves.add(palabraClave5);
+        if(!palabrasClaves.contains(palabraClave6))
+            palabrasClaves.add(palabraClave6);
+        if(!palabrasClaves.contains(palabraClave7))
+            palabrasClaves.add(palabraClave7);
 
         for(PalabraClave pc : palabrasClaves)
             System.out.println(pc); 
@@ -192,12 +268,23 @@ public class ControladorPrincipal {
         Publicacion publicacion3 = new Publicacion("Título 3", new MiembroEnGrupo(profesor2, grupo2, Rol.COLABORADOR), LocalDate.of(2020, 06, 24), tipo1, idioma2, lugar2, Arrays.asList(new PalabraClave[] {palabraClave2, palabraClave4, palabraClave5}), "Enlace 3", "Resumen 3");
         Publicacion publicacion4 = new Publicacion("Título 4", new MiembroEnGrupo(profesor4, grupo3, Rol.ADMINISTRADOR), LocalDate.of(2020, 06, 24), tipo4, idioma2, lugar5, Arrays.asList(new PalabraClave[] {palabraClave1}), "Enlace 4", "Resumen 4");
         Publicacion publicacion5 = new Publicacion("Título 5", new MiembroEnGrupo(profesor4, grupo5, Rol.COLABORADOR), LocalDate.of(2020, 06, 24), tipo5, idioma3, lugar5, Arrays.asList(new PalabraClave[] {palabraClave2, palabraClave3, palabraClave4}), "Enlace 5", "Resumen 5");
+        Publicacion publicacion6 = new Publicacion("título 5", new MiembroEnGrupo(profesor4, grupo5, Rol.COLABORADOR), LocalDate.of(2020, 06, 24), tipo5, idioma3, lugar5, Arrays.asList(new PalabraClave[] {palabraClave2, palabraClave3, palabraClave4}), "Enlace 5", "Resumen 5");
+        Publicacion publicacion7 = new Publicacion("Título 6", new MiembroEnGrupo(profesor4, grupo5, Rol.COLABORADOR), LocalDate.of(2020, 06, 24), tipo5, idioma3, lugar5, Arrays.asList(new PalabraClave[] {palabraClave2, palabraClave3, palabraClave4}), "Enlace 5", "Resumen 5");
         
-        publicaciones.add(publicacion1);
-        publicaciones.add(publicacion2);
-        publicaciones.add(publicacion3);
-        publicaciones.add(publicacion4);
-        publicaciones.add(publicacion5);
+        if(!publicaciones.contains(publicacion1))
+            publicaciones.add(publicacion1);
+        if(!publicaciones.contains(publicacion2))
+            publicaciones.add(publicacion2);
+        if(!publicaciones.contains(publicacion3))
+            publicaciones.add(publicacion3);
+        if(!publicaciones.contains(publicacion4))
+            publicaciones.add(publicacion4);
+        if(!publicaciones.contains(publicacion5))
+            publicaciones.add(publicacion5);
+        if(!publicaciones.contains(publicacion6))
+            publicaciones.add(publicacion6);
+        if(!publicaciones.contains(publicacion7))
+            publicaciones.add(publicacion7);
       
         for(Publicacion p : publicaciones) {
             p.mostrar();
@@ -207,33 +294,33 @@ public class ControladorPrincipal {
 
       //</editor-fold>   
      //<editor-fold defaultstate="collapsed" desc="Intefaz gráfica"> 
-        VentanaAMGrupo ventanaGrupo = new VentanaAMGrupo(null); //se instancia la ventana
-        ventanaGrupo.setLocationRelativeTo(null); //se centra la ventana
-        ventanaGrupo.setVisible(true); //se hace visible la ventana
-        
-        VentanaAMAlumno ventanaAlumno = new VentanaAMAlumno(null); //se instancia la ventana
-        ventanaAlumno.setLocationRelativeTo(null); //se centra la ventana
-        ventanaAlumno.setVisible(true); //se hace visible la ventana
-        
-        VentanaAMProfesor ventanaProfesor = new VentanaAMProfesor(null); //se instancia la ventana
-        ventanaProfesor.setLocationRelativeTo(null); //se centra la ventana
-        ventanaProfesor.setVisible(true); //se hace visible la ventana        
-       
-        VentanaAIdioma ventanaIdioma = new VentanaAIdioma(null); //se instancia la ventana
-        ventanaIdioma.setLocationRelativeTo(null); //se centra la ventana
-        ventanaIdioma.setVisible(true); //se hace visible la ventana                
-        
-        VentanaALugar ventanaLugar = new VentanaALugar(null); //se instancia la ventana
-        ventanaLugar.setLocationRelativeTo(null); //se centra la ventana
-        ventanaLugar.setVisible(true); //se hace visible la ventana                        
-        
-        VentanaAPalabraClave ventanaPalabraClave = new VentanaAPalabraClave(null); //se instancia la ventana
-        ventanaPalabraClave.setLocationRelativeTo(null); //se centra la ventana
-        ventanaPalabraClave.setVisible(true); //se hace visible la ventana                                
-        
-        VentanaATipo ventanaTipo = new VentanaATipo(null); //se instancia la ventana
-        ventanaTipo.setLocationRelativeTo(null); //se centra la ventana
-        ventanaTipo.setVisible(true); //se hace visible la ventana   
+//        VentanaAMGrupo ventanaGrupo = new VentanaAMGrupo(null); //se instancia la ventana
+//        ventanaGrupo.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaGrupo.setVisible(true); //se hace visible la ventana
+//        
+//        VentanaAMAlumno ventanaAlumno = new VentanaAMAlumno(null); //se instancia la ventana
+//        ventanaAlumno.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaAlumno.setVisible(true); //se hace visible la ventana
+//        
+//        VentanaAMProfesor ventanaProfesor = new VentanaAMProfesor(null); //se instancia la ventana
+//        ventanaProfesor.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaProfesor.setVisible(true); //se hace visible la ventana        
+//       
+//        VentanaAIdioma ventanaIdioma = new VentanaAIdioma(null); //se instancia la ventana
+//        ventanaIdioma.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaIdioma.setVisible(true); //se hace visible la ventana                
+//        
+//        VentanaALugar ventanaLugar = new VentanaALugar(null); //se instancia la ventana
+//        ventanaLugar.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaLugar.setVisible(true); //se hace visible la ventana                        
+//        
+//        VentanaAPalabraClave ventanaPalabraClave = new VentanaAPalabraClave(null); //se instancia la ventana
+//        ventanaPalabraClave.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaPalabraClave.setVisible(true); //se hace visible la ventana                                
+//        
+//        VentanaATipo ventanaTipo = new VentanaATipo(null); //se instancia la ventana
+//        ventanaTipo.setLocationRelativeTo(null); //se centra la ventana
+//        ventanaTipo.setVisible(true); //se hace visible la ventana   
 
      //</editor-fold>
     

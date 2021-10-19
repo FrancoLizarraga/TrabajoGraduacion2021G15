@@ -5,6 +5,8 @@
  */
 package lugares.modelos;
 
+import java.util.Objects;
+
 public class Lugar {
      private String nombre;
 
@@ -22,5 +24,30 @@ public class Lugar {
     
     public String toString(){
      return nombre;   
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Lugar other = (Lugar) obj;
+        if (!Objects.equals(this.nombre.toLowerCase(), other.nombre.toLowerCase())) {
+            return false;
+        }
+        return true;
     }
 }

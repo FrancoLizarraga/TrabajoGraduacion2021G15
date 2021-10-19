@@ -69,5 +69,30 @@ public class Alumno {
 //        return "\nApellidos y Nombres: " + apellidos +", " + nombres + "\nDNI: " + dni + "\tClave: " + clave + "\tCx: " + cx ; //To change body of generated methods, choose Tools | Templates.
 //    }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + this.dni;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Alumno other = (Alumno) obj;
+        if (this.dni != other.dni) {
+            return false;
+        }
+        return true;
+    }
+
     
 }

@@ -10,6 +10,7 @@ import idiomas.modelos.Idioma;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lugares.modelos.Lugar;
 import palabrasclaves.modelos.PalabraClave;
 import tipos.modelos.Tipo;
@@ -119,6 +120,31 @@ public class Publicacion {
 
     public void asignarMiembro(MiembroEnGrupo miembro) {
         this.miembro = miembro;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.titulo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Publicacion other = (Publicacion) obj;
+        if (!Objects.equals(this.titulo.toLowerCase(), other.titulo.toLowerCase())) {
+            return false;
+        }
+        return true;
     }
    
 }

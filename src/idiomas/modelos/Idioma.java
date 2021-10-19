@@ -5,6 +5,8 @@
  */
 package idiomas.modelos;
 
+import java.util.Objects;
+
 public class Idioma {
     private String nombre;
 
@@ -22,5 +24,30 @@ public class Idioma {
     
     public String toString(){
      return nombre;   
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Idioma other = (Idioma) obj;
+        if (!Objects.equals(this.nombre.toLowerCase(), other.nombre.toLowerCase())) {
+            return false;
+        }
+        return true;
     }
 }
