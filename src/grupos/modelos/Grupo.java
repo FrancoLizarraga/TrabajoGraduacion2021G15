@@ -21,10 +21,10 @@ public class Grupo {
     }
     
     public void mostrar() {
-        System.out.println("Nombre: " + nombre + "\t\tDescripcion: " + descripcion);
-        System.out.println("\tSus miembros con sus respectivos roles son:");
+        System.out.println("\nNombre: " + nombre + "\t\tDescripcion: " + descripcion);
+        System.out.println("Sus miembros con sus respectivos roles son:");
         for(MiembroEnGrupo m : miembrosEnGrupo){
-            System.out.println("Autor: " + m.verAutor().verApellidos() + ", " + m.verAutor().verNombres() + "\tRol: " + m.verRol());
+            System.out.println("\tAutor: " + m.verAutor().verApellidos() + ", " + m.verAutor().verNombres() + "\tRol: " + m.verRol());
         }
     }
 
@@ -78,8 +78,13 @@ public class Grupo {
     
     public void agregarMiembro(Autor autor, Rol rol){
         MiembroEnGrupo miembro = new MiembroEnGrupo(autor, this, rol);
-        if(!tieneMiembros())
+        if(this.esSuperAdministradores()){
+            rol = Rol.ADMINISTRADOR;
+        }
+        if(!tieneMiembros()){
             miembrosEnGrupo.add(miembro);
+            autor.agregarGrupo(this, rol);
+        }
         else{
             if(!miembrosEnGrupo.contains(miembro)){
                 miembrosEnGrupo.add(miembro);
@@ -88,12 +93,19 @@ public class Grupo {
         }
     }
     
-    public void quitarMiembro(Autor miembro){
-        
+    public void quitarMiembro(Autor miembro){   //Falta quitar grupo.
+        int i=0;
+        for (MiembroEnGrupo m : miembrosEnGrupo){
+            if(m.verAutor().equals(miembro)){
+                miembrosEnGrupo.remove(m);
+                miembro.quitarGrupo(this);
+            }
+            i++;
+        }   
     }
     
     public boolean esSuperAdministradores(){
-        if(this.nombre.equals("Super Administradores"))
+        if(this.nombre.toLowerCase().equals("super administradores"))
             return true;
         else 
             return false;
