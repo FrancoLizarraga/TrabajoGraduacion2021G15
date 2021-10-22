@@ -5,14 +5,15 @@
  */
 package grupos.modelos;
 
+import autores.modelos.Autor;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Grupo {
 
-     private String nombre;
-     private String descripcion;
-     private ArrayList<MiembroEnGrupo> miembrosEnGrupo; // QUIZAS DEBA SER UN "LIST" COMO EN EN PUBLICACION.
+    private String nombre;
+    private String descripcion;
+    private ArrayList<MiembroEnGrupo> miembrosEnGrupo = new ArrayList<>();
 
     public Grupo(String nombre, String descripcion) {
         this.nombre = nombre;
@@ -21,6 +22,10 @@ public class Grupo {
     
     public void mostrar() {
         System.out.println("Nombre: " + nombre + "\t\tDescripcion: " + descripcion);
+        System.out.println("\tSus miembros con sus respectivos roles son:");
+        for(MiembroEnGrupo m : miembrosEnGrupo){
+            System.out.println("Autor: " + m.verAutor().verApellidos() + ", " + m.verAutor().verNombres() + "\tRol: " + m.verRol());
+        }
     }
 
     public String verNombre() {
@@ -62,5 +67,42 @@ public class Grupo {
             return false;
         }
         return true;
+    }
+    
+    public void verMiembros(){
+        System.out.println("\tMiembros:");
+        for(MiembroEnGrupo m : miembrosEnGrupo){
+            System.out.println(m.verAutor().verApellidos() + ", " + m.verAutor().verNombres());
+        }
+    }
+    
+    public void agregarMiembro(Autor autor, Rol rol){
+        MiembroEnGrupo miembro = new MiembroEnGrupo(autor, this, rol);
+        if(!tieneMiembros())
+            miembrosEnGrupo.add(miembro);
+        else{
+            if(!miembrosEnGrupo.contains(miembro)){
+                miembrosEnGrupo.add(miembro);
+                autor.agregarGrupo(this, rol);
+            }
+        }
+    }
+    
+    public void quitarMiembro(Autor miembro){
+        
+    }
+    
+    public boolean esSuperAdministradores(){
+        if(this.nombre.equals("Super Administradores"))
+            return true;
+        else 
+            return false;
+    }
+    
+    public boolean tieneMiembros(){
+        if(miembrosEnGrupo.size() == 0)
+            return false;
+        else
+            return true;
     }
 }

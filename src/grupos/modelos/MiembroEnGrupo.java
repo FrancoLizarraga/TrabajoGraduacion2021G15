@@ -36,24 +36,25 @@ public class MiembroEnGrupo {
         this.grupo = grupo;
     }
 
-    public Autor verProfesor() {
+    public Autor verAutor() {
         return autor;
     }
 
-    public void asignarProfesor(Profesor profesor) {
+    public void asignarAutor(Autor autor) {
         this.autor = autor;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.autor);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.autor);
+        hash = 71 * hash + Objects.hashCode(this.grupo);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {               //Esto pide el punto 6?
-        if (this == obj) {                            //No termino de entender el segundo apartado del punto 6
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
         if (obj == null) {
@@ -66,7 +67,9 @@ public class MiembroEnGrupo {
         if (!Objects.equals(this.autor, other.autor)) {
             return false;
         }
+        if (!Objects.equals(this.grupo, other.grupo)) {
+            return false;
+        }
         return true;
-    }
-    
+    } 
 }

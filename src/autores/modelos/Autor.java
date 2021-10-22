@@ -5,6 +5,12 @@
  */
 package autores.modelos;
 
+import grupos.modelos.Grupo;
+import grupos.modelos.MiembroEnGrupo;
+import grupos.modelos.Rol;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  *
  * @author Usuario
@@ -14,6 +20,7 @@ public abstract class Autor {
     private String apellidos;
     private String nombres;
     private String clave;
+    private ArrayList<MiembroEnGrupo> miembrosEnGrupo = new ArrayList<>();
     
     public Autor(int dni, String apellidos, String nombres, String clave) {
         this.dni = dni;
@@ -56,6 +63,8 @@ public abstract class Autor {
     
     public void mostrar(){
         System.out.println("[" + this.dni + "] " + this.apellidos + ", " + this.nombres);
+        for(MiembroEnGrupo m : miembrosEnGrupo)
+            System.out.println("Grupo: " + m.verGrupo().verNombre() + "\tRol: " + m.verRol());
     }
 
     @Override
@@ -83,5 +92,36 @@ public abstract class Autor {
         return true;
     }
     
+    public void verGrupos(){
+        System.out.println("Grupos: ");
+        for(MiembroEnGrupo m : miembrosEnGrupo)
+            System.out.println(m.verGrupo().verNombre());
+    }
     
+    public void agregarGrupo(Grupo grupo, Rol rol){
+        MiembroEnGrupo miembro = new MiembroEnGrupo(this, grupo, rol);
+        if(!miembrosEnGrupo.contains(miembro))
+            miembrosEnGrupo.add(miembro);
+        if(!miembrosEnGrupo.contains(grupo))
+            grupo.agregarMiembro(this, rol);
+    }
+    
+    public void quitarGrupo(Grupo grupo){
+        Iterator<MiembroEnGrupo> iterator = miembrosEnGrupo.iterator();
+        while (iterator.hasNext()){
+            MiembroEnGrupo unMiembro = iterator.next();
+            if (unMiembro.verGrupo().equals(grupo))
+                iterator.remove();
+        }
+    }
+    
+    public boolean esSuperAdministrador(){
+        for(MiembroEnGrupo m : miembrosEnGrupo){
+            if(m.verGrupo().equals("Super Administradores"))
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
 }

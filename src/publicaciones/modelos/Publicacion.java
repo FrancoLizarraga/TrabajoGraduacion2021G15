@@ -40,7 +40,7 @@ public class Publicacion {
     }
     
     public void mostrar(){
-        System.out.println("Titulo: " + titulo + "\nAutor: " + miembro.verProfesor().verApellidos() + "," + miembro.verProfesor().verNombres());
+        System.out.println("Titulo: " + titulo + "\nAutor: " + miembro.verAutor().verApellidos() + "," + miembro.verAutor().verNombres());
         System.out.println("Grupo: " + miembro.verGrupo().verNombre() + "\nRol: " + miembro.verRol() + "\nFecha de publicación: " + fechaPublicacion);
         System.out.println("Tipo: " + tipo + "\nIdioma: " + idioma + "\nLugar: " + lugar);
         System.out.println("Palabras claves \n---------------");

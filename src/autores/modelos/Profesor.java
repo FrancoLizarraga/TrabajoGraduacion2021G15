@@ -28,7 +28,7 @@ public class Profesor extends Autor{
     @Override
     public void mostrar(){
         super.mostrar();
-        System.out.println("\tCargo: " + cargo);
+        System.out.println("Cargo: " + cargo);
 //        System.out.println("\nApellidos y Nombres: " + apellidos +", " + nombres + "\nDNI: " + dni + "\tClave: " + clave + "\tCargo: " + cargo);
     }
     

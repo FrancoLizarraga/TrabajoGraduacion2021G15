@@ -100,6 +100,7 @@ public class Alumno extends Autor{
 
     @Override
     public int hashCode() {
+        super.hashCode();
         int hash = 3;
         hash = 53 * hash + Objects.hashCode(this.cx);
         return hash;

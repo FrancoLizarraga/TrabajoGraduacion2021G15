@@ -64,9 +64,9 @@ public class ControladorPrincipal {
         if(!grupos.contains(grupo7))
             grupos.add(grupo7);
       
-        System.out.println("----Grupos----");
-        for(Grupo g : grupos)
-            g.mostrar();
+//        System.out.println("----Grupos----");
+//        for(Grupo g : grupos)
+//            g.mostrar();
         //GRUPOS
         
         //ALUMNOS
@@ -93,9 +93,9 @@ public class ControladorPrincipal {
         if(!autores.contains(alumno7))
             autores.add(alumno7);
         
-        System.out.println("\n----Alumnos----\n");
-        for(Autor a : autores)
-            a.mostrar();
+//        System.out.println("\n----Alumnos----\n");
+//        for(Autor a : autores)
+//            a.mostrar();
         //ALUMNOS
         
         //PROFESORES
@@ -122,16 +122,39 @@ public class ControladorPrincipal {
         if(!autores.contains(profesor7))
             autores.add(profesor7);
         
-        System.out.println("\n----Profesores----\n");
-        for(Autor p : autores){
-            if(p instanceof Profesor)
-                p.mostrar();
-        }
-            
-        //PROFESORES        
+//        System.out.println("\n----Profesores----\n");
+//        for(Autor p : autores){
+//            if(p instanceof Profesor)
+//                p.mostrar();
+//        }
+
+        System.out.println("Agrego miembros a grupo2 y muestro:");
+        grupo2.agregarMiembro(alumno7, Rol.COLABORADOR);
+        grupo2.agregarMiembro(alumno7, Rol.ADMINISTRADOR);
+        grupo2.agregarMiembro(profesor3, Rol.ADMINISTRADOR);
+        grupo2.mostrar();
+        //PROFESORES    
         
+        System.out.println("\nAgrego grupos a profesor3 y muestro:");
+        profesor3.agregarGrupo(grupo7, Rol.COLABORADOR);
+        profesor3.agregarGrupo(grupo7, Rol.ADMINISTRADOR);
+        profesor3.mostrar();
+        
+        System.out.println("\nAgrego grupos a profesor2 y muestro:");
+        profesor2.agregarGrupo(grupo7, Rol.COLABORADOR);
+        profesor2.mostrar();
+        
+//        System.out.println("\nMuestro grupo7 como quedó:");
+//        grupo7.mostrar();
+//        
+//        System.out.println("\nQuito profesor3 de grupo7 y muestro:");
+////        profesor3.quitarGrupo(grupo7);
+////        profesor3.mostrar();
+//        grupo7.quitarMiembro(profesor3);
+//        grupo7.mostrar();
+//        
         //TIPOS DE PUBLICACION
-        System.out.println("\n----Tipos de publicación----\n");
+//        System.out.println("\n----Tipos de publicación----\n");
         Tipo tipo1 = new Tipo("Tipo 1");
         Tipo tipo2 = new Tipo("Tipo 2");
         Tipo tipo3 = new Tipo("Tipo 3");
@@ -155,13 +178,13 @@ public class ControladorPrincipal {
         if(!tipos.contains(tipo7))
             tipos.add(tipo7);
         
-        for(Tipo t : tipos)
-            System.out.println(t);
+//        for(Tipo t : tipos)
+//            System.out.println(t);
     
         //TIPOS DE PUBLICACION
         
         //LUGARES
-        System.out.println("\n----Lugares----\n");
+//        System.out.println("\n----Lugares----\n");
         Lugar lugar1 = new Lugar("Lugar 1");
         Lugar lugar2 = new Lugar("Lugar 2");
         Lugar lugar3 = new Lugar("Lugar 3");
@@ -185,12 +208,12 @@ public class ControladorPrincipal {
         if(!lugares.contains(lugar7))
         lugares.add(lugar7);
 
-        for(Lugar l : lugares)
-            System.out.println(l);
+//        for(Lugar l : lugares)
+//            System.out.println(l);
         //LUGARES
         
         //IDIOMAS        
-        System.out.println("\n----Idiomas----\n");
+//        System.out.println("\n----Idiomas----\n");
         Idioma idioma1 = new Idioma("Idioma 1");
         Idioma idioma2 = new Idioma("Idioma 2");
         Idioma idioma3 = new Idioma("Idioma 3");
@@ -214,12 +237,12 @@ public class ControladorPrincipal {
         if(!idiomas.contains(idioma7))
             idiomas.add(idioma7);
 
-        for(Idioma i : idiomas)
-            System.out.println(i);        
+//        for(Idioma i : idiomas)
+//            System.out.println(i);        
         //IDIOMAS
         
         //PALABRAS CLAVE
-        System.out.println("\n----Palabras clave----\n");
+//        System.out.println("\n----Palabras clave----\n");
         PalabraClave palabraClave1 = new PalabraClave("PalabraClave1");
         PalabraClave palabraClave2 = new PalabraClave("PalabraClave2");
         PalabraClave palabraClave3 = new PalabraClave("PalabraClave3");
@@ -243,8 +266,8 @@ public class ControladorPrincipal {
         if(!palabrasClaves.contains(palabraClave7))
             palabrasClaves.add(palabraClave7);
 
-        for(PalabraClave pc : palabrasClaves)
-            System.out.println(pc); 
+//        for(PalabraClave pc : palabrasClaves)
+//            System.out.println(pc); 
         //PALABRAS CLAVE
         
         //PUBLICACIONES
@@ -284,11 +307,11 @@ public class ControladorPrincipal {
         if(!publicaciones.contains(publicacion7))
             publicaciones.add(publicacion7);
       
-        System.out.println("\n----Publicaciones----\n");
-        for(Publicacion p : publicaciones) {
-            p.mostrar();
-            System.out.println();
-        }
+//        System.out.println("\n----Publicaciones----\n");
+//        for(Publicacion p : publicaciones) {
+//            p.mostrar();
+//            System.out.println();
+//        }
         //PUBLICACIONES
 
       //</editor-fold>   
