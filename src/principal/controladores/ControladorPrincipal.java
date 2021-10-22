@@ -47,7 +47,6 @@ public class ControladorPrincipal {
         Grupo grupo4 = new Grupo("Grupo 4", "Descripción 4");
         Grupo grupo5 = new Grupo("Grupo 5", "Descripción 5");
         Grupo grupo6 = new Grupo("grupo 5", "Descripción 6");
-        Grupo grupo7 = new Grupo("Grupo 7", "Descripción 7");
 
         if(!grupos.contains(grupo1))
             grupos.add(grupo1);
@@ -61,8 +60,6 @@ public class ControladorPrincipal {
             grupos.add(grupo5);
         if(!grupos.contains(grupo6))
             grupos.add(grupo6);
-        if(!grupos.contains(grupo7))
-            grupos.add(grupo7);
       
 //        System.out.println("----Grupos----");
 //        for(Grupo g : grupos)
@@ -128,31 +125,50 @@ public class ControladorPrincipal {
 //                p.mostrar();
 //        }
 
-        System.out.println("Agrego miembros a grupo2 y muestro:");
-        grupo2.agregarMiembro(alumno7, Rol.COLABORADOR);
-        grupo2.agregarMiembro(alumno7, Rol.ADMINISTRADOR);
-        grupo2.agregarMiembro(profesor3, Rol.ADMINISTRADOR);
-        grupo2.mostrar();
-        //PROFESORES    
+        /*Main parte 3*/
+        /*Luego de crear grupos y autores, tomar 1 grupo y agregarle 2 autores 
+        como miembros. Mostrar el grupo verificando que tenga los miembros 
+        asignados. Verificar también que no se pueda agregar 
+        un mismo autor más de una vez, por más que sean en roles distintos.*/
+        grupo1.agregarMiembro(profesor1, Rol.ADMINISTRADOR);
+        grupo1.agregarMiembro(profesor1, Rol.COLABORADOR); //autor repetido
+        grupo1.agregarMiembro(alumno1, Rol.COLABORADOR);
+        grupo1.mostrar(); 
         
-        System.out.println("\nAgrego grupos a profesor3 y muestro:");
-        profesor3.agregarGrupo(grupo7, Rol.COLABORADOR);
-        profesor3.agregarGrupo(grupo7, Rol.ADMINISTRADOR);
-        profesor3.mostrar();
+        /*Tomar 1 de los 2 autores que se asignó al grupo anterior y 
+        agregarlo a otro grupo distinto. 
+        Mostrar los 2 autores verificando que pertenezcan a los grupos
+        a los que fueron asignados. 
+        Verificar también que no se pueda agregarle a un autor 
+        un mismo grupo más de una vez, por más que sean roles distintos.*/
+
+        profesor1.agregarGrupo(grupo2, Rol.COLABORADOR);
+        profesor1.agregarGrupo(grupo2, Rol.ADMINISTRADOR); //grupo repetido
+        profesor1.mostrar();
+        alumno1.mostrar();
         
-        System.out.println("\nAgrego grupos a profesor2 y muestro:");
-        profesor2.agregarGrupo(grupo7, Rol.COLABORADOR);
-        profesor2.mostrar();
+        /*
+        Tomar el grupo al que se le agregaron los 2 autores como miembros, 
+        quitarle 1 y mostrarlo, verificando que el autor 
+        ya no es miembro del grupo.
+        */
+        grupo1.quitarMiembro(profesor1);
+        grupo1.mostrar();
         
-//        System.out.println("\nMuestro grupo7 como quedó:");
-//        grupo7.mostrar();
-//        
-//        System.out.println("\nQuito profesor3 de grupo7 y muestro:");
-////        profesor3.quitarGrupo(grupo7);
-////        profesor3.mostrar();
-//        grupo7.quitarMiembro(profesor3);
-//        grupo7.mostrar();
-//        
+        /*
+        Crear un nuevo grupo para los super administradores. 
+        Este grupo DEBE llevar por nombre "Super Administradores". 
+        Intentar asignarle como miembro un autor cualquiera
+        con el rol de colaborador, verificando que se lo
+        agrega pero con el rol de administrador.
+        */
+        Grupo grupo7 = new Grupo("Super Administradores", "Grupo para los super administradores"); //grupo para los super administradores
+        if (!grupos.contains(grupo7))
+            grupos.add(grupo7);
+        
+        grupo7.agregarMiembro(profesor1, Rol.COLABORADOR);
+        grupo7.mostrar();
+        
         //TIPOS DE PUBLICACION
 //        System.out.println("\n----Tipos de publicación----\n");
         Tipo tipo1 = new Tipo("Tipo 1");

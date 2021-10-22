@@ -9,7 +9,6 @@ import grupos.modelos.Grupo;
 import grupos.modelos.MiembroEnGrupo;
 import grupos.modelos.Rol;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
@@ -62,9 +61,10 @@ public abstract class Autor {
     }
     
     public void mostrar(){
-        System.out.println("[" + this.dni + "] " + this.apellidos + ", " + this.nombres);
+        System.out.println("\n[" + this.dni + "] " + this.apellidos + ", " + this.nombres);
+        System.out.println("Grupos a los que pertenece este autor:");
         for(MiembroEnGrupo m : miembrosEnGrupo)
-            System.out.println("Grupo: " + m.verGrupo().verNombre() + "\tRol: " + m.verRol());
+            System.out.println("\tGrupo: " + m.verGrupo().verNombre() + "\tRol: " + m.verRol());
     }
 
     @Override
@@ -100,27 +100,29 @@ public abstract class Autor {
     
     public void agregarGrupo(Grupo grupo, Rol rol){
         MiembroEnGrupo miembro = new MiembroEnGrupo(this, grupo, rol);
+        
         if(!miembrosEnGrupo.contains(miembro))
             miembrosEnGrupo.add(miembro);
         if(!miembrosEnGrupo.contains(grupo))
             grupo.agregarMiembro(this, rol);
     }
     
-    public void quitarGrupo(Grupo grupo){
-        Iterator<MiembroEnGrupo> iterator = miembrosEnGrupo.iterator();
-        while (iterator.hasNext()){
-            MiembroEnGrupo unMiembro = iterator.next();
-            if (unMiembro.verGrupo().equals(grupo))
-                iterator.remove();
+    public void quitarGrupo(Grupo grupo){   //Falta quitar miembro.
+        int i=0;
+        for (MiembroEnGrupo m : miembrosEnGrupo){ //No me deja hacerlo igual que Grupo... me saltá ConcurrentModificationException   // java.util.ArrayList$Itr.checkForComodification  
+            if (m.verGrupo().equals(grupo))      //No hay grupos repetidos asi que solo deberia de encontra a uno solo.
+                i++;
+        }
+        if (i!=0){
+            miembrosEnGrupo.remove(i);
+            grupo.quitarMiembro(this);
         }
     }
     
     public boolean esSuperAdministrador(){
         for(MiembroEnGrupo m : miembrosEnGrupo){
-            if(m.verGrupo().equals("Super Administradores"))
+            if(m.verGrupo().esSuperAdministradores())
                 return true;
-            else
-                return false;
         }
         return false;
     }
