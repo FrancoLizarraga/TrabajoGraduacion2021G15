@@ -69,17 +69,15 @@ public class Grupo {
         return true;
     }
     
-    public void verMiembros(){
-        System.out.println("\tMiembros:");
-        for(MiembroEnGrupo m : miembrosEnGrupo){
-            System.out.println(m.verAutor().verApellidos() + ", " + m.verAutor().verNombres());
-        }
+    public ArrayList<MiembroEnGrupo> verMiembros(){
+        return this.miembrosEnGrupo;
     }
     
     public void agregarMiembro(Autor autor, Rol rol){
         MiembroEnGrupo miembro = new MiembroEnGrupo(autor, this, rol);
         if(this.esSuperAdministradores()){
-            rol = Rol.ADMINISTRADOR;
+            miembro.asignarRol(Rol.ADMINISTRADOR);
+//            rol = Rol.ADMINISTRADOR; ESTA FORMA NO ERA.
         }
         if(!tieneMiembros()){
             miembrosEnGrupo.add(miembro);
@@ -93,14 +91,12 @@ public class Grupo {
         }
     }
     
-    public void quitarMiembro(Autor miembro){   //Falta quitar grupo.
-        int i=0;
+    public void quitarMiembro(Autor miembro){
         for (MiembroEnGrupo m : miembrosEnGrupo){
             if(m.verAutor().equals(miembro)){
                 miembrosEnGrupo.remove(m);
                 miembro.quitarGrupo(this);
             }
-            i++;
         }   
     }
     

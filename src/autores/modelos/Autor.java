@@ -107,16 +107,22 @@ public abstract class Autor {
             grupo.agregarMiembro(this, rol);
     }
     
-    public void quitarGrupo(Grupo grupo){   //Falta quitar miembro.
-        int i=0;
-        for (MiembroEnGrupo m : miembrosEnGrupo){ //No me deja hacerlo igual que Grupo... me saltá ConcurrentModificationException   // java.util.ArrayList$Itr.checkForComodification  
-            if (m.verGrupo().equals(grupo))      //No hay grupos repetidos asi que solo deberia de encontra a uno solo.
-                i++;
+    public void quitarGrupo(Grupo grupo){ 
+//        int i=0;
+        for (MiembroEnGrupo m : miembrosEnGrupo){ 
+            if (m.verGrupo().equals(grupo)){
+                miembrosEnGrupo.remove(m);
+                grupo.quitarMiembro(this);
+            }
+        /*ESTE CODIGO DE ABAJO ERA UNA MANERA DE QUITAR UN GRUPO PERO NO FUNCIONABA BIEN.*/
+//            if (m.verGrupo().equals(grupo))      //No hay grupos repetidos asi que solo deberia de encontra a uno solo.
+//                i++;
+                
         }
-        if (i!=0){
-            miembrosEnGrupo.remove(i);
-            grupo.quitarMiembro(this);
-        }
+//        if (i!=0){
+//            miembrosEnGrupo.remove(i);
+//            grupo.quitarMiembro(this);
+//        }
     }
     
     public boolean esSuperAdministrador(){
