@@ -8,6 +8,7 @@ package publicaciones.modelos;
 import grupos.modelos.MiembroEnGrupo;
 import idiomas.modelos.Idioma;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class Publicacion {
     private List<PalabraClave> palabrasClaves;
     private String enlace;
     private String resumen;
+    
 
     public Publicacion(String titulo, MiembroEnGrupo miembro, LocalDate fechaPublicacion, Tipo tipo, Idioma idioma, Lugar lugar, List<PalabraClave> palabrasClaves, String enlace, String resumen) {
         this.titulo = titulo;
@@ -40,8 +42,12 @@ public class Publicacion {
     }
     
     public void mostrar(){
+        //Estas dos variables de abajo solo son para mostrar la fecha en el formato que lo piden.
+        String patron = "dd/MM/yyyy";
+        String fFormateada = fechaPublicacion.format(DateTimeFormatter.ofPattern(patron));
+        //Cuando voy a mostrar la fecha tengo que mostrar fFormateada, es la que lleva el formato.
         System.out.println("Titulo: " + titulo + "\nAutor: " + miembro.verAutor().verApellidos() + "," + miembro.verAutor().verNombres());
-        System.out.println("Grupo: " + miembro.verGrupo().verNombre() + "\nRol: " + miembro.verRol() + "\nFecha de publicación: " + fechaPublicacion);
+        System.out.println("Grupo: " + miembro.verGrupo().verNombre() + "\nRol: " + miembro.verRol() + "\nFecha de publicación: " + fFormateada);
         System.out.println("Tipo: " + tipo + "\nIdioma: " + idioma + "\nLugar: " + lugar);
         System.out.println("Palabras claves \n---------------");
         for(PalabraClave palabra : palabrasClaves){
