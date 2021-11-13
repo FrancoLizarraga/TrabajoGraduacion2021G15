@@ -8,20 +8,25 @@ package autores.vistas;
 import autores.modelos.Cargo;
 import autores.modelos.ModeloComboCargos;
 import autores.modelos.Profesor;
+import interfaces.IControladorAMProfesor;
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 
 public class VentanaAMProfesor extends JDialog {
     ArrayList<Profesor> profesores = new ArrayList<>();
+    private IControladorAMProfesor controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre
      */
-    public VentanaAMProfesor(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
+    public VentanaAMProfesor(IControladorAMProfesor controlador) {
+//        super(ventanaPadre, true);
+        this.controlador = controlador;
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
         this.comboCargos.setModel(new ModeloComboCargos());
     }
         
@@ -45,9 +50,12 @@ public class VentanaAMProfesor extends JDialog {
         passClave = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         comboCargos = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        repetirPassClave = new javax.swing.JPasswordField();
+        btnCancelarClic = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Profesores");
+        setTitle("Nuevo Profesor");
         setResizable(false);
 
         jLabel1.setText("Apellidos:");
@@ -76,9 +84,14 @@ public class VentanaAMProfesor extends JDialog {
         jLabel6.setText("Clave:");
 
         comboCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCargos.addActionListener(new java.awt.event.ActionListener() {
+
+        jLabel5.setText("Repetir clave:");
+
+        btnCancelarClic.setMnemonic('C');
+        btnCancelarClic.setText("Cancelar");
+        btnCancelarClic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCargosActionPerformed(evt);
+                btnCancelarClic(evt);
             }
         });
 
@@ -95,17 +108,21 @@ public class VentanaAMProfesor extends JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                            .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                             .addComponent(txtDNI)
                             .addComponent(txtApellidos)
                             .addComponent(passClave)
-                            .addComponent(comboCargos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(comboCargos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(repetirPassClave)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)))
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelarClic)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,9 +148,15 @@ public class VentanaAMProfesor extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(31, 31, 31)
-                .addComponent(btnGuardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(repetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelarClic))
+                .addContainerGap())
         );
 
         pack();
@@ -153,20 +176,23 @@ public class VentanaAMProfesor extends JDialog {
             p.mostrar();
     }//GEN-LAST:event_btnGuardarClic
 
-    private void comboCargosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCargosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboCargosActionPerformed
+    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+        this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarClic
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelarClic;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> comboCargos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField passClave;
+    private javax.swing.JPasswordField repetirPassClave;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombres;

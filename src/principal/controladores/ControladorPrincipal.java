@@ -16,6 +16,7 @@ import grupos.modelos.MiembroEnGrupo;
 import grupos.modelos.Rol;
 import idiomas.modelos.GestorIdiomas;
 import idiomas.modelos.Idioma;
+import interfaces.IControladorPrincipal;
 import interfaces.IGestorAutores;
 import interfaces.IGestorGrupos;
 import interfaces.IGestorIdiomas;
@@ -23,7 +24,6 @@ import interfaces.IGestorLugares;
 import interfaces.IGestorPalabrasClaves;
 import interfaces.IGestorPublicaciones;
 import interfaces.IGestorTipos;
-import static java.lang.System.out;
 import java.time.LocalDate;
 import lugares.modelos.GestorLugares;
 import lugares.modelos.Lugar;
@@ -597,6 +597,8 @@ public class ControladorPrincipal {
 
       //</editor-fold>   
      //<editor-fold defaultstate="collapsed" desc="Intefaz gráfica"> 
+     
+        IControladorPrincipal cp = ControladorVentanaPrincipal.instanciar();
 //        VentanaAMGrupo ventanaGrupo = new VentanaAMGrupo(null); //se instancia la ventana
 //        ventanaGrupo.setLocationRelativeTo(null); //se centra la ventana
 //        ventanaGrupo.setVisible(true); //se hace visible la ventana

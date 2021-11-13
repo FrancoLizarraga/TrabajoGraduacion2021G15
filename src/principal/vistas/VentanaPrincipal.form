@@ -31,23 +31,23 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton2" max="32767" attributes="0"/>
-                  <Component id="jButton1" pref="147" max="32767" attributes="0"/>
+                  <Component id="btnGrupos" max="32767" attributes="0"/>
+                  <Component id="btnPalabrasClaves" pref="147" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton4" pref="147" max="32767" attributes="0"/>
-                  <Component id="jButton3" max="32767" attributes="0"/>
+                  <Component id="btnAutores" pref="147" max="32767" attributes="0"/>
+                  <Component id="btnLugares" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton5" min="-2" pref="147" max="-2" attributes="0"/>
-                  <Component id="jButton6" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="btnIdiomas" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="btnPublicaciones" min="-2" pref="147" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton8" min="-2" pref="147" max="-2" attributes="0"/>
-                  <Component id="jButton7" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="btnSalir" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="btnTipos" min="-2" pref="147" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -58,19 +58,19 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton5" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                  <Component id="btnIdiomas" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
-                      <Component id="jButton7" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="btnPalabrasClaves" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="btnLugares" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="btnTipos" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton8" alignment="1" pref="122" max="32767" attributes="0"/>
-                  <Component id="jButton6" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButton2" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButton4" alignment="1" pref="122" max="32767" attributes="0"/>
+                  <Component id="btnSalir" alignment="1" pref="122" max="32767" attributes="0"/>
+                  <Component id="btnPublicaciones" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnGrupos" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnAutores" alignment="1" pref="122" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -78,54 +78,60 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnPalabrasClaves">
       <Properties>
         <Property name="mnemonic" type="int" value="80"/>
         <Property name="text" type="java.lang.String" value="Palabras Claves"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnGrupos">
       <Properties>
         <Property name="mnemonic" type="int" value="71"/>
         <Property name="text" type="java.lang.String" value="Grupos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnLugares">
       <Properties>
         <Property name="mnemonic" type="int" value="76"/>
         <Property name="text" type="java.lang.String" value="Lugares"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="btnAutores">
       <Properties>
         <Property name="mnemonic" type="int" value="65"/>
         <Property name="text" type="java.lang.String" value="Autores"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAutoresClic"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="btnIdiomas">
       <Properties>
         <Property name="mnemonic" type="int" value="73"/>
         <Property name="text" type="java.lang.String" value="Idiomas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton6">
+    <Component class="javax.swing.JButton" name="btnPublicaciones">
       <Properties>
         <Property name="mnemonic" type="int" value="80"/>
         <Property name="text" type="java.lang.String" value="Publicaciones"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton7">
+    <Component class="javax.swing.JButton" name="btnTipos">
       <Properties>
         <Property name="mnemonic" type="int" value="84"/>
         <Property name="text" type="java.lang.String" value="Tipos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton8">
+    <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="mnemonic" type="int" value="83"/>
         <Property name="text" type="java.lang.String" value="Salir"/>
         <Property name="doubleBuffered" type="boolean" value="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirClic"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

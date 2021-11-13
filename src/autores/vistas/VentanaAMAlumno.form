@@ -38,15 +38,17 @@
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNombres" pref="354" max="32767" attributes="0"/>
+                          <Component id="txtNombres" pref="345" max="32767" attributes="0"/>
                           <Component id="txtDNI" max="32767" attributes="0"/>
                           <Component id="txtApellidos" max="32767" attributes="0"/>
                           <Component id="txtCX" alignment="0" max="32767" attributes="0"/>
                           <Component id="passClave" alignment="0" max="32767" attributes="0"/>
+                          <Component id="repetirPassClave" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -82,7 +84,12 @@
                   <Component id="passClave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="repetirPassClave" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -143,6 +150,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clave:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Repetir clave:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="repetirPassClave">
     </Component>
   </SubComponents>
 </Form>
