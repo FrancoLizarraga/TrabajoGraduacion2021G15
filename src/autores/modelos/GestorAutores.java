@@ -163,11 +163,11 @@ public class GestorAutores implements IGestorAutores{
         int i=0;
         for(Autor a : autorBorrado){
             if(a.equals(autor)){
-                break;
+                break; //Cundo encuentra el autor sale del bucle for.
             }
             i++;
         }
-        autorBorrado.remove(i);
+        autorBorrado.remove(i); //Elimina el autor ubicado en la posicion i del ArrayList autorBorrado.
         this.autores = autorBorrado;
     }
     

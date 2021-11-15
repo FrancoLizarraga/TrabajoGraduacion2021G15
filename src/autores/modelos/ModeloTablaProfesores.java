@@ -23,7 +23,18 @@ public class ModeloTablaProfesores extends AbstractTableModel{
         this.nombresColumnas.add("Nombres");
         this.nombresColumnas.add("Cargo");
         
-        this.profesores = GestorAutores.instanciar().verProfesores(); //ahora profesores ve el array cargado en el gestor.
+        this.profesores = GestorAutores.instanciar().verProfesores(); //ahora profesores ve el arrayList cargado en el gestor.
+        
+    }
+    
+    //CREO OTRO CONSTRUCTOR PARA PASARLE EL ARRAYLIST FILTRADO CON LOS APELLIDOS
+    public ModeloTablaProfesores(ArrayList<Profesor> filtroProfesores){
+        this.nombresColumnas.add("DNI");
+        this.nombresColumnas.add("Apellidos");
+        this.nombresColumnas.add("Nombres");
+        this.nombresColumnas.add("Cargo");
+        
+        this.profesores = filtroProfesores; //ahora profesores ve el arrayList filtrado en ControladorVentanaAutores.
         
     }
 

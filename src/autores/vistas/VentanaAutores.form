@@ -170,6 +170,9 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Escrba sus apellidos."/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidosProfesorPresionarTecla"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
       <AuxValues>

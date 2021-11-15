@@ -103,7 +103,23 @@ public class ControladorVentanaAutores implements IControladorAutores{
 
     @Override
     public void btnBuscarProfesorClic(ActionEvent evt) {
+        GestorAutores ga = GestorAutores.instanciar();
+        String apellidos = this.ventana.verTxtApellidosProfesor().getText().trim();
+        ArrayList<Profesor> apellidosIguales = new ArrayList<>();
         
+        if(!apellidos.isEmpty()){
+            for(Profesor p : ga.verProfesores()){
+                if(p.verApellidos().toLowerCase().contains(apellidos.toLowerCase())){
+                    if(p.verApellidos().compareTo(apellidos)>= 0)
+                        apellidosIguales.add(p);
+                }
+            }
+        
+            //MUESTRA LOS PROFESORES QUE TIENEN EL APELLIDO INGRESADO EN EL CAMPO DE TEXTO.
+            this.ventana.verTablaProfesor().setModel(new ModeloTablaProfesores(apellidosIguales));
+        }
+        else
+            this.ventana.verTablaProfesor().setModel(new ModeloTablaProfesores());
     }
 
     @Override
@@ -118,15 +134,18 @@ public class ControladorVentanaAutores implements IControladorAutores{
 
     @Override
     public void txtApellidosProfesorPresionarTecla(KeyEvent evt) {
-        
+        char tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_ENTER)
+            ventana.verBtnBuscarProfesor().doClick();
     }
 
     @Override
     public void txtApellidosAlumnoPresionarTecla(KeyEvent evt) {
         
     }
+    
 
-    public VentanaAutores getVentana() {
+    public VentanaAutores verVentana() {
         return ventana;
     }
     

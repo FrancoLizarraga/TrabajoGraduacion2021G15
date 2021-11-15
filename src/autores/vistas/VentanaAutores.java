@@ -9,6 +9,7 @@ import autores.modelos.ModeloTablaProfesores;
 import interfaces.IControladorAutores;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -78,6 +79,11 @@ public class VentanaAutores extends javax.swing.JDialog {
         jLabel5.setText("Apellidos:");
 
         txtApellidosProfesor.setToolTipText("Escrba sus apellidos.");
+        txtApellidosProfesor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosProfesorPresionarTecla(evt);
+            }
+        });
 
         tablaProfesor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -304,6 +310,10 @@ public class VentanaAutores extends javax.swing.JDialog {
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolver
 
+    private void txtApellidosProfesorPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosProfesorPresionarTecla
+        this.controlador.txtApellidosProfesorPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidosProfesorPresionarTecla
+
     public JTable verTablaProfesor(){
         return this.tablaProfesor;
     }
@@ -314,6 +324,13 @@ public class VentanaAutores extends javax.swing.JDialog {
     
     public JButton verBtnBorrarProfesor(){
         return this.btnBorrarProfesor;
+    }
+    
+    public JButton verBtnBuscarProfesor(){
+        return this.btnBuscarProfesor;
+    }
+    public JTextField verTxtApellidosProfesor(){
+        return this.txtApellidosProfesor;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

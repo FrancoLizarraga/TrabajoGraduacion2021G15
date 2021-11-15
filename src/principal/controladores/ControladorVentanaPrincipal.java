@@ -32,7 +32,7 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal{
     @Override
     public void btnAutoresClic(ActionEvent evt) {
         ControladorVentanaAutores ca = ControladorVentanaAutores.instanciar();
-        ca.getVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
+        ca.verVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
     }
 
     @Override

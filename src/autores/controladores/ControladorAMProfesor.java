@@ -74,9 +74,9 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                     }
                     if (mensaje.equals("Profesor creado y guardado.")) {
                         JOptionPane.showMessageDialog(this.ventana, mensaje);
-                        ca.getVentana().verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
-                        ca.getVentana().verBtnBorrarProfesor().setEnabled(true); //una vez cargado un profesor habilita el boton borrar. 
-                        ca.getVentana().verBtnModificarProfesor().setEnabled(true); //una vez cargado un profesor habilita el boton modificar.
+                        ca.verVentana().verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
+                        ca.verVentana().verBtnBorrarProfesor().setEnabled(true); //una vez cargado un profesor habilita el boton borrar. 
+                        ca.verVentana().verBtnModificarProfesor().setEnabled(true); //una vez cargado un profesor habilita el boton modificar.
                         this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
                         ventana.dispose(); //cierro la ventana.
                     }
@@ -88,7 +88,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
         
         //Hago esto si se presiona en el boton "Modificar"
         if(this.ventana.getTitle().equals("Modificar Profesor")){
-            JTable tablaProfesor = ca.getVentana().verTablaProfesor();
+            JTable tablaProfesor = ca.verVentana().verTablaProfesor();
             int filaSeleccionada = tablaProfesor.getSelectedRow();
             int dniSeleccionado = Integer.parseInt(tablaProfesor.getValueAt(filaSeleccionada, 0).toString());
             Profesor profesor = (Profesor)ga.verAutor(dniSeleccionado);
@@ -102,7 +102,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                 }
                 if (mensaje.equals("Los datos se han modificado.")) {
                     JOptionPane.showMessageDialog(this.ventana, mensaje);
-                    ca.getVentana().verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
+                    ca.verVentana().verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
                     this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
                     ventana.dispose(); //cierro la ventana.
                     }
