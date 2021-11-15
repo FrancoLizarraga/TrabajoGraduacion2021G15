@@ -5,13 +5,17 @@
  */
 package autores.controladores;
 
+import autores.modelos.Autor;
+import autores.modelos.GestorAutores;
 import autores.modelos.ModeloTablaProfesores;
+import autores.modelos.Profesor;
 import autores.vistas.VentanaAutores;
-import interfaces.IControladorAMProfesor;
 import interfaces.IControladorAutores;
+import interfaces.IGestorAutores;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +56,7 @@ public class ControladorVentanaAutores implements IControladorAutores{
     public void btnModificarProfesorClic(ActionEvent evt) {
         ControladorAMProfesor cp = ControladorAMProfesor.instanciar(); //crea una instancia y muestra la ventana.
         if(this.ventana.verTablaProfesor().getSelectedRow() == -1)
-            JOptionPane.showMessageDialog(ventana,"Para modificar un profesor debe seleccionarlo primero.");
+            JOptionPane.showMessageDialog(ventana,"Para modificar un profesor primero debe seleccionarlo.");
         else{
             cp.verVentana().setTitle(PROFESOR_MODIFICAR); //le agrego el titulo
             cp.verVentana().setVisible(true); //la hago visible
@@ -67,8 +71,24 @@ public class ControladorVentanaAutores implements IControladorAutores{
 
     @Override
     public void btnBorrarProfesorClic(ActionEvent evt) {
+        GestorAutores ga= GestorAutores.instanciar();
+        int filaSeleccionada = this.ventana.verTablaProfesor().getSelectedRow();
         
-        
+        if(filaSeleccionada != -1){
+            int opcion = JOptionPane.showOptionDialog(ventana,CONFIRMACION_PROFESOR,"Borrar profesor",
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null,new Object[] {"Sí", "No"}, "No");
+            if(opcion == JOptionPane.YES_OPTION){
+                int dni = Integer.parseInt(this.ventana.verTablaProfesor().getValueAt(filaSeleccionada, 0).toString());//obtengo el DNI de la tabla
+                Autor profesor = ga.verAutor(dni);
+                
+                ga.borrarAutor(profesor); //Agregué este metodo en gestorAutores para borrar el autor.
+                this.ventana.verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
+                JOptionPane.showMessageDialog(ventana,"El profesor ha sido borrado.");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(ventana,"Para borrar un profesor primero debe seleccionarlo.");
+        }
     }
 
     @Override

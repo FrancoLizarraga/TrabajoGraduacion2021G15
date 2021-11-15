@@ -132,7 +132,6 @@ public class GestorAutores implements IGestorAutores{
         ArrayList<Profesor> profesores = new ArrayList<>();
         for(Autor a : this.autores){
             if(a instanceof Profesor){
-//                Profesor prof = new Profesor(a.verDni(), a.verApellidos(), a.verNombres(), a.verClave(),((Profesor) a).verCargo());
                 profesores.add((Profesor)a);
             }
         }
@@ -157,5 +156,20 @@ public class GestorAutores implements IGestorAutores{
         }
         return null;
     }
+
+    //NUEVO METODO PARA BORRAR UN AUTOR.
+    public void borrarAutor(Autor autor) {
+        ArrayList<Autor> autorBorrado = this.autores;
+        int i=0;
+        for(Autor a : autorBorrado){
+            if(a.equals(autor)){
+                break;
+            }
+            i++;
+        }
+        autorBorrado.remove(i);
+        this.autores = autorBorrado;
+    }
+    
     
 }
