@@ -6,20 +6,29 @@
 package autores.vistas;
 
 import autores.modelos.Alumno;
-import java.awt.Dialog;
+import autores.modelos.ModeloComboCargos;
+import interfaces.IControladorAMAlumno;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class VentanaAMAlumno extends JDialog {    
     ArrayList<Alumno> alumnos = new ArrayList<>();
+    private IControladorAMAlumno controlador;
     
     /**
      * Constructor
      * @param ventanaPadre ventana padre 
      */
-    public VentanaAMAlumno(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
+    public VentanaAMAlumno(IControladorAMAlumno controlador) {
+//        super(ventanaPadre, true);
+        this.controlador = controlador;
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
       
     /**
@@ -40,10 +49,11 @@ public class VentanaAMAlumno extends JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
         txtCX = new javax.swing.JTextField();
-        passClave = new javax.swing.JPasswordField();
+        txtPassClave = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        repetirPassClave = new javax.swing.JPasswordField();
+        txtRepetirPassClave = new javax.swing.JPasswordField();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alumnos");
@@ -52,10 +62,20 @@ public class VentanaAMAlumno extends JDialog {
         jLabel1.setText("Apellidos:");
 
         txtApellidos.setToolTipText("Apellidos del alumno");
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosPresionarTecla(evt);
+            }
+        });
 
         jLabel2.setText("Nombres:");
 
         txtNombres.setToolTipText("Nombres del alumno");
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresPresionarTecla(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -71,10 +91,41 @@ public class VentanaAMAlumno extends JDialog {
         jLabel4.setText("Documento:");
 
         txtDNI.setToolTipText("Documento del alumno");
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDocumentoPresionarTecla(evt);
+            }
+        });
+
+        txtCX.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCXPresionarTecla(evt);
+            }
+        });
+
+        txtPassClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passClavePresionarTecla(evt);
+            }
+        });
 
         jLabel6.setText("Clave:");
 
         jLabel5.setText("Repetir clave:");
+
+        txtRepetirPassClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passRepetirClavePresionarTecla(evt);
+            }
+        });
+
+        btnCancelar.setMnemonic('C');
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarClic(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,9 +134,6 @@ public class VentanaAMAlumno extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -100,8 +148,13 @@ public class VentanaAMAlumno extends JDialog {
                             .addComponent(txtDNI)
                             .addComponent(txtApellidos)
                             .addComponent(txtCX)
-                            .addComponent(passClave)
-                            .addComponent(repetirPassClave))))
+                            .addComponent(txtPassClave)
+                            .addComponent(txtRepetirPassClave)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -125,14 +178,16 @@ public class VentanaAMAlumno extends JDialog {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(repetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRepetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(btnGuardar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -140,21 +195,73 @@ public class VentanaAMAlumno extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int dni = 0;
-        if (!this.txtDNI.getText().trim().isEmpty())
-            dni = Integer.parseInt(this.txtDNI.getText().trim());
-        String apellidos = this.txtApellidos.getText().trim();
-        String nombres = this.txtNombres.getText().trim();
-        String cx = this.txtCX.getText().trim();
-        String clave = new String(this.passClave.getPassword());
-        Alumno alumno = new Alumno(dni, apellidos, nombres, clave, cx);
-        this.alumnos.add(alumno);
-        for(Alumno a : this.alumnos)
-            a.mostrar();
+        this.controlador.btnGuardarClic(evt);
+//        int dni = 0;
+//        if (!this.txtDNI.getText().trim().isEmpty())
+//            dni = Integer.parseInt(this.txtDNI.getText().trim());
+//        String apellidos = this.txtApellidos.getText().trim();
+//        String nombres = this.txtNombres.getText().trim();
+//        String cx = this.txtCX.getText().trim();
+//        String clave = new String(this.txtPassClave.getPassword());
+//        Alumno alumno = new Alumno(dni, apellidos, nombres, clave, cx);
+//        this.alumnos.add(alumno);
+//        for(Alumno a : this.alumnos)
+//            a.mostrar();
     }//GEN-LAST:event_btnGuardarClic
 
+    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+        this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarClic
 
+    private void txtDocumentoPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoPresionarTecla
+        this.controlador.txtDocumentoPresionarTecla(evt);
+    }//GEN-LAST:event_txtDocumentoPresionarTecla
+
+    private void txtApellidosPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosPresionarTecla
+        this.controlador.txtApellidosPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidosPresionarTecla
+
+    private void txtNombresPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresPresionarTecla
+        this.controlador.txtNombresPresionarTecla(evt);
+    }//GEN-LAST:event_txtNombresPresionarTecla
+
+    private void txtCXPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCXPresionarTecla
+        this.controlador.txtCXPresionarTecla(evt);
+    }//GEN-LAST:event_txtCXPresionarTecla
+
+    private void passClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClavePresionarTecla
+        this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_passClavePresionarTecla
+
+    private void passRepetirClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passRepetirClavePresionarTecla
+        this.controlador.passRepetirClavePresionarTecla(evt);
+    }//GEN-LAST:event_passRepetirClavePresionarTecla
+
+
+    public JTextField verTxtDNI(){
+        return this.txtDNI;
+    }
+    public JTextField verTxtApellidos(){
+        return this.txtApellidos;
+    }
+    public JTextField verTxtNombres(){
+        return this.txtNombres;
+    }
+    public JTextField verTxtCX(){
+        return this.txtCX;
+    }
+    public JPasswordField verTxtClave(){
+        return this.txtPassClave;
+    }
+    public JPasswordField verTxtClaveRepetida(){
+        return this.txtRepetirPassClave;
+    }
+    public JButton verBotonGuardar(){
+        return this.btnGuardar;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -162,11 +269,11 @@ public class VentanaAMAlumno extends JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField passClave;
-    private javax.swing.JPasswordField repetirPassClave;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCX;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombres;
+    private javax.swing.JPasswordField txtPassClave;
+    private javax.swing.JPasswordField txtRepetirPassClave;
     // End of variables declaration//GEN-END:variables
 }
