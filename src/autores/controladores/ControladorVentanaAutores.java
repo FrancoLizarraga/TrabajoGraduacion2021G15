@@ -5,18 +5,21 @@
  */
 package autores.controladores;
 
+import autores.modelos.ModeloTablaProfesores;
 import autores.vistas.VentanaAutores;
 import interfaces.IControladorAMProfesor;
 import interfaces.IControladorAutores;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
 public class ControladorVentanaAutores implements IControladorAutores{
+    
     private VentanaAutores ventana;
     
     //INICIO PATRON SINGLETON.
@@ -35,32 +38,42 @@ public class ControladorVentanaAutores implements IControladorAutores{
     @Override
     public void btnNuevoProfesorClic(ActionEvent evt) {
         ControladorAMProfesor cp = ControladorAMProfesor.instanciar();
-        cp.getVentana().setVisible(true);
+        cp.verVentana().setTitle(PROFESOR_NUEVO);
+        cp.verVentana().verTxtDNI().setEnabled(true);
+        cp.verVentana().setVisible(true);
     }
 
     @Override
     public void btnNuevoAlumnoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void btnModificarProfesorClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ControladorAMProfesor cp = ControladorAMProfesor.instanciar(); //crea una instancia y muestra la ventana.
+        if(this.ventana.verTablaProfesor().getSelectedRow() == -1)
+            JOptionPane.showMessageDialog(ventana,"Para modificar un profesor debe seleccionarlo primero.");
+        else{
+            cp.verVentana().setTitle(PROFESOR_MODIFICAR); //le agrego el titulo
+            cp.verVentana().setVisible(true); //la hago visible
+            cp.verVentana().verTxtDNI().setEnabled(false); //Deshabilito el campod de txt de dni para no poder modificarlo.
+        }
     }
 
     @Override
     public void btnModificarAlumnoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void btnBorrarProfesorClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
     }
 
     @Override
     public void btnBorrarAlumnoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -70,27 +83,27 @@ public class ControladorVentanaAutores implements IControladorAutores{
 
     @Override
     public void btnBuscarProfesorClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void btnBuscarAlumnoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void txtApellidosProfesorPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void txtApellidosAlumnoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public VentanaAutores getVentana() {

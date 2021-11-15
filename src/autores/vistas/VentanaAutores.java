@@ -5,7 +5,10 @@
  */
 package autores.vistas;
 
+import autores.modelos.ModeloTablaProfesores;
 import interfaces.IControladorAutores;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -22,6 +25,7 @@ public class VentanaAutores extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.tablaProfesor.setModel(new ModeloTablaProfesores());
     }
 
     /**
@@ -106,6 +110,7 @@ public class VentanaAutores extends javax.swing.JDialog {
 
         btnModificarProfesor.setMnemonic('M');
         btnModificarProfesor.setText("Modificar");
+        btnModificarProfesor.setEnabled(false);
         btnModificarProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarProfesor(evt);
@@ -114,6 +119,7 @@ public class VentanaAutores extends javax.swing.JDialog {
 
         btnBorrarProfesor.setMnemonic('B');
         btnBorrarProfesor.setText("Borrar");
+        btnBorrarProfesor.setEnabled(false);
         btnBorrarProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarProfesor(evt);
@@ -155,6 +161,7 @@ public class VentanaAutores extends javax.swing.JDialog {
 
         btnModificarAlumno.setMnemonic('o');
         btnModificarAlumno.setText("Modificar");
+        btnModificarAlumno.setEnabled(false);
         btnModificarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarAlumno(evt);
@@ -163,6 +170,7 @@ public class VentanaAutores extends javax.swing.JDialog {
 
         btnBorrarAlumno.setMnemonic('r');
         btnBorrarAlumno.setText("Borrar");
+        btnBorrarAlumno.setEnabled(false);
         btnBorrarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarAlumno(evt);
@@ -296,7 +304,18 @@ public class VentanaAutores extends javax.swing.JDialog {
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolver
 
-
+    public JTable verTablaProfesor(){
+        return this.tablaProfesor;
+    }
+    
+    public JButton verBtnModificarProfesor(){
+        return this.btnModificarProfesor;
+    }
+    
+    public JButton verBtnBorrarProfesor(){
+        return this.btnBorrarProfesor;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarAlumno;
     private javax.swing.JButton btnBorrarProfesor;

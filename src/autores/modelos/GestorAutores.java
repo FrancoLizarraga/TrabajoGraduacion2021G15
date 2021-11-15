@@ -24,45 +24,51 @@ public class GestorAutores implements IGestorAutores{
             gestor = new GestorAutores();
         return gestor;
     }
-
+    
+    //Agregué que el dni sea mayor que cero, el control de clave y claveRepetida.
     @Override
     public String nuevoAutor(int dni, String apellidos, String nombres, Cargo cargo, String clave, String claveRepetida) {
         if ((nombres != null) && (!nombres.isEmpty()) && (apellidos != null) && (!apellidos.isEmpty())
-                && (dni != 0) && (cargo != null) && (!cargo.toString().isEmpty())){
+                && (dni != 0) && (dni > 0) && (cargo != null) && (!cargo.toString().isEmpty()) && (clave != null)
+                && (!clave.isEmpty()) && (claveRepetida != null) && (!claveRepetida.isEmpty())){
             Autor profesor = new Profesor(dni, apellidos, nombres, clave, cargo);
             if(!this.autores.contains(profesor)){
                 this.autores.add(profesor);
-                return "Profesor creado y guardado";
+                return "Profesor creado y guardado.";
             }
             else
-                return "Ya existe un profesor con ese dni";
+                return "Ya existe un profesor con ese dni.";
         }
         else
             return "Los datos del profesor deben ser validos.";
         
     }
-
+    
+    //Agregué que el dni sea mayor que cero, el control de clave y claveRepetida.
     @Override
     public String nuevoAutor(int dni, String apellidos, String nombres, String cx, String clave, String claveRepetida) {
         if ((nombres != null) && (!nombres.isEmpty()) && (apellidos != null) && (!apellidos.isEmpty())
-                && (dni != 0) && (cx != null) && (!cx.isEmpty())){
+                && (dni != 0) && (dni > 0) && (cx != null) && (!cx.isEmpty()) && (clave != null)
+                && (!clave.isEmpty()) && (claveRepetida != null) && (!claveRepetida.isEmpty())){
             Autor alumno = new Alumno(dni, apellidos, nombres, clave, cx);
             if(!this.autores.contains(alumno)){
                 this.autores.add(alumno);
-                return "Alumno creado y guardado";
+                return "Alumno creado y guardado.";
             }
             else
-                return "Ya existe un alumno con ese dni o cx";
+                return "Ya existe un alumno con ese dni o cx.";
         }
         else
             return "Los datos del alumno deben ser validos.";
     }
-
+    
+    //Agregué que el dni sea mayor que cero, el control de clave y claveRepetida.
     @Override
     public String modificarAutor(Autor autor, String apellidos, String nombres, Cargo cargo, String clave, String claveRepetida) {
         int i=0;
         if ((nombres != null) && (!nombres.isEmpty()) && (apellidos != null) && (!apellidos.isEmpty())
-                && (cargo != null) && (!cargo.toString().isEmpty()) && (autor != null)){
+                && (cargo != null) && (!cargo.toString().isEmpty()) && (autor != null) && (clave != null)
+                && (!clave.isEmpty()) && (claveRepetida != null) && (!claveRepetida.isEmpty())){
             for(Autor a : autores){
                 if(a.equals(autor)){
                     Profesor profesor;
@@ -81,12 +87,14 @@ public class GestorAutores implements IGestorAutores{
         else
             return "Los datos a modificar deben ser validos.";
     }
-
+    
+    //Agregué que el dni sea mayor que cero, el control de clave y claveRepetida.
     @Override
     public String modificarAutor(Autor autor, String apellidos, String nombres, String cx, String clave, String claveRepetida) {
         int i=0;
         if ((nombres != null) && (!nombres.isEmpty()) && (apellidos != null) && (!apellidos.isEmpty())
-                && (cx != null) && (!cx.isEmpty()) && (autor != null)){
+                && (cx != null) && (!cx.isEmpty()) && (autor != null) && (clave != null)
+                && (!clave.isEmpty()) && (claveRepetida != null) && (!claveRepetida.isEmpty())){
             for(Autor a : autores){
                 if(a.equals(autor)){
                     Alumno alumno;

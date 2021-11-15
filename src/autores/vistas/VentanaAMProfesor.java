@@ -10,8 +10,13 @@ import autores.modelos.ModeloComboCargos;
 import autores.modelos.Profesor;
 import interfaces.IControladorAMProfesor;
 import java.awt.Dialog;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class VentanaAMProfesor extends JDialog {
     ArrayList<Profesor> profesores = new ArrayList<>();
@@ -47,24 +52,33 @@ public class VentanaAMProfesor extends JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
-        passClave = new javax.swing.JPasswordField();
+        txtPassClave = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         comboCargos = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        repetirPassClave = new javax.swing.JPasswordField();
+        txtRepetirPassClave = new javax.swing.JPasswordField();
         btnCancelarClic = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nuevo Profesor");
         setResizable(false);
 
         jLabel1.setText("Apellidos:");
 
         txtApellidos.setToolTipText("Apellidos del profesor");
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosPresionarTecla(evt);
+            }
+        });
 
         jLabel2.setText("Nombres:");
 
         txtNombres.setToolTipText("Nombres del profesor");
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresPresionarTecla(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -80,12 +94,29 @@ public class VentanaAMProfesor extends JDialog {
         jLabel4.setText("Documento:");
 
         txtDNI.setToolTipText("Documento del profesor");
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDocumentoPresionarTecla(evt);
+            }
+        });
+
+        txtPassClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passClavePresionarTecla(evt);
+            }
+        });
 
         jLabel6.setText("Clave:");
 
         comboCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Repetir clave:");
+
+        txtRepetirPassClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passRepetirClavePresionarTecla(evt);
+            }
+        });
 
         btnCancelarClic.setMnemonic('C');
         btnCancelarClic.setText("Cancelar");
@@ -115,9 +146,9 @@ public class VentanaAMProfesor extends JDialog {
                             .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                             .addComponent(txtDNI)
                             .addComponent(txtApellidos)
-                            .addComponent(passClave)
+                            .addComponent(txtPassClave)
                             .addComponent(comboCargos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(repetirPassClave)))
+                            .addComponent(txtRepetirPassClave)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
@@ -146,12 +177,12 @@ public class VentanaAMProfesor extends JDialog {
                     .addComponent(comboCargos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(repetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRepetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -163,23 +194,65 @@ public class VentanaAMProfesor extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        int dni = 0;
-        if (!this.txtDNI.getText().trim().isEmpty())
-            dni = Integer.parseInt(this.txtDNI.getText().trim());
-        String apellidos = this.txtApellidos.getText().trim();
-        String nombres = this.txtNombres.getText().trim();
-        Cargo cargo = ((ModeloComboCargos)this.comboCargos.getModel()).obtenerCargo();
-        String clave = new String(this.passClave.getPassword());
-        Profesor profesor = new Profesor(dni, apellidos, nombres, clave, cargo);
-        this.profesores.add(profesor);
-        for(Profesor p : this.profesores)
-            p.mostrar();
+        this.controlador.btnGuardarClic(evt);
+//        int dni = 0;
+//        if (!this.txtDNI.getText().trim().isEmpty())
+//            dni = Integer.parseInt(this.txtDNI.getText().trim());
+//        String apellidos = this.txtApellidos.getText().trim();
+//        String nombres = this.txtNombres.getText().trim();
+//        Cargo cargo = ((ModeloComboCargos)this.comboCargos.getModel()).obtenerCargo();
+//        String clave = new String(this.passClave.getPassword());
+//        Profesor profesor = new Profesor(dni, apellidos, nombres, clave, cargo);
+//        this.profesores.add(profesor);
+//        for(Profesor p : this.profesores)
+//            p.mostrar();
     }//GEN-LAST:event_btnGuardarClic
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
         this.controlador.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarClic
 
+    private void passRepetirClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passRepetirClavePresionarTecla
+       this.controlador.passRepetirClavePresionarTecla(evt);
+    }//GEN-LAST:event_passRepetirClavePresionarTecla
+
+    private void passClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClavePresionarTecla
+        this.controlador.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_passClavePresionarTecla
+
+    private void txtDocumentoPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDocumentoPresionarTecla
+        this.controlador.txtDocumentoPresionarTecla(evt);
+    }//GEN-LAST:event_txtDocumentoPresionarTecla
+
+    private void txtNombresPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresPresionarTecla
+        this.controlador.txtNombresPresionarTecla(evt);
+    }//GEN-LAST:event_txtNombresPresionarTecla
+
+    private void txtApellidosPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosPresionarTecla
+        this.controlador.txtApellidosPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidosPresionarTecla
+
+    public JTextField verTxtDNI(){
+        return this.txtDNI;
+    }
+    public JTextField verTxtApellidos(){
+        return this.txtApellidos;
+    }
+    public JTextField verTxtNombres(){
+        return this.txtNombres;
+    }
+    public JPasswordField verTxtClave(){
+        return this.txtPassClave;
+    }
+    public JPasswordField verTxtClaveRepetida(){
+        return this.txtRepetirPassClave;
+    }
+    public JComboBox<String> verComboCargos(){
+        return this.comboCargos;
+    }
+    public JButton verBotonGuardar(){
+        return this.btnGuardar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarClic;
@@ -191,10 +264,10 @@ public class VentanaAMProfesor extends JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField passClave;
-    private javax.swing.JPasswordField repetirPassClave;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombres;
+    private javax.swing.JPasswordField txtPassClave;
+    private javax.swing.JPasswordField txtRepetirPassClave;
     // End of variables declaration//GEN-END:variables
 }
