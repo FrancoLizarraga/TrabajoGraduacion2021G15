@@ -12,13 +12,14 @@ import javax.swing.DefaultComboBoxModel;
  * @author Usuario
  */
 public class ModeloComboCargos extends DefaultComboBoxModel {
-    public ModeloComboCargos(){
-        for(Cargo cargo : Cargo.values()){
+
+    public ModeloComboCargos() {
+        for (Cargo cargo : Cargo.values()) {
             this.addElement(cargo);
         }
     }
-    
-    public Cargo obtenerCargo(){
-        return (Cargo)this.getSelectedItem();
+
+    public Cargo obtenerCargo() {
+        return (Cargo) this.getSelectedItem();
     }
 }

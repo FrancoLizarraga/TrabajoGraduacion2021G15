@@ -12,32 +12,36 @@ import java.util.ArrayList;
  *
  * @author Usuario
  */
-public class GestorLugares implements IGestorLugares{
+public class GestorLugares implements IGestorLugares {
+
     private ArrayList<Lugar> lugares = new ArrayList<>();
-    
+
     private static GestorLugares gestor;
-    private GestorLugares(){
-        
+
+    private GestorLugares() {
+
     }
-    public static GestorLugares instanciar(){
-        if(gestor==null)
+
+    public static GestorLugares instanciar() {
+        if (gestor == null) {
             gestor = new GestorLugares();
+        }
         return gestor;
     }
 
     @Override
     public String nuevoLugar(String nombre) {
-        if ((nombre != null) && (!nombre.isEmpty())){
+        if ((nombre != null) && (!nombre.isEmpty())) {
             Lugar lugarx = new Lugar(nombre);
-            if(!this.lugares.contains(lugarx)){
+            if (!this.lugares.contains(lugarx)) {
                 this.lugares.add(lugarx);
                 return "Lugar creado y guardado";
-            }
-            else
+            } else {
                 return "Ya existe un lugar con ese nombre";
-        }
-        else
+            }
+        } else {
             return "El nombre del lugar debe ser una cadena no vacia.";
+        }
     }
 
     @Override
@@ -47,12 +51,12 @@ public class GestorLugares implements IGestorLugares{
 
     @Override
     public Lugar verLugar(String nombre) {
-        for(Lugar l : this.lugares){
-            if(l.toString().equals(nombre))
+        for (Lugar l : this.lugares) {
+            if (l.toString().equals(nombre)) {
                 return l;
+            }
         }
         return null;
     }
-    
-    
+
 }

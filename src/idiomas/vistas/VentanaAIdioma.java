@@ -11,18 +11,19 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 
 public class VentanaAIdioma extends JDialog {
-   ArrayList<Idioma> idiomas = new ArrayList<>();
-   
+
+    ArrayList<Idioma> idiomas = new ArrayList<>();
+
     /**
-     * Constructor 
+     * Constructor
+     *
      * @param ventanaPadre ventana padre
-     */        
+     */
     public VentanaAIdioma(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +89,7 @@ public class VentanaAIdioma extends JDialog {
         String nombre = this.txtNombre.getText().trim();
         Idioma idioma = new Idioma(nombre);
         this.idiomas.add(idioma);
-        for(Idioma i : this.idiomas)
+        for (Idioma i : this.idiomas)
             System.out.println(i);
     }//GEN-LAST:event_btnGuardarClic
 

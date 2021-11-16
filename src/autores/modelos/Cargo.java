@@ -23,7 +23,4 @@ public enum Cargo {
     public String toString() {
         return this.valor;
     }
-    
-    
-    
 }

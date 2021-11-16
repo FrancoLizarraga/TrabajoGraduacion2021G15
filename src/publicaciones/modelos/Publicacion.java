@@ -16,8 +16,8 @@ import lugares.modelos.Lugar;
 import palabrasclaves.modelos.PalabraClave;
 import tipos.modelos.Tipo;
 
-
 public class Publicacion {
+
     private String titulo;
     private MiembroEnGrupo miembro;
     private LocalDate fechaPublicacion;
@@ -27,7 +27,6 @@ public class Publicacion {
     private List<PalabraClave> palabrasClaves;
     private String enlace;
     private String resumen;
-    
 
     public Publicacion(String titulo, MiembroEnGrupo miembro, LocalDate fechaPublicacion, Tipo tipo, Idioma idioma, Lugar lugar, List<PalabraClave> palabrasClaves, String enlace, String resumen) {
         this.titulo = titulo;
@@ -40,8 +39,8 @@ public class Publicacion {
         this.enlace = enlace;
         this.resumen = resumen;
     }
-    
-    public void mostrar(){
+
+    public void mostrar() {
         //Estas dos variables de abajo solo son para mostrar la fecha en el formato que lo piden.
         String patron = "dd/MM/yyyy";
         String fFormateada = fechaPublicacion.format(DateTimeFormatter.ofPattern(patron));
@@ -50,8 +49,8 @@ public class Publicacion {
         System.out.println("Grupo: " + miembro.verGrupo().verNombre() + "\nRol: " + miembro.verRol() + "\nFecha de publicación: " + fFormateada);
         System.out.println("Tipo: " + tipo + "\nIdioma: " + idioma + "\nLugar: " + lugar);
         System.out.println("Palabras claves \n---------------");
-        for(PalabraClave palabra : palabrasClaves){
-            System.out.println("\t"+palabra);
+        for (PalabraClave palabra : palabrasClaves) {
+            System.out.println("\t" + palabra);
         }
         System.out.println("Enlace: " + enlace + "\nResumen: " + resumen);
     }
@@ -152,5 +151,5 @@ public class Publicacion {
         }
         return true;
     }
-   
+
 }

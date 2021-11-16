@@ -10,7 +10,8 @@ import autores.modelos.Profesor;
 import java.util.Objects;
 
 public class MiembroEnGrupo {
-    private Autor autor; // Cambié de tipo "Profesor" a tipo "Autor" para tomar Profesores y Alumnos.
+
+    private Autor autor;
     private Grupo grupo;
     private Rol rol;
 
@@ -71,5 +72,5 @@ public class MiembroEnGrupo {
             return false;
         }
         return true;
-    } 
+    }
 }

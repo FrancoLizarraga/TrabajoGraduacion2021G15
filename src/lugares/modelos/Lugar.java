@@ -8,7 +8,8 @@ package lugares.modelos;
 import java.util.Objects;
 
 public class Lugar {
-     private String nombre;
+
+    private String nombre;
 
     public Lugar(String nombre) {
         this.nombre = nombre;
@@ -21,9 +22,9 @@ public class Lugar {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String toString(){
-     return nombre;   
+
+    public String toString() {
+        return nombre;
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Usuario
  */
 public class PalabraClave {
+
     private String nombre;
 
     public PalabraClave(String nombre) {
@@ -25,9 +26,9 @@ public class PalabraClave {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String toString(){
-     return nombre;   
+
+    public String toString() {
+        return nombre;
     }
 
     @Override

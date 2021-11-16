@@ -11,18 +11,19 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 
 public class VentanaAMGrupo extends JDialog {
+
     ArrayList<Grupo> grupos = new ArrayList<>();
-    
+
     /**
-     * Constructor 
+     * Constructor
+     *
      * @param ventanaPadre ventana padre
-     */        
+     */
     public VentanaAMGrupo(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
     }
-        
-           
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,9 +100,9 @@ public class VentanaAMGrupo extends JDialog {
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         String nombre = this.txtNombre.getText().trim();
         String descripcion = this.txtDescripcion.getText().trim();
-        Grupo grupo = new Grupo(nombre, descripcion);        
+        Grupo grupo = new Grupo(nombre, descripcion);
         grupos.add(grupo);
-        for(Grupo g : grupos)
+        for (Grupo g : grupos)
             g.mostrar();
     }//GEN-LAST:event_btnGuardarClic
 

@@ -15,22 +15,23 @@ import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class VentanaAMAlumno extends JDialog {    
+public class VentanaAMAlumno extends JDialog {
+
     ArrayList<Alumno> alumnos = new ArrayList<>();
     private IControladorAMAlumno controlador;
-    
+
     /**
      * Constructor
-     * @param ventanaPadre ventana padre 
+     *
+     * @param ventanaPadre ventana padre
      */
     public VentanaAMAlumno(IControladorAMAlumno controlador) {
-//        super(ventanaPadre, true);
         this.controlador = controlador;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,17 +197,6 @@ public class VentanaAMAlumno extends JDialog {
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         this.controlador.btnGuardarClic(evt);
-//        int dni = 0;
-//        if (!this.txtDNI.getText().trim().isEmpty())
-//            dni = Integer.parseInt(this.txtDNI.getText().trim());
-//        String apellidos = this.txtApellidos.getText().trim();
-//        String nombres = this.txtNombres.getText().trim();
-//        String cx = this.txtCX.getText().trim();
-//        String clave = new String(this.txtPassClave.getPassword());
-//        Alumno alumno = new Alumno(dni, apellidos, nombres, clave, cx);
-//        this.alumnos.add(alumno);
-//        for(Alumno a : this.alumnos)
-//            a.mostrar();
     }//GEN-LAST:event_btnGuardarClic
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
@@ -237,29 +227,34 @@ public class VentanaAMAlumno extends JDialog {
         this.controlador.passRepetirClavePresionarTecla(evt);
     }//GEN-LAST:event_passRepetirClavePresionarTecla
 
-
-    public JTextField verTxtDNI(){
+    public JTextField verTxtDNI() {
         return this.txtDNI;
     }
-    public JTextField verTxtApellidos(){
+
+    public JTextField verTxtApellidos() {
         return this.txtApellidos;
     }
-    public JTextField verTxtNombres(){
+
+    public JTextField verTxtNombres() {
         return this.txtNombres;
     }
-    public JTextField verTxtCX(){
+
+    public JTextField verTxtCX() {
         return this.txtCX;
     }
-    public JPasswordField verTxtClave(){
+
+    public JPasswordField verTxtClave() {
         return this.txtPassClave;
     }
-    public JPasswordField verTxtClaveRepetida(){
+
+    public JPasswordField verTxtClaveRepetida() {
         return this.txtRepetirPassClave;
     }
-    public JButton verBotonGuardar(){
+
+    public JButton verBotonGuardar() {
         return this.btnGuardar;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;

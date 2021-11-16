@@ -11,18 +11,19 @@ import javax.swing.JDialog;
 import palabrasclaves.modelos.PalabraClave;
 
 public class VentanaAPalabraClave extends JDialog {
-   ArrayList<PalabraClave> palabrasClaves = new ArrayList<>();
-   
+
+    ArrayList<PalabraClave> palabrasClaves = new ArrayList<>();
+
     /**
-     * Constructor 
+     * Constructor
+     *
      * @param ventanaPadre ventana padre (VentanaPalabrasClaves en este caso)
-     */        
+     */
     public VentanaAPalabraClave(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
     }
- 
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +89,7 @@ public class VentanaAPalabraClave extends JDialog {
         String nombre = this.txtNombre.getText().trim();
         PalabraClave palabraClave = new PalabraClave(nombre);
         this.palabrasClaves.add(palabraClave);
-        for(PalabraClave i : this.palabrasClaves)
+        for (PalabraClave i : this.palabrasClaves)
             System.out.println(i);
     }//GEN-LAST:event_btnGuardarClic
 

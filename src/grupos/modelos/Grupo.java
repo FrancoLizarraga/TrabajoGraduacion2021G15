@@ -19,11 +19,11 @@ public class Grupo {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
-    
+
     public void mostrar() {
         System.out.println("\nNombre: " + nombre + "\t\tDescripcion: " + descripcion);
         System.out.println("Sus miembros con sus respectivos roles son:");
-        for(MiembroEnGrupo m : miembrosEnGrupo){
+        for (MiembroEnGrupo m : miembrosEnGrupo) {
             System.out.println("\tAutor: " + m.verAutor().verApellidos() + ", " + m.verAutor().verNombres() + "\tRol: " + m.verRol());
         }
     }
@@ -68,49 +68,49 @@ public class Grupo {
         }
         return true;
     }
-    
-    public ArrayList<MiembroEnGrupo> verMiembros(){
+
+    public ArrayList<MiembroEnGrupo> verMiembros() {
         return this.miembrosEnGrupo;
     }
-    
-    public void agregarMiembro(Autor autor, Rol rol){
+
+    public void agregarMiembro(Autor autor, Rol rol) {
         MiembroEnGrupo miembro = new MiembroEnGrupo(autor, this, rol);
-        if(this.esSuperAdministradores()){
+        if (this.esSuperAdministradores()) {
             miembro.asignarRol(Rol.ADMINISTRADOR);
-//            rol = Rol.ADMINISTRADOR; ESTA FORMA NO ERA.
         }
-        if(!tieneMiembros()){
+        if (!tieneMiembros()) {
             miembrosEnGrupo.add(miembro);
             autor.agregarGrupo(this, rol);
-        }
-        else{
-            if(!miembrosEnGrupo.contains(miembro)){
+        } else {
+            if (!miembrosEnGrupo.contains(miembro)) {
                 miembrosEnGrupo.add(miembro);
                 autor.agregarGrupo(this, rol);
             }
         }
     }
-    
-    public void quitarMiembro(Autor miembro){
-        for (MiembroEnGrupo m : miembrosEnGrupo){
-            if(m.verAutor().equals(miembro)){
+
+    public void quitarMiembro(Autor miembro) {
+        for (MiembroEnGrupo m : miembrosEnGrupo) {
+            if (m.verAutor().equals(miembro)) {
                 miembrosEnGrupo.remove(m);
                 miembro.quitarGrupo(this);
             }
-        }   
+        }
     }
-    
-    public boolean esSuperAdministradores(){
-        if(this.nombre.toLowerCase().equals("super administradores"))
+
+    public boolean esSuperAdministradores() {
+        if (this.nombre.toLowerCase().equals("super administradores")) {
             return true;
-        else 
+        } else {
             return false;
+        }
     }
-    
-    public boolean tieneMiembros(){
-        if(miembrosEnGrupo.size() == 0)
+
+    public boolean tieneMiembros() {
+        if (miembrosEnGrupo.size() == 0) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 }

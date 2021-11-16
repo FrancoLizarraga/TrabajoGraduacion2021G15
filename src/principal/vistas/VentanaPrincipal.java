@@ -12,6 +12,7 @@ import interfaces.IControladorPrincipal;
  * @author Usuario
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+
     private IControladorPrincipal controlador;
 
     /**

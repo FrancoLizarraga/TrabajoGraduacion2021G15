@@ -12,40 +12,43 @@ import java.util.ArrayList;
  *
  * @author Usuario
  */
-public class GestorGrupos implements IGestorGrupos{
+public class GestorGrupos implements IGestorGrupos {
+
     private ArrayList<Grupo> grupos = new ArrayList<>();
-    
+
     private static GestorGrupos gestor;
-    private GestorGrupos(){
-        
+
+    private GestorGrupos() {
+
     }
-    public static GestorGrupos instanciar(){
-        if(gestor==null)
+
+    public static GestorGrupos instanciar() {
+        if (gestor == null) {
             gestor = new GestorGrupos();
+        }
         return gestor;
     }
 
     @Override
     public String nuevoGrupo(String nombre, String descripcion) {
-        if ((nombre != null) && (!nombre.isEmpty())){
+        if ((nombre != null) && (!nombre.isEmpty())) {
             Grupo grupox = new Grupo(nombre, descripcion);
-            if(!this.grupos.contains(grupox)){
+            if (!this.grupos.contains(grupox)) {
                 this.grupos.add(grupox);
                 return "Grupo creado y guardado";
-            }
-            else
+            } else {
                 return "Ya existe un grupo con ese nombre";
-        }
-        else
+            }
+        } else {
             return "El nombre del grupo debe ser una cadena no vacia.";
+        }
     }
-    
+
     @Override
     public String modificarGrupo(Grupo grupo, String descripcion) {
-        int i=0;
-        for(Grupo g : this.grupos){
-            if(g.equals(grupo)){
-//                this.grupos.get(i).asignarDescripcion(descripcion);
+        int i = 0;
+        for (Grupo g : this.grupos) {
+            if (g.equals(grupo)) {
                 grupo.asignarDescripcion(descripcion);
                 return "Descripcion del grupo cambiada";
             }
@@ -61,30 +64,22 @@ public class GestorGrupos implements IGestorGrupos{
 
     @Override
     public Grupo verGrupo(String nombre) {
-        for(Grupo g : this.grupos){
-            if(g.verNombre().equals(nombre))
+        for (Grupo g : this.grupos) {
+            if (g.verNombre().equals(nombre)) {
                 return g;
+            }
         }
         return null;
     }
 
     @Override
     public boolean existeEsteGrupo(Grupo grupo) {
-        for(Grupo g : this.grupos){
-            if(g.equals(grupo))
+        for (Grupo g : this.grupos) {
+            if (g.equals(grupo)) {
                 return true;
+            }
         }
         return false;
-        //PODRIA SER OTRA FORMA
-//        int bandera=0;
-//        for(Grupo g : this.grupos){
-//            if(g.equals(grupo))
-//                bandera++;
-//        }
-//        if(bandera != 0)
-//            return true;
-//        else
-//            return false;
     }
-    
+
 }

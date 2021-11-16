@@ -11,18 +11,19 @@ import javax.swing.JDialog;
 import lugares.modelos.Lugar;
 
 public class VentanaALugar extends JDialog {
+
     ArrayList<Lugar> lugares = new ArrayList<>();
-   
+
     /**
-     * Constructor 
-     * @param ventanaPadre ventana padre 
-     */        
+     * Constructor
+     *
+     * @param ventanaPadre ventana padre
+     */
     public VentanaALugar(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +89,7 @@ public class VentanaALugar extends JDialog {
         String nombre = this.txtNombre.getText().trim();
         Lugar lugar = new Lugar(nombre);
         this.lugares.add(lugar);
-        for(Lugar l : this.lugares)
+        for (Lugar l : this.lugares)
             System.out.println(l);
     }//GEN-LAST:event_btnGuardarClic
 

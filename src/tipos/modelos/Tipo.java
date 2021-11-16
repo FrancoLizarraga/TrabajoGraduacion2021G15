@@ -8,6 +8,7 @@ package tipos.modelos;
 import java.util.Objects;
 
 public class Tipo {
+
     private String nombre;
 
     public Tipo(String nombre) {
@@ -46,8 +47,8 @@ public class Tipo {
         }
         return true;
     }
-    
-    public String toString(){
-     return nombre;   
+
+    public String toString() {
+        return nombre;
     }
 }

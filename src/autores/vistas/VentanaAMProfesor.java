@@ -19,22 +19,23 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class VentanaAMProfesor extends JDialog {
+
     ArrayList<Profesor> profesores = new ArrayList<>();
     private IControladorAMProfesor controlador;
-    
+
     /**
      * Constructor
+     *
      * @param ventanaPadre ventana padre
      */
     public VentanaAMProfesor(IControladorAMProfesor controlador) {
-//        super(ventanaPadre, true);
         this.controlador = controlador;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.comboCargos.setModel(new ModeloComboCargos());
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -195,17 +196,6 @@ public class VentanaAMProfesor extends JDialog {
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
         this.controlador.btnGuardarClic(evt);
-//        int dni = 0;
-//        if (!this.txtDNI.getText().trim().isEmpty())
-//            dni = Integer.parseInt(this.txtDNI.getText().trim());
-//        String apellidos = this.txtApellidos.getText().trim();
-//        String nombres = this.txtNombres.getText().trim();
-//        Cargo cargo = ((ModeloComboCargos)this.comboCargos.getModel()).obtenerCargo();
-//        String clave = new String(this.passClave.getPassword());
-//        Profesor profesor = new Profesor(dni, apellidos, nombres, clave, cargo);
-//        this.profesores.add(profesor);
-//        for(Profesor p : this.profesores)
-//            p.mostrar();
     }//GEN-LAST:event_btnGuardarClic
 
     private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
@@ -213,7 +203,7 @@ public class VentanaAMProfesor extends JDialog {
     }//GEN-LAST:event_btnCancelarClic
 
     private void passRepetirClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passRepetirClavePresionarTecla
-       this.controlador.passRepetirClavePresionarTecla(evt);
+        this.controlador.passRepetirClavePresionarTecla(evt);
     }//GEN-LAST:event_passRepetirClavePresionarTecla
 
     private void passClavePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClavePresionarTecla
@@ -232,25 +222,31 @@ public class VentanaAMProfesor extends JDialog {
         this.controlador.txtApellidosPresionarTecla(evt);
     }//GEN-LAST:event_txtApellidosPresionarTecla
 
-    public JTextField verTxtDNI(){
+    public JTextField verTxtDNI() {
         return this.txtDNI;
     }
-    public JTextField verTxtApellidos(){
+
+    public JTextField verTxtApellidos() {
         return this.txtApellidos;
     }
-    public JTextField verTxtNombres(){
+
+    public JTextField verTxtNombres() {
         return this.txtNombres;
     }
-    public JPasswordField verTxtClave(){
+
+    public JPasswordField verTxtClave() {
         return this.txtPassClave;
     }
-    public JPasswordField verTxtClaveRepetida(){
+
+    public JPasswordField verTxtClaveRepetida() {
         return this.txtRepetirPassClave;
     }
-    public JComboBox<String> verComboCargos(){
+
+    public JComboBox<String> verComboCargos() {
         return this.comboCargos;
     }
-    public JButton verBotonGuardar(){
+
+    public JButton verBotonGuardar() {
         return this.btnGuardar;
     }
 

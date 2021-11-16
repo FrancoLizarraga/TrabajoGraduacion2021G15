@@ -8,6 +8,7 @@ package idiomas.modelos;
 import java.util.Objects;
 
 public class Idioma {
+
     private String nombre;
 
     public Idioma(String nombre) {
@@ -21,9 +22,9 @@ public class Idioma {
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String toString(){
-     return nombre;   
+
+    public String toString() {
+        return nombre;
     }
 
     @Override

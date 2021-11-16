@@ -12,32 +12,36 @@ import java.util.ArrayList;
  *
  * @author Usuario
  */
-public class GestorPalabrasClaves implements IGestorPalabrasClaves{
+public class GestorPalabrasClaves implements IGestorPalabrasClaves {
+
     private ArrayList<PalabraClave> palabrasClaves = new ArrayList<>();
-    
+
     private static GestorPalabrasClaves gestor;
-    private GestorPalabrasClaves(){
-        
+
+    private GestorPalabrasClaves() {
+
     }
-    public static GestorPalabrasClaves instanciar(){
-        if(gestor==null)
+
+    public static GestorPalabrasClaves instanciar() {
+        if (gestor == null) {
             gestor = new GestorPalabrasClaves();
+        }
         return gestor;
     }
 
     @Override
     public String nuevaPalabraClave(String nombre) {
-        if ((nombre != null) && (!nombre.isEmpty())){
+        if ((nombre != null) && (!nombre.isEmpty())) {
             PalabraClave palabra = new PalabraClave(nombre);
-            if(!this.palabrasClaves.contains(palabra)){
+            if (!this.palabrasClaves.contains(palabra)) {
                 this.palabrasClaves.add(palabra);
                 return "Palabra clave creada y guardada";
-            }
-            else
+            } else {
                 return "Ya existe una palabra clave con ese nombre";
-        }
-        else
+            }
+        } else {
             return "El nombre de la palabra clave debe ser una cadena no vacia.";
+        }
     }
 
     @Override
@@ -47,13 +51,12 @@ public class GestorPalabrasClaves implements IGestorPalabrasClaves{
 
     @Override
     public PalabraClave verPalabraClave(String nombre) {
-        for(PalabraClave p : this.palabrasClaves){
-            if(p.toString().equals(nombre))
+        for (PalabraClave p : this.palabrasClaves) {
+            if (p.toString().equals(nombre)) {
                 return p;
+            }
         }
         return null;
     }
-  
-    
-    
+
 }

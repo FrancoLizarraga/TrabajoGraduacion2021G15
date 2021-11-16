@@ -30,12 +30,12 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
     private VentanaAMProfesor ventana;
 
     //INICIO PATRON SINGLETON.
-    //Conciste en variable de instancia privada y estatica del tipo de la clase, un constructor privado y un metodo
-    //estatico del tipo de la clase para poder instanciar una sola vez la clase y despues solo devolver esa referencia.
     private static ControladorAMProfesor instanciador;  //Variable de clase
+
     private ControladorAMProfesor() {                   //Constructor privado.
         ventana = new VentanaAMProfesor(this);
     }
+
     public static ControladorAMProfesor instanciar() {  //Metodo de clase
         if (instanciador == null) {
             instanciador = new ControladorAMProfesor();
@@ -54,10 +54,10 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
         String clave = new String(ventana.verTxtClave().getPassword());
         String claveRepetida = new String(ventana.verTxtClaveRepetida().getPassword());
         String mensaje;
-        
+
         //creo una referencia a la ventana autores para poder usarla.
         ControladorVentanaAutores ca = ControladorVentanaAutores.instanciar();
-        
+
         //Hago esto si se presiona en el boton "Nuevo"
         if (this.ventana.getTitle().equals("Nuevo Profesor")) {
             if (!this.ventana.verTxtDNI().getText().trim().isEmpty()) {
@@ -65,7 +65,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                 if (!clave.equals(claveRepetida)) {
                     JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
                 } else {
-                    mensaje = ga.nuevoAutor(dni, apellidos, nombres, cargo, clave, claveRepetida); //error
+                    mensaje = ga.nuevoAutor(dni, apellidos, nombres, cargo, clave, claveRepetida);
                     if (mensaje.equals("Ya existe un profesor con ese dni.")) {
                         JOptionPane.showMessageDialog(this.ventana, mensaje);
                     }
@@ -85,14 +85,14 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                 JOptionPane.showMessageDialog(this.ventana, "Los datos del profesor deben ser validos.");
             }
         }
-        
+
         //Hago esto si se presiona en el boton "Modificar"
-        if(this.ventana.getTitle().equals("Modificar Profesor")){
+        if (this.ventana.getTitle().equals("Modificar Profesor")) {
             JTable tablaProfesor = ca.verVentana().verTablaProfesor();
             int filaSeleccionada = tablaProfesor.getSelectedRow();
             int dniSeleccionado = Integer.parseInt(tablaProfesor.getValueAt(filaSeleccionada, 0).toString());
-            Profesor profesor = (Profesor)ga.verAutor(dniSeleccionado);
-            
+            Profesor profesor = (Profesor) ga.verAutor(dniSeleccionado);
+
             if (!clave.equals(claveRepetida)) {
                 JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
             } else {
@@ -105,8 +105,8 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                     ca.verVentana().verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
                     this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
                     ventana.dispose(); //cierro la ventana.
-                    }
                 }
+            }
         }
     }
 
@@ -118,49 +118,53 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
 
     @Override
     public void txtApellidosPresionarTecla(KeyEvent evt) {
-        char tecla = evt.getKeyChar();
-        if (tecla == KeyEvent.VK_ENTER)
+        char tecla = evt.getKeyChar(); //toma la tecla presionada.
+        if (tecla == KeyEvent.VK_ENTER) {
             ventana.verTxtApellidos().transferFocus();
+        }
     }
 
     @Override
     public void txtNombresPresionarTecla(KeyEvent evt) {
         char tecla = evt.getKeyChar();
-        if (tecla == KeyEvent.VK_ENTER)
+        if (tecla == KeyEvent.VK_ENTER) {
             ventana.verTxtNombres().transferFocus();
+        }
     }
 
     @Override
     public void txtDocumentoPresionarTecla(KeyEvent evt) {
         char tecla = evt.getKeyChar();
-        if (tecla == KeyEvent.VK_ENTER)
+        if (tecla == KeyEvent.VK_ENTER) {
             ventana.verTxtDNI().transferFocus();
+        }
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
         char tecla = evt.getKeyChar();
-        if (tecla == KeyEvent.VK_ENTER)
+        if (tecla == KeyEvent.VK_ENTER) {
             ventana.verTxtClave().transferFocus();
+        }
     }
 
     @Override
     public void passRepetirClavePresionarTecla(KeyEvent evt) {
         char tecla = evt.getKeyChar();
-        if (tecla == KeyEvent.VK_ENTER)
+        if (tecla == KeyEvent.VK_ENTER) {
             ventana.verBotonGuardar().doClick();
+        }
     }
 
-    public VentanaAMProfesor verVentana() {
+    public VentanaAMProfesor verVentana() { //Metodo auxiliar.
         return ventana;
     }
-    
+
     //Metodo auxiliar para limpiar los campos de texto de las ventana "Nuevo/Modificar".
     public void limpiar() {
         JTextField txtDNI = ventana.verTxtDNI();
         JTextField txtApellidos = ventana.verTxtApellidos();
         JTextField txtNombres = ventana.verTxtNombres();
-        JComboBox<String> comboCargos = ventana.verComboCargos(); //probar
         JPasswordField passClave = ventana.verTxtClave();
         JPasswordField passClaveRepetida = ventana.verTxtClaveRepetida();
 

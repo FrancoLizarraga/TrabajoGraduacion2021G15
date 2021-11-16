@@ -17,6 +17,7 @@ import javax.swing.JTextField;
  * @author Usuario
  */
 public class VentanaAutores extends javax.swing.JDialog {
+
     private IControladorAutores controlador;
 
     /**
@@ -310,7 +311,7 @@ public class VentanaAutores extends javax.swing.JDialog {
     }//GEN-LAST:event_btnModificarAlumno
 
     private void btnBorrarAlumno(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAlumno
-       this.controlador.btnBorrarAlumnoClic(evt);
+        this.controlador.btnBorrarAlumnoClic(evt);
     }//GEN-LAST:event_btnBorrarAlumno
 
     private void btnVolver(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver
@@ -326,45 +327,47 @@ public class VentanaAutores extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidosAlumnoPresionarTecla
 
     //PARA PROFESORES
-    public JTable verTablaProfesor(){
+    public JTable verTablaProfesor() {
         return this.tablaProfesor;
     }
-    
-    public JButton verBtnModificarProfesor(){
+
+    public JButton verBtnModificarProfesor() {
         return this.btnModificarProfesor;
     }
-    
-    public JButton verBtnBorrarProfesor(){
+
+    public JButton verBtnBorrarProfesor() {
         return this.btnBorrarProfesor;
     }
-    
-    public JButton verBtnBuscarProfesor(){
+
+    public JButton verBtnBuscarProfesor() {
         return this.btnBuscarProfesor;
     }
-    public JTextField verTxtApellidosProfesor(){
+
+    public JTextField verTxtApellidosProfesor() {
         return this.txtApellidosProfesor;
     }
-    
+
     //PARA ALUMNOS
-    public JTable verTablaAlumno(){
+    public JTable verTablaAlumno() {
         return this.tablaAlumno;
     }
-    
-    public JButton verBtnModificarAlumno(){
+
+    public JButton verBtnModificarAlumno() {
         return this.btnModificarAlumno;
     }
-    
-    public JButton verBtnBorrarAlumno(){
+
+    public JButton verBtnBorrarAlumno() {
         return this.btnBorrarAlumno;
     }
-    
-    public JButton verBtnBuscarAlumno(){
+
+    public JButton verBtnBuscarAlumno() {
         return this.btnBuscarAlumno;
     }
-    public JTextField verTxtApellidosAlumno(){
+
+    public JTextField verTxtApellidosAlumno() {
         return this.txtApellidosAlumno;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarAlumno;
     private javax.swing.JButton btnBorrarProfesor;

@@ -15,12 +15,13 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public abstract class Autor {
+
     private int dni;
     private String apellidos;
     private String nombres;
     private String clave;
     private ArrayList<MiembroEnGrupo> miembrosEnGrupo = new ArrayList<>();
-    
+
     public Autor(int dni, String apellidos, String nombres, String clave) {
         this.dni = dni;
         this.apellidos = apellidos;
@@ -59,12 +60,13 @@ public abstract class Autor {
     public void asignarClave(String clave) {
         this.clave = clave;
     }
-    
-    public void mostrar(){
+
+    public void mostrar() {
         System.out.println("\n[" + this.dni + "] " + this.apellidos + ", " + this.nombres);
         System.out.println("Grupos a los que pertenece este autor:");
-        for(MiembroEnGrupo m : miembrosEnGrupo)
+        for (MiembroEnGrupo m : miembrosEnGrupo) {
             System.out.println("\tGrupo: " + m.verGrupo().verNombre() + "\tRol: " + m.verRol());
+        }
     }
 
     @Override
@@ -91,44 +93,39 @@ public abstract class Autor {
         }
         return true;
     }
-    
-    public void verGrupos(){
+
+    public void verGrupos() {
         System.out.println("Grupos: ");
-        for(MiembroEnGrupo m : miembrosEnGrupo)
+        for (MiembroEnGrupo m : miembrosEnGrupo) {
             System.out.println(m.verGrupo().verNombre());
+        }
     }
-    
-    public void agregarGrupo(Grupo grupo, Rol rol){
+
+    public void agregarGrupo(Grupo grupo, Rol rol) {
         MiembroEnGrupo miembro = new MiembroEnGrupo(this, grupo, rol);
-        
-        if(!miembrosEnGrupo.contains(miembro))
+
+        if (!miembrosEnGrupo.contains(miembro)) {
             miembrosEnGrupo.add(miembro);
-        if(!miembrosEnGrupo.contains(grupo))
+        }
+        if (!miembrosEnGrupo.contains(grupo)) {
             grupo.agregarMiembro(this, rol);
+        }
     }
-    
-    public void quitarGrupo(Grupo grupo){ 
-//        int i=0;
-        for (MiembroEnGrupo m : miembrosEnGrupo){ 
-            if (m.verGrupo().equals(grupo)){
+
+    public void quitarGrupo(Grupo grupo) {
+        for (MiembroEnGrupo m : miembrosEnGrupo) {
+            if (m.verGrupo().equals(grupo)) {
                 miembrosEnGrupo.remove(m);
                 grupo.quitarMiembro(this);
             }
-        /*ESTE CODIGO DE ABAJO ERA UNA MANERA DE QUITAR UN GRUPO PERO NO FUNCIONABA BIEN.*/
-//            if (m.verGrupo().equals(grupo))      //No hay grupos repetidos asi que solo deberia de encontra a uno solo.
-//                i++;
-                
         }
-//        if (i!=0){
-//            miembrosEnGrupo.remove(i);
-//            grupo.quitarMiembro(this);
-//        }
     }
-    
-    public boolean esSuperAdministrador(){
-        for(MiembroEnGrupo m : miembrosEnGrupo){
-            if(m.verGrupo().esSuperAdministradores())
+
+    public boolean esSuperAdministrador() {
+        for (MiembroEnGrupo m : miembrosEnGrupo) {
+            if (m.verGrupo().esSuperAdministradores()) {
                 return true;
+            }
         }
         return false;
     }
