@@ -113,68 +113,72 @@ public class ControladorPrincipal {
 //        System.out.println(ga.verAutor(19));//false devuelve null
 //        
 //        
-////      Prueba Gestor Grupo.
-//        System.out.println("\n\t----------------------------------------------");
-//        System.out.println("\t\t\tGESTOR GRUPOS");
-//        System.out.println("\t----------------------------------------------");
-//        IGestorGrupos g=GestorGrupos.instanciar();
-//        System.out.println("\n\tmethod nuevoGrupo\n");
-//        
-//        System.out.println(g.nuevoGrupo("grupo1", "descripcion1"));
-//        System.out.println(g.nuevoGrupo("grupo2", "descripcion2"));
-//        System.out.println(g.nuevoGrupo("grupo1", "descripcion3"));//repetido
-//        System.out.println(g.nuevoGrupo("", "descripcion1"));//vacia
-//        System.out.println(g.nuevoGrupo(null, "descripcion1"));//null
-//        
-//        System.out.println("\n\tmethod modificarGrupo\n");
-//        System.out.println("La descripcion original del "+ g.verGrupo("grupo1").verNombre() + " es: "+g.verGrupo("grupo1").verDescripcion());
-//        System.out.println(g.modificarGrupo(g.verGrupo("grupo1"), "descripcion modificada trr")+"\n\tLa nueva descripcion del "+ g.verGrupo("grupo1").verNombre() + " es: "+g.verGrupo("grupo1").verDescripcion());
-//        System.out.println(g.modificarGrupo(g.verGrupo("grupo5"),"descripcion nueva"));//no lo encuentra
-//        
-//        System.out.println("\n\tmethod verGrupos");
-//        for(Grupo gr : g.verGrupos())
-//            gr.mostrar();
-//        
-//        System.out.println("\n\tmethod verGrupo\n");
-//        
-//        System.out.println(g.verGrupo("grupo1").verNombre());//devuelve el nombre del grupo
-//        System.out.println(g.verGrupo("grupo5"));//devuelve null
-//        
-//        System.out.println("\n\tmethod existeEsteGrupo\n");
-//        System.out.println("Existe el grupo1: "+g.existeEsteGrupo(g.verGrupo("grupo1")));//true
-//        System.out.println("Existe el grupo5: "+g.existeEsteGrupo(g.verGrupo("grupo5")));//false
-//        System.out.println("Existe el grupo6: "+g.existeEsteGrupo(new Grupo("grupo6","descripcion 6")));//false
-//
-//      Gestor Idiomas
+//      Gestor Grupo.
         System.out.println("\n\t----------------------------------------------");
-        System.out.println("\t\t\tGESTOR IDIOMAS");
+        System.out.println("\t\t\tGESTOR GRUPOS");
         System.out.println("\t----------------------------------------------");
-        IGestorIdiomas gi=GestorIdiomas.instanciar();
-        System.out.println("\n\tmethod nuevoIdioma\n");
+        IGestorGrupos g=GestorGrupos.instanciar();
+        System.out.println("\n\tmethod nuevoGrupo\n");
         
-        System.out.println(gi.nuevoIdioma("idioma1"));
-        System.out.println(gi.nuevoIdioma("idioma2"));
-        System.out.println(gi.nuevoIdioma("idioma1"));//repetido
-        System.out.println(gi.nuevoIdioma(""));//vacio
-        System.out.println(gi.nuevoIdioma("Aleman"));//nuevo idioma para tp6
-        System.out.println(gi.nuevoIdioma("Castellano"));//nuevo idioma para tp6
-        System.out.println(gi.nuevoIdioma(null));//null
+        System.out.println(g.nuevoGrupo("grupo1", "descripcion1"));
+        System.out.println(g.nuevoGrupo("grupo2", "descripcion2"));
+        System.out.println(g.nuevoGrupo("grupo1", "descripcion3"));//repetido
+        System.out.println(g.nuevoGrupo("", "descripcion1"));//vacia
+        System.out.println(g.nuevoGrupo("alumnos", "descripcion12"));//nuevo grupo para tp6
+        System.out.println(g.nuevoGrupo("autores", "descripcion02"));//nuevo grupo para tp6
+        System.out.println(g.nuevoGrupo(null, "descripcion1"));//null
         
-        System.out.println("\n\tmethod verIdiomas\n");
-        System.out.println("Los idiomas son:");
-        for(Idioma id : gi.verIdiomas())
-            System.out.println("\t"+id.toString());
+        System.out.println("\n\tmethod modificarGrupo\n");
+        System.out.println("La descripcion original del "+ g.verGrupo("grupo1").verNombre() + " es: "+g.verGrupo("grupo1").verDescripcion());
+        System.out.println(g.modificarGrupo(g.verGrupo("grupo1"), "descripcion modificada trr")+"\n\tLa nueva descripcion del "+ g.verGrupo("grupo1").verNombre() + " es: "+g.verGrupo("grupo1").verDescripcion());
+        System.out.println(g.modificarGrupo(g.verGrupo("grupo5"),"descripcion nueva"));//no lo encuentra
         
-        System.out.println("\n\tmethod verIdioma\n");
-        System.out.println("El idioma es: "+gi.verIdioma("idioma1"));
-        System.out.println("El idioma es: "+gi.verIdioma("idioma5"));
+        System.out.println("\n\tmethod verGrupos");
+        for(Grupo gr : g.verGrupos())
+            gr.mostrar();
         
-        System.out.println("\n\tmethod buscarIdiomas\n");
-        for(Idioma i : gi.buscarIdiomas("idiom"))
-                System.out.println("\t" + i.toString());
+        System.out.println("\n\tmethod verGrupo\n");
+        System.out.println("El grupo es: "+g.verGrupo("grupo1").verNombre());//devuelve el nombre del grupo
+        System.out.println("El grupo es: "+g.verGrupo("grupo5"));//devuelve null
         
-        System.out.println("\n\tmethod existeEsteIdioma\n");
-        System.out.println("El idioma Castellano existe: "+ gi.existeEsteIdioma(gi.verIdioma("Castellano")));//true
+        System.out.println("\n\tmethod buscarGrupos\n");
+        for(Grupo grupo: g.buscarGrupos("grup"))
+                System.out.println("\t" + grupo.verNombre());
+        
+        System.out.println("\n\tmethod existeEsteGrupo\n");
+        System.out.println("Existe el grupo1: "+g.existeEsteGrupo(g.verGrupo("grupo1")));//true
+        System.out.println("Existe el grupo5: "+g.existeEsteGrupo(g.verGrupo("grupo5")));//false
+
+//      Gestor Idiomas
+//        System.out.println("\n\t----------------------------------------------");
+//        System.out.println("\t\t\tGESTOR IDIOMAS");
+//        System.out.println("\t----------------------------------------------");
+//        IGestorIdiomas gi=GestorIdiomas.instanciar();
+//        System.out.println("\n\tmethod nuevoIdioma\n");
+//        
+//        System.out.println(gi.nuevoIdioma("idioma1"));
+//        System.out.println(gi.nuevoIdioma("idioma2"));
+//        System.out.println(gi.nuevoIdioma("idioma1"));//repetido
+//        System.out.println(gi.nuevoIdioma(""));//vacio
+//        System.out.println(gi.nuevoIdioma("Aleman"));//nuevo idioma para tp6
+//        System.out.println(gi.nuevoIdioma("Castellano"));//nuevo idioma para tp6
+//        System.out.println(gi.nuevoIdioma(null));//null
+//        
+//        System.out.println("\n\tmethod verIdiomas\n");
+//        System.out.println("Los idiomas son:");
+//        for(Idioma id : gi.verIdiomas())
+//            System.out.println("\t"+id.toString());
+//        
+//        System.out.println("\n\tmethod verIdioma\n");
+//        System.out.println("El idioma es: "+gi.verIdioma("idioma1"));
+//        System.out.println("El idioma es: "+gi.verIdioma("idioma5"));
+//        
+//        System.out.println("\n\tmethod buscarIdiomas\n");
+//        for(Idioma i : gi.buscarIdiomas("idiom"))
+//                System.out.println("\t" + i.toString());
+//        
+//        System.out.println("\n\tmethod existeEsteIdioma\n");
+//        System.out.println("El idioma Castellano existe: "+ gi.existeEsteIdioma(gi.verIdioma("Castellano")));//true
         
 //      Gestor Lugares
 //        System.out.println("\n\t----------------------------------------------");

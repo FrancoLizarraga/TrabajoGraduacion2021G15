@@ -9,7 +9,7 @@ import autores.modelos.Autor;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Grupo {
+public class Grupo implements Comparable<Grupo>{
 
     private String nombre;
     private String descripcion;
@@ -113,4 +113,11 @@ public class Grupo {
         else
             return true;
     }
+
+    @Override
+    public int compareTo(Grupo g) {
+        return this.nombre.compareTo(g.verNombre());
+    }
+    
+    
 }

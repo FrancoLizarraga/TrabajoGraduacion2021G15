@@ -5,8 +5,11 @@
  */
 package grupos.modelos;
 
+import autores.modelos.GestorAutores;
 import interfaces.IGestorGrupos;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -55,7 +58,9 @@ public class GestorGrupos implements IGestorGrupos{
     }
 
     @Override
-    public ArrayList<Grupo> verGrupos() {
+    public List<Grupo> verGrupos() {
+        Collections.sort(grupos);
+        
         return this.grupos;
     }
 
@@ -86,5 +91,36 @@ public class GestorGrupos implements IGestorGrupos{
 //        else
 //            return false;
     }
+
+    @Override
+    public String borrarGrupo(Grupo grupo) {
+        if(this.grupos.contains(grupo)){
+            if(!grupo.tieneMiembros()){
+                grupos.remove(grupo);
+                return "Se ha borrado el grupo ya que no hay autores con el mismo.";
+            }
+            else
+                return "No se pudo borrar el grupo ya que hay autores con el mismo.";
+        }
+        else
+            return "No existe el grupo.";
+    }
+
+    @Override
+    public List<Grupo> buscarGrupos(String nombre) {
+        List<Grupo> nuevosGrupos = new ArrayList<>();
+        
+        for(Grupo grupo : this.grupos){
+            if(grupo.verNombre().toLowerCase().contains(nombre.toLowerCase())){
+                if(grupo.verNombre().toLowerCase().compareTo(nombre.toLowerCase()) >= 0)
+                    nuevosGrupos.add(grupo);
+            }
+        }
+        Collections.sort(nuevosGrupos); //implementé la interfaz "comparable" a la clase Grupo.
+        
+        return nuevosGrupos;
+    }
+    
+    
     
 }
