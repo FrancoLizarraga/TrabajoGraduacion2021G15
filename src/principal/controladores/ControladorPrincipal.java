@@ -145,58 +145,67 @@ public class ControladorPrincipal {
 //        System.out.println("Existe el grupo5: "+g.existeEsteGrupo(g.verGrupo("grupo5")));//false
 //        System.out.println("Existe el grupo6: "+g.existeEsteGrupo(new Grupo("grupo6","descripcion 6")));//false
 //
-////      Gestor Idiomas
-//        System.out.println("\n\t----------------------------------------------");
-//        System.out.println("\t\t\tGESTOR IDIOMAS");
-//        System.out.println("\t----------------------------------------------");
-//        IGestorIdiomas gi=GestorIdiomas.instanciar();
-//        System.out.println("\n\tmethod nuevoIdioma\n");
-//        
-//        System.out.println("El idioma es: "+gi.nuevoIdioma("idioma1"));
-//        System.out.println("El idioma es: "+gi.nuevoIdioma("idioma2"));
-//        System.out.println("El idioma es: "+gi.nuevoIdioma("idioma1"));//repetido
-//        System.out.println("El idioma es: "+gi.nuevoIdioma(""));//vacio
-//        System.out.println("El idioma es: "+gi.nuevoIdioma(null));//null
-//        
-//        System.out.println("\n\tmethod verIdiomas\n");
-//        System.out.println("Los idiomas son:");
-//        for(Idioma id : gi.verIdiomas())
-//            System.out.println("\t"+id.toString());
-//        
-//        System.out.println("\n\tmethod verIdioma\n");
-//        System.out.println("El idioma es: "+gi.verIdioma("idioma1"));
-//        System.out.println("El idioma es: "+gi.verIdioma("idioma5"));
-//        
-//      Gestor Lugares
+//      Gestor Idiomas
         System.out.println("\n\t----------------------------------------------");
-        System.out.println("\t\t\tGESTOR LUGAR");
+        System.out.println("\t\t\tGESTOR IDIOMAS");
         System.out.println("\t----------------------------------------------");
-        IGestorLugares gl= GestorLugares.instanciar();
-              
-        System.out.println("\n\tmethod nuevoLugar\n");
-        System.out.println(gl.nuevoLugar("lugar1"));
-        System.out.println(gl.nuevoLugar("lugar2"));
-        System.out.println(gl.nuevoLugar("lugar1"));//repetido
-        System.out.println(gl.nuevoLugar(""));//vacia
-        System.out.println(gl.nuevoLugar("Aula"));          //nueva palabra clave para tp6
-        System.out.println(gl.nuevoLugar("Anfiteatro"));    //nueva palabra clave para tp6
-        System.out.println(gl.nuevoLugar(null));
+        IGestorIdiomas gi=GestorIdiomas.instanciar();
+        System.out.println("\n\tmethod nuevoIdioma\n");
         
-        System.out.println("\n\tmethod verLugares\n");
-        System.out.println("Los lugares son:");
-        for(Lugar l : gl.verLugares())
-            System.out.println("\t" + l.verNombre());
+        System.out.println(gi.nuevoIdioma("idioma1"));
+        System.out.println(gi.nuevoIdioma("idioma2"));
+        System.out.println(gi.nuevoIdioma("idioma1"));//repetido
+        System.out.println(gi.nuevoIdioma(""));//vacio
+        System.out.println(gi.nuevoIdioma("Aleman"));//nuevo idioma para tp6
+        System.out.println(gi.nuevoIdioma("Castellano"));//nuevo idioma para tp6
+        System.out.println(gi.nuevoIdioma(null));//null
         
-        System.out.println("\n\tmethod verLugar\n");
-        System.out.println("El lugar es: "+gl.verLugar("lugar1"));
-        System.out.println("El lugar es: "+gl.verLugar("lugar5"));//no lo encuentra, devuelve null
+        System.out.println("\n\tmethod verIdiomas\n");
+        System.out.println("Los idiomas son:");
+        for(Idioma id : gi.verIdiomas())
+            System.out.println("\t"+id.toString());
         
-        System.out.println("\n\tmethod buscarLugares\n");
-        for(Lugar l : gl.buscarLugares("lugar"))
-                System.out.println("\t" + l.toString());
+        System.out.println("\n\tmethod verIdioma\n");
+        System.out.println("El idioma es: "+gi.verIdioma("idioma1"));
+        System.out.println("El idioma es: "+gi.verIdioma("idioma5"));
         
-        System.out.println("\n\tmethod existeEsteLugar\n");
-        System.out.println("El lugar Anfiteatro existe: "+ gl.existeEsteLugar(gl.verLugar("Anfiteatro")));//true
+        System.out.println("\n\tmethod buscarIdiomas\n");
+        for(Idioma i : gi.buscarIdiomas("idiom"))
+                System.out.println("\t" + i.toString());
+        
+        System.out.println("\n\tmethod existeEsteIdioma\n");
+        System.out.println("El idioma Castellano existe: "+ gi.existeEsteIdioma(gi.verIdioma("Castellano")));//true
+        
+//      Gestor Lugares
+//        System.out.println("\n\t----------------------------------------------");
+//        System.out.println("\t\t\tGESTOR LUGAR");
+//        System.out.println("\t----------------------------------------------");
+//        IGestorLugares gl= GestorLugares.instanciar();
+//              
+//        System.out.println("\n\tmethod nuevoLugar\n");
+//        System.out.println(gl.nuevoLugar("lugar1"));
+//        System.out.println(gl.nuevoLugar("lugar2"));
+//        System.out.println(gl.nuevoLugar("lugar1"));//repetido
+//        System.out.println(gl.nuevoLugar(""));//vacia
+//        System.out.println(gl.nuevoLugar("Aula"));          //nueva palabra clave para tp6
+//        System.out.println(gl.nuevoLugar("Anfiteatro"));    //nueva palabra clave para tp6
+//        System.out.println(gl.nuevoLugar(null));
+//        
+//        System.out.println("\n\tmethod verLugares\n");
+//        System.out.println("Los lugares son:");
+//        for(Lugar l : gl.verLugares())
+//            System.out.println("\t" + l.verNombre());
+//        
+//        System.out.println("\n\tmethod verLugar\n");
+//        System.out.println("El lugar es: "+gl.verLugar("lugar1"));
+//        System.out.println("El lugar es: "+gl.verLugar("lugar5"));//no lo encuentra, devuelve null
+//        
+//        System.out.println("\n\tmethod buscarLugares\n");
+//        for(Lugar l : gl.buscarLugares("lugar"))
+//                System.out.println("\t" + l.toString());
+//        
+//        System.out.println("\n\tmethod existeEsteLugar\n");
+//        System.out.println("El lugar Anfiteatro existe: "+ gl.existeEsteLugar(gl.verLugar("Anfiteatro")));//true
         
 //      Gestor Palabras Claves
 //        System.out.println("\n\t----------------------------------------------");

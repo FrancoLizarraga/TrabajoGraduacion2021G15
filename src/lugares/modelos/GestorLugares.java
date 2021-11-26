@@ -85,7 +85,7 @@ public class GestorLugares implements IGestorLugares{
                     nuevosLugares.add(lugar);
             }
         }
-        Collections.sort(nuevosLugares); //implementé la interfaz "comparable" a la clase PalabraClave.
+        Collections.sort(nuevosLugares); //implementé la interfaz "comparable" a la clase Lugar.
         
         return nuevosLugares;
     }
