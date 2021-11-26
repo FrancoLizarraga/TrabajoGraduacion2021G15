@@ -167,58 +167,67 @@ public class ControladorPrincipal {
 //        System.out.println("El idioma es: "+gi.verIdioma("idioma1"));
 //        System.out.println("El idioma es: "+gi.verIdioma("idioma5"));
 //        
-////      Gestor Lugares
-//        System.out.println("\n\t----------------------------------------------");
-//        System.out.println("\t\t\tGESTOR LUGAR");
-//        System.out.println("\t----------------------------------------------");
-//        IGestorLugares gl= GestorLugares.instanciar();
-//              
-//        System.out.println("\n\tmethod nuevoLugar\n");
-//        System.out.println("El lugar es: "+gl.nuevoLugar("lugar1"));
-//        System.out.println("El lugar es: "+gl.nuevoLugar("lugar2"));
-//        System.out.println("El lugar es: "+gl.nuevoLugar("lugar1"));//repetido
-//        System.out.println("El lugar es: "+gl.nuevoLugar(""));//vacia
-//        System.out.println("El lugar es: "+gl.nuevoLugar(null));
-//        
-//        System.out.println("\n\tmethod nuevoLugar\n");
-//        System.out.println("Los lugares son:");
-//        for(Lugar l : gl.verLugares())
-//            System.out.println("\t" + l.verNombre());
-//        
-//        System.out.println("\n\tmethod verLugar\n");
-//        System.out.println("El lugar es: "+gl.verLugar("lugar1"));
-//        System.out.println("El lugar es: "+gl.verLugar("lugar5"));//no lo encuentra, devuelve null
-//        
-//      Gestor Palabras Claves
+//      Gestor Lugares
         System.out.println("\n\t----------------------------------------------");
-        System.out.println("\t\t\tGESTOR PALABRAS CLAVES");
+        System.out.println("\t\t\tGESTOR LUGAR");
         System.out.println("\t----------------------------------------------");
-        IGestorPalabrasClaves pc=GestorPalabrasClaves.instanciar();
+        IGestorLugares gl= GestorLugares.instanciar();
+              
+        System.out.println("\n\tmethod nuevoLugar\n");
+        System.out.println(gl.nuevoLugar("lugar1"));
+        System.out.println(gl.nuevoLugar("lugar2"));
+        System.out.println(gl.nuevoLugar("lugar1"));//repetido
+        System.out.println(gl.nuevoLugar(""));//vacia
+        System.out.println(gl.nuevoLugar("Aula"));          //nueva palabra clave para tp6
+        System.out.println(gl.nuevoLugar("Anfiteatro"));    //nueva palabra clave para tp6
+        System.out.println(gl.nuevoLugar(null));
         
-        System.out.println("\n\tmethod nuevaPalabraClave\n");
-        System.out.println(pc.nuevaPalabraClave("palabraClave1"));
-        System.out.println(pc.nuevaPalabraClave("palabraClave2"));
-        System.out.println(pc.nuevaPalabraClave("palabraClave1"));//repetida
-        System.out.println(pc.nuevaPalabraClave(""));//vacia
-        System.out.println(pc.nuevaPalabraClave("Hola"));       //nueva palabra clave para tp6
-        System.out.println(pc.nuevaPalabraClave("Alcance"));    //nueva palabra clave para tp6
-        System.out.println(pc.nuevaPalabraClave(null));//nula
+        System.out.println("\n\tmethod verLugares\n");
+        System.out.println("Los lugares son:");
+        for(Lugar l : gl.verLugares())
+            System.out.println("\t" + l.verNombre());
         
-        System.out.println("\n\tmethod verPalabrasClaves\n");
-         System.out.println("Las palabras claves son:");
-        for(PalabraClave p : pc.verPalabrasClaves())
-            System.out.println("\t" + p.toString());
+        System.out.println("\n\tmethod verLugar\n");
+        System.out.println("El lugar es: "+gl.verLugar("lugar1"));
+        System.out.println("El lugar es: "+gl.verLugar("lugar5"));//no lo encuentra, devuelve null
         
-        System.out.println("\n\tmethod verPalabraClave\n");
-        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave1"));
-        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave5"));//no existe
+        System.out.println("\n\tmethod buscarLugares\n");
+        for(Lugar l : gl.buscarLugares("lugar"))
+                System.out.println("\t" + l.toString());
         
-        System.out.println("\n\tmethod buscarPalabrasClaves\n");
-        for(PalabraClave p : pc.buscarPalabrasClaves("palabr"))
-                System.out.println("\t" + p.toString());
+        System.out.println("\n\tmethod existeEsteLugar\n");
+        System.out.println("El lugar Anfiteatro existe: "+ gl.existeEsteLugar(gl.verLugar("Anfiteatro")));//true
         
-        System.out.println("\n\tmethod existeEsteTipo\n");
-        System.out.println("La palabra clave Alcance existe: "+ pc.existeEstaPalabraClave(pc.verPalabraClave("Alcance")));//true
+//      Gestor Palabras Claves
+//        System.out.println("\n\t----------------------------------------------");
+//        System.out.println("\t\t\tGESTOR PALABRAS CLAVES");
+//        System.out.println("\t----------------------------------------------");
+//        IGestorPalabrasClaves pc=GestorPalabrasClaves.instanciar();
+//        
+//        System.out.println("\n\tmethod nuevaPalabraClave\n");
+//        System.out.println(pc.nuevaPalabraClave("palabraClave1"));
+//        System.out.println(pc.nuevaPalabraClave("palabraClave2"));
+//        System.out.println(pc.nuevaPalabraClave("palabraClave1"));//repetida
+//        System.out.println(pc.nuevaPalabraClave(""));//vacia
+//        System.out.println(pc.nuevaPalabraClave("Hola"));       //nueva palabra clave para tp6
+//        System.out.println(pc.nuevaPalabraClave("Alcance"));    //nueva palabra clave para tp6
+//        System.out.println(pc.nuevaPalabraClave(null));//nula
+//        
+//        System.out.println("\n\tmethod verPalabrasClaves\n");
+//         System.out.println("Las palabras claves son:");
+//        for(PalabraClave p : pc.verPalabrasClaves())
+//            System.out.println("\t" + p.toString());
+//        
+//        System.out.println("\n\tmethod verPalabraClave\n");
+//        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave1"));
+//        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave5"));//no existe
+//        
+//        System.out.println("\n\tmethod buscarPalabrasClaves\n");
+//        for(PalabraClave p : pc.buscarPalabrasClaves("palabr"))
+//                System.out.println("\t" + p.toString());
+//        
+//        System.out.println("\n\tmethod existeEstaPalabraClave\n");
+//        System.out.println("La palabra clave Alcance existe: "+ pc.existeEstaPalabraClave(pc.verPalabraClave("Alcance")));//true
         
 //      GESTOR TIPOS
 //        System.out.println("\n\t----------------------------------------------");

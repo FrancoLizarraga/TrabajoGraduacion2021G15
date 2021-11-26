@@ -77,17 +77,17 @@ public class GestorPalabrasClaves implements IGestorPalabrasClaves{
 
     @Override
     public List<PalabraClave> buscarPalabrasClaves(String nombre) {
-        List<PalabraClave> nuevosTipos = new ArrayList<>();
+        List<PalabraClave> nuevasPalabrasClaves = new ArrayList<>();
         
-        for(PalabraClave tipo : this.palabrasClaves){
-            if(tipo.verNombre().toLowerCase().contains(nombre.toLowerCase())){
-                if(tipo.verNombre().toLowerCase().compareTo(nombre.toLowerCase()) >= 0)
-                    nuevosTipos.add(tipo);
+        for(PalabraClave palabra: this.palabrasClaves){
+            if(palabra.verNombre().toLowerCase().contains(nombre.toLowerCase())){
+                if(palabra.verNombre().toLowerCase().compareTo(nombre.toLowerCase()) >= 0)
+                    nuevasPalabrasClaves.add(palabra);
             }
         }
-        Collections.sort(nuevosTipos); //implementé la interfaz "comparable" a la clase PalabraClave.
+        Collections.sort(nuevasPalabrasClaves); //implementé la interfaz "comparable" a la clase PalabraClave.
         
-        return nuevosTipos;
+        return nuevasPalabrasClaves;
     }
 
     @Override
