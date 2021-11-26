@@ -7,13 +7,17 @@ package tipos.modelos;
 
 import interfaces.IGestorTipos;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import publicaciones.modelos.GestorPublicaciones;
 
 /**
  *
  * @author Usuario
  */
 public class GestorTipos implements IGestorTipos{
-    private ArrayList<Tipo> tipos = new ArrayList<>();
+    private List<Tipo> tipos = new ArrayList<>();
     
     private static GestorTipos gestor;
     private GestorTipos(){
@@ -40,10 +44,10 @@ public class GestorTipos implements IGestorTipos{
             return "El nombre del tipo debe ser una cadena no vacia.";
     }
 
-    @Override
-    public ArrayList<Tipo> verTipos() {
-        return this.tipos;
-    }
+//    @Override
+//    public ArrayList<Tipo> verTipos() {
+//        return this.tipos;
+//    }
 
     @Override
     public Tipo verTipo(String nombre) {
@@ -52,6 +56,53 @@ public class GestorTipos implements IGestorTipos{
                 return t;
         }
         return null;
+    }
+
+    @Override
+    public String borrarTipo(Tipo tipo) {
+        GestorPublicaciones gp = GestorPublicaciones.instanciar();
+        
+        if(this.tipos.contains(tipo)){
+            if(!gp.hayPublicacionesConEsteTipo(tipo)){
+                this.tipos.remove(tipo);
+                return "Se ha borrado el tipo ya que no hay publicaciones con el mismo.";
+            }
+            else
+                return "No se pudo borrar el tipo ya que hay publicaciones con el mismo.";
+        }
+        else
+            return "No existe este tipo.";
+    }
+
+    @Override
+    public List<Tipo> buscarTipos(String nombre) {
+        List<Tipo> nuevosTipos = new ArrayList<>();
+        
+        for(Tipo tipo : this.tipos){
+            if(tipo.verNombre().toLowerCase().contains(nombre.toLowerCase())){
+                if(tipo.verNombre().toLowerCase().compareTo(nombre.toLowerCase()) >= 0)
+                    nuevosTipos.add(tipo);
+            }
+        }
+        Collections.sort(nuevosTipos); //implementé la interfaz "comparable" a la clase Tipo.
+        
+        return nuevosTipos;
+    }
+
+    @Override
+    public List<Tipo> verTipos() {
+        Collections.sort(this.tipos);
+        
+        return this.tipos;
+    }
+
+    @Override
+    public boolean existeEsteTipo(Tipo tipo) {
+        for(Tipo t : this.tipos){ 
+            if(t.equals(tipo))    //Falta ver la manera para ignorar las mayusculas, con el toLowerCase no me permite.
+                return true;
+        }
+        return false;
     }
     
     
