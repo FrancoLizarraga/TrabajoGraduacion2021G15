@@ -7,6 +7,9 @@ package palabrasclaves.modelos;
 
 import interfaces.IGestorPalabrasClaves;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import publicaciones.modelos.GestorPublicaciones;
 
 /**
  *
@@ -41,7 +44,9 @@ public class GestorPalabrasClaves implements IGestorPalabrasClaves{
     }
 
     @Override
-    public ArrayList<PalabraClave> verPalabrasClaves() {
+    public List<PalabraClave> verPalabrasClaves() {
+        Collections.sort(this.palabrasClaves);
+        
         return this.palabrasClaves;
     }
 
@@ -52,6 +57,46 @@ public class GestorPalabrasClaves implements IGestorPalabrasClaves{
                 return p;
         }
         return null;
+    }
+
+    @Override
+    public String borrarPalabraClave(PalabraClave palabraClave) {
+        GestorPublicaciones gp = GestorPublicaciones.instanciar();
+        
+        if(this.palabrasClaves.contains(palabraClave)){
+            if(!gp.hayPublicacionesConEstaPalabraClave(palabraClave)){
+                this.palabrasClaves.remove(palabraClave);
+                return "Se ha borrado la palabra clave ya que no hay publicaciones con la misma.";
+            }
+            else
+                return "No se pudo borrar la palabra calve ya que hay publicaciones con la misma.";
+        }
+        else
+            return "No existe esta palabra clave.";
+    }
+
+    @Override
+    public List<PalabraClave> buscarPalabrasClaves(String nombre) {
+        List<PalabraClave> nuevosTipos = new ArrayList<>();
+        
+        for(PalabraClave tipo : this.palabrasClaves){
+            if(tipo.verNombre().toLowerCase().contains(nombre.toLowerCase())){
+                if(tipo.verNombre().toLowerCase().compareTo(nombre.toLowerCase()) >= 0)
+                    nuevosTipos.add(tipo);
+            }
+        }
+        Collections.sort(nuevosTipos); //implementé la interfaz "comparable" a la clase PalabraClave.
+        
+        return nuevosTipos;
+    }
+
+    @Override
+    public boolean existeEstaPalabraClave(PalabraClave palabraClave) {
+        for(PalabraClave t : this.palabrasClaves){ 
+            if(t.equals(palabraClave)) //Falta ver la manera para ignorar las mayusculas, con el toLowerCase no me permite.
+                return true;
+        }
+        return false;
     }
   
     

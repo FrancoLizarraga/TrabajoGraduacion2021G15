@@ -189,60 +189,69 @@ public class ControladorPrincipal {
 //        System.out.println("El lugar es: "+gl.verLugar("lugar1"));
 //        System.out.println("El lugar es: "+gl.verLugar("lugar5"));//no lo encuentra, devuelve null
 //        
-////      Gestor Palabras Claves
-//        System.out.println("\n\t----------------------------------------------");
-//        System.out.println("\t\t\tGESTOR PALABRAS CLAVES");
-//        System.out.println("\t----------------------------------------------");
-//        IGestorPalabrasClaves pc=GestorPalabrasClaves.instanciar();
-//        
-//        System.out.println("\n\tmethod nuevaPalabraClave\n");
-//        System.out.println(pc.nuevaPalabraClave("palabraClave1"));
-//        System.out.println(pc.nuevaPalabraClave("palabraClave2"));
-//        System.out.println(pc.nuevaPalabraClave("palabraClave1"));//repetida
-//        System.out.println(pc.nuevaPalabraClave(""));//vacia
-//        System.out.println(pc.nuevaPalabraClave(null));//nula
-//        
-//        System.out.println("\n\tmethod verPalabrasClaves\n");
-//         System.out.println("Las palabras claves son:");
-//        for(PalabraClave p : pc.verPalabrasClaves())
-//            System.out.println("\t" + p.toString());
-//        
-//        System.out.println("\n\tmethod verPalabraClave\n");
-//        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave1"));
-//        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave5"));//no existe
-        
-//      GESTOR TIPOS
+//      Gestor Palabras Claves
         System.out.println("\n\t----------------------------------------------");
-        System.out.println("\t\t\tGESTOR TIPOS");
+        System.out.println("\t\t\tGESTOR PALABRAS CLAVES");
         System.out.println("\t----------------------------------------------");
-        IGestorTipos gt=GestorTipos.instanciar();
+        IGestorPalabrasClaves pc=GestorPalabrasClaves.instanciar();
         
-        System.out.println("\n\tmethod nuevoTipo\n");
-        System.out.println(gt.nuevoTipo("Tipo1"));
-        System.out.println(gt.nuevoTipo("Tipo2"));
-        System.out.println(gt.nuevoTipo("Tipo1"));//tipo repetido
-        System.out.println(gt.nuevoTipo(""));//cadena vacia
-        System.out.println(gt.nuevoTipo("Hola"));       //nuevo tipo para tp6
-        System.out.println(gt.nuevoTipo("Alcance"));    //nuevo tipo para tp6
-        System.out.println(gt.nuevoTipo(null));//nulo
-     
-        System.out.println("\n\tmethod verTipos\n");
-        System.out.println("Los tipos son:");
-//        gt.verTipos();
-        for(Tipo t : gt.verTipos())
-            System.out.println("\t" + t.toString());
+        System.out.println("\n\tmethod nuevaPalabraClave\n");
+        System.out.println(pc.nuevaPalabraClave("palabraClave1"));
+        System.out.println(pc.nuevaPalabraClave("palabraClave2"));
+        System.out.println(pc.nuevaPalabraClave("palabraClave1"));//repetida
+        System.out.println(pc.nuevaPalabraClave(""));//vacia
+        System.out.println(pc.nuevaPalabraClave("Hola"));       //nueva palabra clave para tp6
+        System.out.println(pc.nuevaPalabraClave("Alcance"));    //nueva palabra clave para tp6
+        System.out.println(pc.nuevaPalabraClave(null));//nula
         
-        System.out.println("\n\tmethod verTipo\n");
+        System.out.println("\n\tmethod verPalabrasClaves\n");
+         System.out.println("Las palabras claves son:");
+        for(PalabraClave p : pc.verPalabrasClaves())
+            System.out.println("\t" + p.toString());
         
-        System.out.println("El nombre del Tipo es: "+gt.verTipo("Tipo1"));//si existe devuelve el nombre Tipo1
-        System.out.println("El nombre del Tipo es: "+gt.verTipo("Tipo4"));//no existe devuelve null
+        System.out.println("\n\tmethod verPalabraClave\n");
+        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave1"));
+        System.out.println("La palabra clave es: "+pc.verPalabraClave("palabraClave5"));//no existe
         
-        System.out.println("\n\tmethod buscarTipos\n");
-        for(Tipo t : gt.buscarTipos("tip"))
-                System.out.println("\t" + t.toString());
+        System.out.println("\n\tmethod buscarPalabrasClaves\n");
+        for(PalabraClave p : pc.buscarPalabrasClaves("palabr"))
+                System.out.println("\t" + p.toString());
         
         System.out.println("\n\tmethod existeEsteTipo\n");
-        System.out.println("El Tipo Alcance existe: "+gt.existeEsteTipo(gt.verTipo("Alcance")));//true
+        System.out.println("La palabra clave Alcance existe: "+ pc.existeEstaPalabraClave(pc.verPalabraClave("Alcance")));//true
+        
+//      GESTOR TIPOS
+//        System.out.println("\n\t----------------------------------------------");
+//        System.out.println("\t\t\tGESTOR TIPOS");
+//        System.out.println("\t----------------------------------------------");
+//        IGestorTipos gt=GestorTipos.instanciar();
+//        
+//        System.out.println("\n\tmethod nuevoTipo\n");
+//        System.out.println(gt.nuevoTipo("Tipo1"));
+//        System.out.println(gt.nuevoTipo("Tipo2"));
+//        System.out.println(gt.nuevoTipo("Tipo1"));//tipo repetido
+//        System.out.println(gt.nuevoTipo(""));//cadena vacia
+//        System.out.println(gt.nuevoTipo("Hola"));       //nuevo tipo para tp6
+//        System.out.println(gt.nuevoTipo("Alcance"));    //nuevo tipo para tp6
+//        System.out.println(gt.nuevoTipo(null));//nulo
+//     
+//        System.out.println("\n\tmethod verTipos\n");
+//        System.out.println("Los tipos son:");
+////        gt.verTipos();
+//        for(Tipo t : gt.verTipos())
+//            System.out.println("\t" + t.toString());
+//        
+//        System.out.println("\n\tmethod verTipo\n");
+//        
+//        System.out.println("El nombre del Tipo es: "+gt.verTipo("Tipo1"));//si existe devuelve el nombre Tipo1
+//        System.out.println("El nombre del Tipo es: "+gt.verTipo("Tipo4"));//no existe devuelve null
+//        
+//        System.out.println("\n\tmethod buscarTipos\n");
+//        for(Tipo t : gt.buscarTipos("tip"))
+//                System.out.println("\t" + t.toString());
+//        
+//        System.out.println("\n\tmethod existeEsteTipo\n");
+//        System.out.println("El Tipo Alcance existe: "+gt.existeEsteTipo(gt.verTipo("Alcance")));//true
 
 //      GESTOR PUBLICACIONES
 //        System.out.println("\n\t----------------------------------------------");
