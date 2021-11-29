@@ -16,7 +16,7 @@ import java.util.List;
  * @author Usuario
  */
 public class GestorGrupos implements IGestorGrupos{
-    private ArrayList<Grupo> grupos = new ArrayList<>();
+    private List<Grupo> grupos = new ArrayList<>();
     
     private static GestorGrupos gestor;
     private GestorGrupos(){

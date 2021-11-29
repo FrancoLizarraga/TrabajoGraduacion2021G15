@@ -16,7 +16,7 @@ import publicaciones.modelos.GestorPublicaciones;
  * @author Usuario
  */
 public class GestorIdiomas implements IGestorIdiomas{
-    private ArrayList<Idioma> idiomas = new ArrayList<>();
+    private List<Idioma> idiomas = new ArrayList<>();
     
     private static GestorIdiomas gestor;
     private GestorIdiomas(){

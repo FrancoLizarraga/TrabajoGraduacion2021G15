@@ -16,7 +16,7 @@ import publicaciones.modelos.GestorPublicaciones;
  * @author Usuario
  */
 public class GestorLugares implements IGestorLugares{
-    private ArrayList<Lugar> lugares = new ArrayList<>();
+    private List<Lugar> lugares = new ArrayList<>();
     
     private static GestorLugares gestor;
     private GestorLugares(){

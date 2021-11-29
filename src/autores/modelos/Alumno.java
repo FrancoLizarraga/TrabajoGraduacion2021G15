@@ -7,7 +7,7 @@ package autores.modelos;
 
 import java.util.Objects;
 
-public class Alumno extends Autor{
+public class Alumno extends Autor implements Comparable<Alumno>{
 //    private int dni;
 //    private String apellidos;
 //    private String nombres;
@@ -124,6 +124,11 @@ public class Alumno extends Autor{
             }
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Alumno a) {
+        return super.verApellidos().compareTo(a.verApellidos());
     }
 
     

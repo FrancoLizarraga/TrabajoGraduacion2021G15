@@ -9,6 +9,7 @@ import grupos.modelos.Grupo;
 import grupos.modelos.MiembroEnGrupo;
 import grupos.modelos.Rol;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -131,5 +132,10 @@ public abstract class Autor {
                 return true;
         }
         return false;
+    }
+    
+    //Agregado para tp6.
+    public List<MiembroEnGrupo> devolverMiembros(){
+        return this.miembrosEnGrupo;
     }
 }

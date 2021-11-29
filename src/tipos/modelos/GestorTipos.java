@@ -99,7 +99,7 @@ public class GestorTipos implements IGestorTipos{
     @Override
     public boolean existeEsteTipo(Tipo tipo) {
         for(Tipo t : this.tipos){ 
-            if(t.equals(tipo))    //Falta ver la manera para ignorar las mayusculas, con el toLowerCase no me permite.
+            if(t.equals(tipo))
                 return true;
         }
         return false;

@@ -7,8 +7,9 @@ package autores.modelos;
 
 import grupos.modelos.MiembroEnGrupo;
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Profesor extends Autor{
+public class Profesor extends Autor implements Comparable<Profesor>{
 //    private int dni;
 //    private String apellidos;
 //    private String nombres;
@@ -99,5 +100,11 @@ public class Profesor extends Autor{
     
     //¿Por qué no mostraba cuando estaba definido aqui el método equals/hashcode? Tuve que definirlo en Autor
     //para poderlo mostrar.
+
+    @Override
+    public int compareTo(Profesor p) {
+        return super.verApellidos().compareTo(p.verApellidos());
+    }
+    
     
 }

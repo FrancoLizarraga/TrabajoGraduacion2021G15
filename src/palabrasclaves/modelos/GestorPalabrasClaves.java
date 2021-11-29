@@ -16,7 +16,7 @@ import publicaciones.modelos.GestorPublicaciones;
  * @author Usuario
  */
 public class GestorPalabrasClaves implements IGestorPalabrasClaves{
-    private ArrayList<PalabraClave> palabrasClaves = new ArrayList<>();
+    private List<PalabraClave> palabrasClaves = new ArrayList<>();
     
     private static GestorPalabrasClaves gestor;
     private GestorPalabrasClaves(){

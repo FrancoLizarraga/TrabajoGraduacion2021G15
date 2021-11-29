@@ -17,7 +17,7 @@ import palabrasclaves.modelos.PalabraClave;
 import tipos.modelos.Tipo;
 
 
-public class Publicacion {
+public class Publicacion implements Comparable<Publicacion>{
     private String titulo;
     private MiembroEnGrupo miembro;
     private LocalDate fechaPublicacion;
@@ -116,7 +116,8 @@ public class Publicacion {
         return palabrasClaves;
     }
 
-    public void asignarPalabrasClaves(ArrayList<PalabraClave> palabrasClaves) {
+    //Modifiqué el argumento de "ArrayList" a "List" para el tp6.
+    public void asignarPalabrasClaves(List<PalabraClave> palabrasClaves) {
         this.palabrasClaves = palabrasClaves;
     }
 
@@ -152,5 +153,11 @@ public class Publicacion {
         }
         return true;
     }
+
+    @Override
+    public int compareTo(Publicacion p) {
+        return this.titulo.toLowerCase().compareTo(p.verTitulo().toLowerCase());
+    }
    
+    
 }
