@@ -5,9 +5,12 @@
  */
 package palabrasclaves.vistas;
 
+import interfaces.IControladorAPalabraClave;
 import java.awt.Dialog;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
 import palabrasclaves.modelos.PalabraClave;
 
 public class VentanaAPalabraClave extends JDialog {
@@ -17,9 +20,12 @@ public class VentanaAPalabraClave extends JDialog {
      * Constructor 
      * @param ventanaPadre ventana padre (VentanaPalabrasClaves en este caso)
      */        
-    public VentanaAPalabraClave(Dialog ventanaPadre) {
-        super(ventanaPadre, true);
+    private IControladorAPalabraClave controlador;
+    public VentanaAPalabraClave(IControladorAPalabraClave controlador) {
         initComponents();
+        this.controlador = controlador;
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
  
     
@@ -35,6 +41,7 @@ public class VentanaAPalabraClave extends JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Palabras Claves");
@@ -43,6 +50,11 @@ public class VentanaAPalabraClave extends JDialog {
         jLabel1.setText("Nombre:");
 
         txtNombre.setToolTipText("Nombre de la palabra clave");
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombrePresionarTecla(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
@@ -50,6 +62,14 @@ public class VentanaAPalabraClave extends JDialog {
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarClic(evt);
+            }
+        });
+
+        btnCancelar.setMnemonic('C');
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarClic(evt);
             }
         });
 
@@ -66,7 +86,9 @@ public class VentanaAPalabraClave extends JDialog {
                         .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar)))
+                        .addComponent(btnGuardar)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -77,7 +99,9 @@ public class VentanaAPalabraClave extends JDialog {
                     .addComponent(jLabel1)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar))
                 .addContainerGap())
         );
 
@@ -85,15 +109,28 @@ public class VentanaAPalabraClave extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
-        String nombre = this.txtNombre.getText().trim();
-        PalabraClave palabraClave = new PalabraClave(nombre);
-        this.palabrasClaves.add(palabraClave);
-        for(PalabraClave i : this.palabrasClaves)
-            System.out.println(i);
+        this.controlador.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarClic
+
+    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+        this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarClic
+
+    private void txtNombrePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePresionarTecla
+        this.controlador.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombrePresionarTecla
+
+    public JTextField verTxtNombre() {
+        return txtNombre;
+    }
+
+    public JButton verBtnGuardar() {
+        return btnGuardar;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtNombre;
