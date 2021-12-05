@@ -16,3 +16,4 @@ nb-configuration.xml
 *.ear
 *.properties
 *.xml
+/build/built-jar.properties
