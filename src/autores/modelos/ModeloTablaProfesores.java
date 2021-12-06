@@ -6,6 +6,7 @@
 package autores.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaProfesores extends AbstractTableModel {
 
     private ArrayList<String> nombresColumnas = new ArrayList<>();
-    private ArrayList<Profesor> profesores = new ArrayList<>();
+    private List<Profesor> profesores = new ArrayList<>();
 
     //QUIEN SE ENCARGA DE ASIGNARLE EL NOMBRE
     public ModeloTablaProfesores() {

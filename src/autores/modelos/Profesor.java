@@ -38,5 +38,5 @@ public class Profesor extends Autor implements Comparable<Profesor>{
     public int compareTo(Profesor p) {
         return super.verApellidos().compareTo(p.verApellidos());
     }
-    
-    
+        
+}  
