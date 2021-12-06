@@ -65,7 +65,7 @@ public class ControladorVentanaAutores implements IControladorAutores {
         } else {
             cp.verVentana().setTitle(PROFESOR_MODIFICAR); //le agrego el titulo
             cp.verVentana().setVisible(true); //la hago visible
-            cp.verVentana().verTxtDNI().setEnabled(false); //Deshabilito el campod de txt de dni para no poder modificarlo.
+            cp.verVentana().verTxtDNI().setEnabled(false); //Deshabilito el campo de txt de dni para no poder modificarlo.
         }
     }
 

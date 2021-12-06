@@ -46,68 +46,137 @@ public class ControladorAMAlumno implements IControladorAMAlumno {
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        IGestorAutores ga = GestorAutores.instanciar();
-        int dni;
-        String apellidos = ventana.verTxtApellidos().getText().trim();
-        String nombres = ventana.verTxtNombres().getText().trim();
-        String cx = this.ventana.verTxtCX().getText().trim();
-        String clave = new String(ventana.verTxtClave().getPassword());
-        String claveRepetida = new String(ventana.verTxtClaveRepetida().getPassword());
-        String mensaje;
+        try {
+            IGestorAutores ga = GestorAutores.instanciar();
+            int dni;
+            String apellidos = ventana.verTxtApellidos().getText().trim();
+            String nombres = ventana.verTxtNombres().getText().trim();
+            String cx = this.ventana.verTxtCX().getText().trim();
+            String clave = new String(ventana.verTxtClave().getPassword());
+            String claveRepetida = new String(ventana.verTxtClaveRepetida().getPassword());
+            String mensaje;
 
-        //creo una referencia a la ventana autores para poder usarla.
-        ControladorVentanaAutores ca = ControladorVentanaAutores.instanciar();
+            //creo una referencia a la ventana autores para poder usarla.
+            ControladorVentanaAutores ca = ControladorVentanaAutores.instanciar();
 
-        //Hago esto si se presiona en el boton "Nuevo"
-        if (this.ventana.getTitle().equals("Nuevo Alumno")) {
-            if (!this.ventana.verTxtDNI().getText().trim().isEmpty()) {
-                dni = Integer.parseInt(this.ventana.verTxtDNI().getText().trim());
+            //Hago esto si se presiona en el boton "Nuevo"
+            if (this.ventana.getTitle().equals("Nuevo Alumno")) {
+                if (!this.ventana.verTxtDNI().getText().trim().isEmpty()) {
+                    dni = Integer.parseInt(this.ventana.verTxtDNI().getText().trim());
+                    if (!clave.equals(claveRepetida)) {
+                        JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
+                    } else {
+                        mensaje = ga.nuevoAutor(dni, apellidos, nombres, cx, clave, claveRepetida);
+                        if (mensaje.equals("Ya existe un alumno con ese dni o cx.")) {
+                            JOptionPane.showMessageDialog(this.ventana, mensaje);
+                        }
+                        if (mensaje.equals("Los datos del alumno deben ser validos.")) {
+                            JOptionPane.showMessageDialog(this.ventana, mensaje);
+                        }
+                        if (mensaje.equals("Alumno creado y guardado.")) {
+                            JOptionPane.showMessageDialog(this.ventana, mensaje);
+                            ca.verVentana().verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
+                            ca.verVentana().verBtnBorrarAlumno().setEnabled(true); //una vez cargado un alumno habilita el boton borrar. 
+                            ca.verVentana().verBtnModificarAlumno().setEnabled(true); //una vez cargado un alumno habilita el boton modificar.
+                            this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
+                            ventana.dispose(); //cierro la ventana.
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this.ventana, "Los datos del alumno deben ser validos.");
+                }
+            }
+
+            //Hago esto si se presiona en el boton "Modificar"
+            if (this.ventana.getTitle().equals("Modificar Alumno")) {
+                JTable tablaAlumno = ca.verVentana().verTablaAlumno();
+                int filaSeleccionada = tablaAlumno.getSelectedRow();
+                int dniSeleccionado = Integer.parseInt(tablaAlumno.getValueAt(filaSeleccionada, 0).toString());
+                Alumno alumno = (Alumno) ga.verAutor(dniSeleccionado);
+
                 if (!clave.equals(claveRepetida)) {
                     JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
                 } else {
-                    mensaje = ga.nuevoAutor(dni, apellidos, nombres, cx, clave, claveRepetida);
-                    if (mensaje.equals("Ya existe un alumno con ese dni o cx.")) {
+                    mensaje = ga.modificarAutor(alumno, apellidos, nombres, cx, clave, claveRepetida);
+                    if (mensaje.equals("Los datos a modificar deben ser validos.")) {
                         JOptionPane.showMessageDialog(this.ventana, mensaje);
                     }
-                    if (mensaje.equals("Los datos del alumno deben ser validos.")) {
+                    if(mensaje.equals("El cx ingresado ya se encuentra registrado.")){
                         JOptionPane.showMessageDialog(this.ventana, mensaje);
                     }
-                    if (mensaje.equals("Alumno creado y guardado.")) {
+                    if (mensaje.equals("Los datos se han modificado.")) {
                         JOptionPane.showMessageDialog(this.ventana, mensaje);
                         ca.verVentana().verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
-                        ca.verVentana().verBtnBorrarAlumno().setEnabled(true); //una vez cargado un alumno habilita el boton borrar. 
-                        ca.verVentana().verBtnModificarAlumno().setEnabled(true); //una vez cargado un alumno habilita el boton modificar.
                         this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
                         ventana.dispose(); //cierro la ventana.
                     }
                 }
-            } else {
-                JOptionPane.showMessageDialog(this.ventana, "Los datos del alumno deben ser validos.");
-            }
+            }  
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this.ventana, "El documento debe ser un numero.");
         }
-
-        //Hago esto si se presiona en el boton "Modificar"
-        if (this.ventana.getTitle().equals("Modificar Alumno")) {
-            JTable tablaAlumno = ca.verVentana().verTablaAlumno();
-            int filaSeleccionada = tablaAlumno.getSelectedRow();
-            int dniSeleccionado = Integer.parseInt(tablaAlumno.getValueAt(filaSeleccionada, 0).toString());
-            Alumno alumno = (Alumno) ga.verAutor(dniSeleccionado);
-
-            if (!clave.equals(claveRepetida)) {
-                JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
-            } else {
-                mensaje = ga.modificarAutor(alumno, apellidos, nombres, cx, clave, claveRepetida);
-                if (mensaje.equals("Los datos a modificar deben ser validos.")) {
-                    JOptionPane.showMessageDialog(this.ventana, mensaje);
-                }
-                if (mensaje.equals("Los datos se han modificado.")) {
-                    JOptionPane.showMessageDialog(this.ventana, mensaje);
-                    ca.verVentana().verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
-                    this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
-                    ventana.dispose(); //cierro la ventana.
-                }
-            }
-        }
+//        IGestorAutores ga = GestorAutores.instanciar();
+//        int dni;
+//        String apellidos = ventana.verTxtApellidos().getText().trim();
+//        String nombres = ventana.verTxtNombres().getText().trim();
+//        String cx = this.ventana.verTxtCX().getText().trim();
+//        String clave = new String(ventana.verTxtClave().getPassword());
+//        String claveRepetida = new String(ventana.verTxtClaveRepetida().getPassword());
+//        String mensaje;
+//
+//        //creo una referencia a la ventana autores para poder usarla.
+//        ControladorVentanaAutores ca = ControladorVentanaAutores.instanciar();
+//
+//        //Hago esto si se presiona en el boton "Nuevo"
+//        if (this.ventana.getTitle().equals("Nuevo Alumno")) {
+//            if (!this.ventana.verTxtDNI().getText().trim().isEmpty()) {
+//                dni = Integer.parseInt(this.ventana.verTxtDNI().getText().trim());
+//                if (!clave.equals(claveRepetida)) {
+//                    JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
+//                } else {
+//                    mensaje = ga.nuevoAutor(dni, apellidos, nombres, cx, clave, claveRepetida);
+//                    if (mensaje.equals("Ya existe un alumno con ese dni o cx.")) {
+//                        JOptionPane.showMessageDialog(this.ventana, mensaje);
+//                    }
+//                    if (mensaje.equals("Los datos del alumno deben ser validos.")) {
+//                        JOptionPane.showMessageDialog(this.ventana, mensaje);
+//                    }
+//                    if (mensaje.equals("Alumno creado y guardado.")) {
+//                        JOptionPane.showMessageDialog(this.ventana, mensaje);
+//                        ca.verVentana().verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
+//                        ca.verVentana().verBtnBorrarAlumno().setEnabled(true); //una vez cargado un alumno habilita el boton borrar. 
+//                        ca.verVentana().verBtnModificarAlumno().setEnabled(true); //una vez cargado un alumno habilita el boton modificar.
+//                        this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
+//                        ventana.dispose(); //cierro la ventana.
+//                    }
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this.ventana, "Los datos del alumno deben ser validos.");
+//            }
+//        }
+//
+//        //Hago esto si se presiona en el boton "Modificar"
+//        if (this.ventana.getTitle().equals("Modificar Alumno")) {
+//            JTable tablaAlumno = ca.verVentana().verTablaAlumno();
+//            int filaSeleccionada = tablaAlumno.getSelectedRow();
+//            int dniSeleccionado = Integer.parseInt(tablaAlumno.getValueAt(filaSeleccionada, 0).toString());
+//            Alumno alumno = (Alumno) ga.verAutor(dniSeleccionado);
+//
+//            if (!clave.equals(claveRepetida)) {
+//                JOptionPane.showMessageDialog(ventana, "Las contraseñas no coinciden.");
+//            } else {
+//                mensaje = ga.modificarAutor(alumno, apellidos, nombres, cx, clave, claveRepetida);
+//                if (mensaje.equals("Los datos a modificar deben ser validos.")) {
+//                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+//                }
+//                if (mensaje.equals("Los datos se han modificado.")) {
+//                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+//                    ca.verVentana().verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
+//                    this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
+//                    ventana.dispose(); //cierro la ventana.
+//                }
+//            }
+//        }
     }
 
     @Override

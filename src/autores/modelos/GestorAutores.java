@@ -99,10 +99,18 @@ public class GestorAutores implements IGestorAutores {
         if ((nombres != null) && (!nombres.isEmpty()) && (apellidos != null) && (!apellidos.isEmpty())
                 && (cx != null) && (!cx.isEmpty()) && (autor != null) && (clave != null)
                 && (!clave.isEmpty()) && (claveRepetida != null) && (!claveRepetida.isEmpty())) {
+            //Busco el autor a modificar en el ArrayList.
             for (Autor a : autores) {
                 if (a.equals(autor)) {
                     Alumno alumno;
-                    alumno = (Alumno) autores.get(i);        //alumno apunta al mismo objeto que la posicion i de autores
+                    alumno = (Alumno) autores.get(i);     //alumno apunta al mismo objeto que la posicion i de autores.
+                    //Controlo que el cx ingresado no se repita en el ArrayList.
+                    for(Alumno b : verAlumnos()){
+                        if(b.equals(alumno))              //Cuando sean los mismos no controlo el cx, para que deje poner el mismo que ya tenia si lo desea.
+                            continue;                     //Salta a la siguiente iteración del bucle for.
+                        if(b.verCx().equals(cx))          //Si ya existe el cx ingresado, salta el mensaje.
+                            return "El cx ingresado ya se encuentra registrado.";
+                    }
                     alumno.asignarApellidos(apellidos);
                     alumno.asignarNombres(nombres);
                     alumno.asignarCx(cx);
