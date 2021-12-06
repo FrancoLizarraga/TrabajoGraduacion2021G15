@@ -7,9 +7,8 @@ package lugares.modelos;
 
 import java.util.Objects;
 
-public class Lugar {
-
-    private String nombre;
+public class Lugar implements Comparable<Lugar>{
+     private String nombre;
 
     public Lugar(String nombre) {
         this.nombre = nombre;
@@ -51,4 +50,11 @@ public class Lugar {
         }
         return true;
     }
+
+    @Override
+    public int compareTo(Lugar l) {
+        return this.nombre.compareTo(l.verNombre());
+    }
+    
+    
 }

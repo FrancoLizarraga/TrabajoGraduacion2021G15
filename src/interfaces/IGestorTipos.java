@@ -6,6 +6,7 @@
 package interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 import tipos.modelos.Tipo;
 
 /**
@@ -14,7 +15,11 @@ import tipos.modelos.Tipo;
  */
 public interface IGestorTipos {
     public String nuevoTipo(String nombre);
-    public ArrayList<Tipo> verTipos();
+//    public ArrayList<Tipo> verTipos();
     public Tipo verTipo(String nombre);
+    public String borrarTipo(Tipo tipo);
+    public List<Tipo> buscarTipos(String nombre);
+    public List<Tipo> verTipos();
+    public boolean existeEsteTipo(Tipo tipo);
     
 }

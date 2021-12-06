@@ -7,25 +7,24 @@ package lugares.modelos;
 
 import interfaces.IGestorLugares;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import publicaciones.modelos.GestorPublicaciones;
 
 /**
  *
  * @author Usuario
  */
-public class GestorLugares implements IGestorLugares {
-
-    private ArrayList<Lugar> lugares = new ArrayList<>();
-
+public class GestorLugares implements IGestorLugares{
+    private List<Lugar> lugares = new ArrayList<>();
+    
     private static GestorLugares gestor;
-
-    private GestorLugares() {
-
+    private GestorLugares(){
+        
     }
-
-    public static GestorLugares instanciar() {
-        if (gestor == null) {
+    public static GestorLugares instanciar(){
+        if(gestor==null)
             gestor = new GestorLugares();
-        }
         return gestor;
     }
 
@@ -45,7 +44,9 @@ public class GestorLugares implements IGestorLugares {
     }
 
     @Override
-    public ArrayList<Lugar> verLugares() {
+    public List<Lugar> verLugares() {
+        Collections.sort(lugares);
+        
         return this.lugares;
     }
 
@@ -59,4 +60,45 @@ public class GestorLugares implements IGestorLugares {
         return null;
     }
 
+    @Override
+    public String borrarLugar(Lugar lugar) {
+        GestorPublicaciones gp = GestorPublicaciones.instanciar();
+        
+        if(this.lugares.contains(lugar)){
+            if(!gp.hayPublicacionesConEsteLugar(lugar)){
+                this.lugares.remove(lugar);
+                return "Se ha borrado el lugar ya que no hay publicaciones con el mismo.";
+            }
+            else
+                return "No se pudo borrar el lugar ya que hay publicaciones con el mismo.";
+        }
+        else
+            return "No existe este lugar.";
+    }
+
+    @Override
+    public List<Lugar> buscarLugares(String nombre) {
+        List<Lugar> nuevosLugares = new ArrayList<>();
+        
+        for(Lugar lugar : this.lugares){
+            if(lugar.verNombre().toLowerCase().contains(nombre.toLowerCase())){
+                if(lugar.verNombre().toLowerCase().compareTo(nombre.toLowerCase()) >= 0)
+                    nuevosLugares.add(lugar);
+            }
+        }
+        Collections.sort(nuevosLugares); //implementé la interfaz "comparable" a la clase Lugar.
+        
+        return nuevosLugares;
+    }
+
+    @Override
+    public boolean existeEsteLugar(Lugar lugar) {
+        for(Lugar l : this.lugares){ 
+            if(l.equals(lugar)) //Falta ver la manera para ignorar las mayusculas, con el toLowerCase no me permite.
+                return true;
+        }
+        return false;
+    }
+    
+    
 }

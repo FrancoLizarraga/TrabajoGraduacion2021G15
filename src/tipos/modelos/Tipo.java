@@ -7,8 +7,7 @@ package tipos.modelos;
 
 import java.util.Objects;
 
-public class Tipo {
-
+public class Tipo implements Comparable<Tipo>{
     private String nombre;
 
     public Tipo(String nombre) {
@@ -51,4 +50,11 @@ public class Tipo {
     public String toString() {
         return nombre;
     }
+
+    @Override
+    public int compareTo(Tipo t) {
+        return this.nombre.compareTo(t.verNombre()); //Si this.nombre está antes, alfabeticamente, que nombre devuelve num <0
+    }
+    
+    
 }

@@ -7,6 +7,7 @@ package interfaces;
 
 import idiomas.modelos.Idioma;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +15,12 @@ import java.util.ArrayList;
  */
 public interface IGestorIdiomas {
     public String nuevoIdioma(String nombre);
-    public ArrayList<Idioma> verIdiomas();
+//    public ArrayList<Idioma> verIdiomas();
     public Idioma verIdioma(String nombre);
+    
+    public String borrarIdioma(Idioma idioma);
+    public List<Idioma> buscarIdiomas(String nombre);
+    public List<Idioma> verIdiomas();
+    public boolean existeEsteIdioma(Idioma idioma);
     
 }

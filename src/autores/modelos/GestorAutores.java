@@ -5,27 +5,29 @@
  */
 package autores.modelos;
 
+import grupos.modelos.Grupo;
+import grupos.modelos.MiembroEnGrupo;
 import interfaces.IGestorAutores;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import publicaciones.modelos.GestorPublicaciones;
 
 /**
  *
  * @author Usuario
  */
-public class GestorAutores implements IGestorAutores {
-
-    private ArrayList<Autor> autores = new ArrayList<>();
-
+public class GestorAutores implements IGestorAutores{
+    private List<Autor> autores = new ArrayList<>();
+    
     private static GestorAutores gestor;
-
-    private GestorAutores() {
-
+    private GestorAutores(){
+        
     }
-
-    public static GestorAutores instanciar() {
-        if (gestor == null) {
+    public static GestorAutores instanciar(){
+        if(gestor==null)
             gestor = new GestorAutores();
-        }
         return gestor;
     }
 
@@ -135,56 +137,117 @@ public class GestorAutores implements IGestorAutores {
     }
 
     @Override
-    public ArrayList<Autor> verAutores() {
+    public List<Autor> verAutores() {
+        //La unica forma que se me ocurrió. Los concateno y los comparo para odenarlos por apellido y nombre.
+        Comparator<Autor> comp = (a1, a2 ) -> a1.verApellidos().concat(a1.verNombres()).compareToIgnoreCase(a2.verApellidos().concat(a2.verNombres())); //Expresion lambda.
+        Collections.sort(this.autores, comp);
+        
         return this.autores;
     }
 
     @Override
-    public ArrayList<Profesor> verProfesores() {
-        //La unica forma que se me ocurrió.
-        ArrayList<Profesor> profesores = new ArrayList<>();
-        for (Autor a : this.autores) {
-            if (a instanceof Profesor) {
-                profesores.add((Profesor) a);
+    public List<Profesor> verProfesores() {
+        List<Profesor> profesores = new ArrayList<>();
+        //La unica forma que se me ocurrió. Los concateno y los comparo para odenarlos por apellido y nombre.
+        Comparator<Autor> comp = (a1, a2 ) -> a1.verApellidos().concat(a1.verNombres()).compareToIgnoreCase(a2.verApellidos().concat(a2.verNombres())); //Expresion lambda.
+        
+        for(Autor a : this.autores){
+            if(a instanceof Profesor){
+                profesores.add((Profesor)a);
             }
         }
+        //No entendi si la consigna era igual que la de verAutores pero lo hice de la misma manera.
+        Collections.sort(profesores, comp);
+        
         return profesores;
     }
 
     @Override
-    public ArrayList<Alumno> verAlumnos() {
-        ArrayList<Alumno> alumnos = new ArrayList<>();
-        for (Autor a : this.autores) {
-            if (a instanceof Alumno) {
-                alumnos.add((Alumno) a);
-            }
+    public List<Alumno> verAlumnos() {
+        List<Alumno> alumnos = new ArrayList<>();
+        //La unica forma que se me ocurrió. Los concateno y los comparo para odenarlos por apellido y nombre.
+        Comparator<Autor> comp = (a1, a2 ) -> a1.verApellidos().concat(a1.verNombres()).compareToIgnoreCase(a2.verApellidos().concat(a2.verNombres())); //Expresion lambda.
+        
+        for(Autor a : this.autores){
+            if(a instanceof Alumno)
+                alumnos.add((Alumno)a);
         }
+        //No entendi si la consigna era igual que la de verAutores pero lo hice de la misma manera.
+        Collections.sort(alumnos, comp);
+        
         return alumnos;
     }
 
     @Override
     public Autor verAutor(int dni) {
-        for (Autor a : this.autores) {
-            if (a.verDni() == dni) //if(a.equals(dni)) podria ser?
-            {
+        for(Autor a : this.autores){
+            if(a.verDni() == dni)
                 return a;
-            }
         }
         return null;
     }
 
-    //NUEVO METODO PARA BORRAR UN AUTOR.
-    public void borrarAutor(Autor autor) {
-        ArrayList<Autor> autorBorrado = this.autores;
-        int i = 0;
-        for (Autor a : autorBorrado) {
-            if (a.equals(autor)) {
-                break; //Cundo encuentra el autor sale del bucle for.
+    @Override
+    public String borrarAutor(Autor autor) {
+        GestorPublicaciones gp = GestorPublicaciones.instanciar();
+        
+        if(this.autores.contains(autor)){
+            if(!gp.hayPublicacionesConEsteAutor(autor)){
+                this.autores.remove(autor);
+                return "Se ha borrado el autor porque no hay publicaciones con el mismo.";
             }
-            i++;
+            else
+                return "No se pudo borrar el autor ya que hay publicaciones con el mismo.";
         }
-        autorBorrado.remove(i); //Elimina el autor ubicado en la posicion i del ArrayList autorBorrado.
-        this.autores = autorBorrado;
+        else
+            return "No existe este autor.";
     }
 
+    @Override
+    public List<Profesor> buscarProfesores(String apellidos) {
+        List<Profesor> nuevosProfesores = new ArrayList<>();
+        //La unica forma que se me ocurrió. Los concateno y los comparo para odenarlos por apellido y nombre.
+        Comparator<Autor> comp = (a1, a2 ) -> a1.verApellidos().concat(a1.verNombres()).compareToIgnoreCase(a2.verApellidos().concat(a2.verNombres())); //Expresion lambda.
+        
+        for(Autor profesor : verProfesores()){
+            if(profesor.verApellidos().toLowerCase().contains(apellidos.toLowerCase())){
+                if(profesor.verApellidos().toLowerCase().compareTo(apellidos.toLowerCase()) >= 0)
+                    nuevosProfesores.add((Profesor)profesor);
+            }
+        }
+        //No entendi si la consigna era igual que la de buscarAlumnos pero lo hice de la misma manera.
+        Collections.sort(nuevosProfesores, comp); 
+        
+        return nuevosProfesores;
+    }
+
+    @Override
+    public List<Alumno> buscarAlumnos(String apellidos) {
+        List<Alumno> nuevosAlumnos = new ArrayList<>();
+        //La unica forma que se me ocurrió. Los concateno y los comparo para odenarlos por apellido y nombre.
+        Comparator<Autor> comp = (a1, a2 ) -> a1.verApellidos().concat(a1.verNombres()).compareToIgnoreCase(a2.verApellidos().concat(a2.verNombres())); //Expresion lambda.
+        
+        for(Autor alumno : verAlumnos()){
+            if(alumno.verApellidos().toLowerCase().contains(apellidos.toLowerCase())){
+                if(alumno.verApellidos().toLowerCase().compareTo(apellidos.toLowerCase()) >= 0)
+                    nuevosAlumnos.add((Alumno)alumno);
+            }
+        }
+        Collections.sort(nuevosAlumnos,comp);
+        
+        return nuevosAlumnos;
+    }
+
+    @Override
+    public boolean hayAutoresConEsteGrupo(Grupo grupo) {
+        for(Autor a : this.autores){
+            for(MiembroEnGrupo miembro : a.devolverMiembros()){
+                if(miembro.verGrupo().equals(grupo))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    
 }

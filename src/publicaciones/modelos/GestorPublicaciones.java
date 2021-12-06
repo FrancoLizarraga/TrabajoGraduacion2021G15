@@ -11,6 +11,8 @@ import idiomas.modelos.Idioma;
 import interfaces.IGestorPublicaciones;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import lugares.modelos.Lugar;
 import palabrasclaves.modelos.PalabraClave;
 import tipos.modelos.Tipo;
@@ -19,27 +21,23 @@ import tipos.modelos.Tipo;
  *
  * @author Usuario
  */
-public class GestorPublicaciones implements IGestorPublicaciones {
-
-    private ArrayList<Publicacion> publicaciones = new ArrayList<>();
-
+public class GestorPublicaciones implements IGestorPublicaciones{
+    private List<Publicacion> publicaciones = new ArrayList<>();
+    
     private static GestorPublicaciones gestor;
-
-    private GestorPublicaciones() {
-
+    private GestorPublicaciones(){
+        
     }
-
-    public static GestorPublicaciones instanciar() {
-        if (gestor == null) {
+    public static GestorPublicaciones instanciar(){
+        if(gestor==null)
             gestor = new GestorPublicaciones();
-        }
         return gestor;
     }
 
     @Override
     public String nuevaPublicacion(String titulo, MiembroEnGrupo miembroEnGrupo, LocalDate fechaPublicacion, Tipo tipo,
-            Idioma idioma, Lugar lugar, ArrayList<PalabraClave> palabrasClaves, String enlace, String resumen) {
-
+            Idioma idioma, Lugar lugar, List<PalabraClave> palabrasClaves, String enlace, String resumen) {
+        
         if ((titulo != null) && (!titulo.isEmpty()) && (miembroEnGrupo != null) && (fechaPublicacion != null)
                 && (tipo != null) && (!tipo.toString().isEmpty()) && (idioma != null) && (!idioma.toString().isEmpty())
                 && (lugar != null) && (!lugar.toString().isEmpty()) && (palabrasClaves != null) && (!palabrasClaves.isEmpty())
@@ -58,8 +56,9 @@ public class GestorPublicaciones implements IGestorPublicaciones {
     }
 
     @Override
-    public String modificarPublicacion(Publicacion publicacion, MiembroEnGrupo miembroEnGrupo, LocalDate fechaPublicacion, Tipo tipo, Idioma idioma, Lugar lugar, ArrayList<PalabraClave> palabrasClaves, String enlace, String resumen) {
-        int i = 0;
+    public String modificarPublicacion(Publicacion publicacion, MiembroEnGrupo miembroEnGrupo, LocalDate fechaPublicacion,
+            Tipo tipo, Idioma idioma, Lugar lugar, List<PalabraClave> palabrasClaves, String enlace, String resumen){
+        int i=0;
         if ((publicacion != null) && (miembroEnGrupo != null) && (fechaPublicacion != null)
                 && (tipo != null) && (!tipo.toString().isEmpty()) && (idioma != null) && (!idioma.toString().isEmpty())
                 && (lugar != null) && (!lugar.toString().isEmpty()) && (palabrasClaves != null) && (!palabrasClaves.isEmpty())
@@ -148,7 +147,9 @@ public class GestorPublicaciones implements IGestorPublicaciones {
     }
 
     @Override
-    public ArrayList<Publicacion> verPublicaciones() {
+    public List<Publicacion> verPublicaciones() {
+        Collections.sort(this.publicaciones);
+        
         return this.publicaciones;
     }
 
@@ -162,4 +163,30 @@ public class GestorPublicaciones implements IGestorPublicaciones {
         return null;
     }
 
+    @Override
+    public String borrarPublicacion(Publicacion publicacion) {
+        if(this.existeEstaPublicacion(publicacion)){
+            this.publicaciones.remove(publicacion);
+            return "Se borró la publicación.";
+        }
+        else
+            return "La publicación no existe.";
+    }
+
+    @Override
+    public List<Publicacion> buscarPublicaciones(String titulo) {
+        List<Publicacion> nuevasPublicaciones = new ArrayList<>();
+        
+        for(Publicacion publicacion : this.publicaciones){
+            if(publicacion.verTitulo().toLowerCase().contains(titulo.toLowerCase())){
+                if(publicacion.verTitulo().toLowerCase().compareTo(titulo.toLowerCase()) >= 0)
+                    nuevasPublicaciones.add(publicacion);
+            }
+        }
+        Collections.sort(nuevasPublicaciones); //implementé la interfaz "comparable" a la clase Publicacion.
+        
+        return nuevasPublicaciones;
+    }
+    
+    
 }

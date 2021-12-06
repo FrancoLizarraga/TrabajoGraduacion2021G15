@@ -11,8 +11,7 @@ import java.util.Objects;
  *
  * @author Usuario
  */
-public class PalabraClave {
-
+public class PalabraClave implements Comparable<PalabraClave>{
     private String nombre;
 
     public PalabraClave(String nombre) {
@@ -55,4 +54,11 @@ public class PalabraClave {
         }
         return true;
     }
+
+    @Override
+    public int compareTo(PalabraClave p) {
+        return this.nombre.compareTo(p.verNombre());
+    }
+    
+    
 }

@@ -16,8 +16,8 @@ import lugares.modelos.Lugar;
 import palabrasclaves.modelos.PalabraClave;
 import tipos.modelos.Tipo;
 
-public class Publicacion {
 
+public class Publicacion implements Comparable<Publicacion>{
     private String titulo;
     private MiembroEnGrupo miembro;
     private LocalDate fechaPublicacion;
@@ -49,8 +49,8 @@ public class Publicacion {
         System.out.println("Grupo: " + miembro.verGrupo().verNombre() + "\nRol: " + miembro.verRol() + "\nFecha de publicación: " + fFormateada);
         System.out.println("Tipo: " + tipo + "\nIdioma: " + idioma + "\nLugar: " + lugar);
         System.out.println("Palabras claves \n---------------");
-        for (PalabraClave palabra : palabrasClaves) {
-            System.out.println("\t" + palabra);
+        for(PalabraClave palabra : palabrasClaves){
+            System.out.println("\t"+palabra);
         }
         System.out.println("Enlace: " + enlace + "\nResumen: " + resumen);
     }
@@ -115,7 +115,8 @@ public class Publicacion {
         return palabrasClaves;
     }
 
-    public void asignarPalabrasClaves(ArrayList<PalabraClave> palabrasClaves) {
+    //Modifiqué el argumento de "ArrayList" a "List" para el tp6.
+    public void asignarPalabrasClaves(List<PalabraClave> palabrasClaves) {
         this.palabrasClaves = palabrasClaves;
     }
 
@@ -152,4 +153,10 @@ public class Publicacion {
         return true;
     }
 
+    @Override
+    public int compareTo(Publicacion p) {
+        return this.titulo.toLowerCase().compareTo(p.verTitulo().toLowerCase());
+    }
+   
+    
 }
