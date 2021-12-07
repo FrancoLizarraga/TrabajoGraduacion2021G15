@@ -6,6 +6,8 @@
 package principal.controladores;
 
 import autores.controladores.ControladorVentanaAutores;
+import grupos.controladores.ControladorGrupos;
+import interfaces.IControladorGrupos;
 import interfaces.IControladorPrincipal;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -48,4 +50,37 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
         }
     }
 
+    @Override
+    public void btnPalabrasClavesClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void btnLugaresClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void btnIdiomasClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void btnTiposClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void btnGruposClic(ActionEvent evt) {
+        ControladorGrupos cg = ControladorGrupos.instanciar();
+        cg.verVentana().setTitle(IControladorGrupos.TITULO);
+        cg.verVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
+    }
+
+    @Override
+    public void btnPublicacionesClic(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }

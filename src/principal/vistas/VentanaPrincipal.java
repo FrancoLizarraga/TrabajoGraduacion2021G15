@@ -53,6 +53,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnGrupos.setMnemonic('G');
         btnGrupos.setText("Grupos");
+        btnGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGruposClic(evt);
+            }
+        });
 
         btnLugares.setMnemonic('L');
         btnLugares.setText("Lugares");
@@ -135,6 +140,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnAutoresClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoresClic
         this.controlador.btnAutoresClic(evt);
     }//GEN-LAST:event_btnAutoresClic
+
+    private void btnGruposClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposClic
+        this.controlador.btnGruposClic(evt);
+    }//GEN-LAST:event_btnGruposClic
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutores;

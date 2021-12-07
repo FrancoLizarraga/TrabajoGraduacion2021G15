@@ -89,6 +89,9 @@
         <Property name="mnemonic" type="int" value="71"/>
         <Property name="text" type="java.lang.String" value="Grupos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGruposClic"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLugares">
       <Properties>
