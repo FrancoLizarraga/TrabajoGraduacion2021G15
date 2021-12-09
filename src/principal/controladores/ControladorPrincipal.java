@@ -85,7 +85,7 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR IDIOMAS");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorIdiomas gi=GestorIdiomas.instanciar();
+        IGestorIdiomas gi=GestorIdiomas.instanciar();
 //        System.out.println("\n\tmethod nuevoIdioma\n");
 //        
 //        System.out.println(gi.nuevoIdioma("idioma1"));
@@ -95,6 +95,10 @@ public class ControladorPrincipal {
 //        System.out.println(gi.nuevoIdioma("Aleman"));//nuevo idioma para tp6
 //        System.out.println(gi.nuevoIdioma("Castellano"));//nuevo idioma para tp6
 //        System.out.println(gi.nuevoIdioma(null));//null
+        System.out.println(gi.nuevoIdioma("Inglés"));
+        System.out.println(gi.nuevoIdioma("Español"));
+        System.out.println(gi.nuevoIdioma("Portugués"));
+        System.out.println(gi.nuevoIdioma("Alemán"));
 //        
 //        System.out.println("\n\tmethod verIdiomas\n");
 //        System.out.println("Los idiomas son:");
@@ -116,7 +120,7 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR LUGAR");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorLugares gl= GestorLugares.instanciar();
+        IGestorLugares gl= GestorLugares.instanciar();
 //              
 //        System.out.println("\n\tmethod nuevoLugar\n");
 //        System.out.println(gl.nuevoLugar("lugar1"));
@@ -126,6 +130,9 @@ public class ControladorPrincipal {
 //        System.out.println(gl.nuevoLugar("Aula"));          //nueva palabra clave para tp6
 //        System.out.println(gl.nuevoLugar("Anfiteatro"));    //nueva palabra clave para tp6
 //        System.out.println(gl.nuevoLugar(null));
+        System.out.println(gl.nuevoLugar("Aula"));
+        System.out.println(gl.nuevoLugar("Anfiteatro"));
+        System.out.println(gl.nuevoLugar("Laboratorio"));
 //        
 //        System.out.println("\n\tmethod verLugares\n");
 //        System.out.println("Los lugares son:");
@@ -147,7 +154,7 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR PALABRAS CLAVES");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorPalabrasClaves pc=GestorPalabrasClaves.instanciar();
+        IGestorPalabrasClaves pc=GestorPalabrasClaves.instanciar();
 //        
 //        System.out.println("\n\tmethod nuevaPalabraClave\n");
 //        System.out.println(pc.nuevaPalabraClave("palabraClave1"));
@@ -157,6 +164,12 @@ public class ControladorPrincipal {
 //        System.out.println(pc.nuevaPalabraClave("Hola"));       //nueva palabra clave para tp6
 //        System.out.println(pc.nuevaPalabraClave("Alcance"));    //nueva palabra clave para tp6
 //        System.out.println(pc.nuevaPalabraClave(null));//nula
+        System.out.println(pc.nuevaPalabraClave("Hardware"));
+        System.out.println(pc.nuevaPalabraClave("Web"));
+        System.out.println(pc.nuevaPalabraClave("Software"));
+        System.out.println(pc.nuevaPalabraClave("Física"));
+        System.out.println(pc.nuevaPalabraClave("Electrónica"));
+        System.out.println(pc.nuevaPalabraClave("IT"));
 //        
 //        System.out.println("\n\tmethod verPalabrasClaves\n");
 //        System.out.println("Las palabras claves son:");
@@ -178,7 +191,7 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR TIPOS");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorTipos gt=GestorTipos.instanciar();
+        IGestorTipos gt=GestorTipos.instanciar();
 //        
 //        System.out.println("\n\tmethod nuevoTipo\n");
 //        System.out.println(gt.nuevoTipo("Tipo1"));
@@ -188,6 +201,9 @@ public class ControladorPrincipal {
 //        System.out.println(gt.nuevoTipo("Hola"));       //nuevo tipo para tp6
 //        System.out.println(gt.nuevoTipo("Alcance"));    //nuevo tipo para tp6
 //        System.out.println(gt.nuevoTipo(null));//nulo
+        System.out.println(gt.nuevoTipo("Texto cientifico"));
+        System.out.println(gt.nuevoTipo("Articulo"));
+        System.out.println(gt.nuevoTipo("Extras"));
 //     
 //        System.out.println("\n\tmethod verTipos\n");
 //        System.out.println("Los tipos son:");

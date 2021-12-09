@@ -135,4 +135,13 @@ public abstract class Autor {
     public List<MiembroEnGrupo> devolverMiembros(){
         return this.miembrosEnGrupo;
     }
+    
+    //Metodo auxiliar agregado para Parcial2.
+    public Rol verRol(Autor autor){
+        for(MiembroEnGrupo m : this.miembrosEnGrupo){
+            if(m.verAutor().equals(autor))
+                return m.verRol();
+        }
+        return null;
+    }
 }

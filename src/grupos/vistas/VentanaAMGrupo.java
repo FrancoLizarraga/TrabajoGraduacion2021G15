@@ -5,6 +5,7 @@
  */
 package grupos.vistas;
 
+import grupos.modelos.ModeloTablaAMGrupo;
 import interfaces.IControladorAMGrupo;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -23,6 +24,7 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
         this.controlador = controlador;
         initComponents();
         this.setLocationRelativeTo(null);
+        this.tablaAMGrupo.setModel(new ModeloTablaAMGrupo());
         this.setVisible(true);
     }
 

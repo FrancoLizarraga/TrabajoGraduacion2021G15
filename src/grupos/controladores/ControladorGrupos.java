@@ -5,12 +5,17 @@
  */
 package grupos.controladores;
 
+import grupos.modelos.GestorGrupos;
+import grupos.modelos.Grupo;
+import grupos.modelos.ModeloTablaGrupos;
 import grupos.vistas.VentanaGrupos;
 import interfaces.IControladorAMGrupo;
 import interfaces.IControladorGrupos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -70,7 +75,28 @@ public class ControladorGrupos implements IControladorGrupos{
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        
+        GestorGrupos gestor = GestorGrupos.instanciar();
+         int filaSeleccionada = this.ventana.verTablaGrupos().getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            int opcion = JOptionPane.showOptionDialog(ventana, CONFIRMACION, "Borrar Grupo",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sí", "No"}, "No");
+            if (opcion == JOptionPane.YES_OPTION) {
+                String nombre = this.ventana.verTablaGrupos().getValueAt(filaSeleccionada, 0).toString();//obtengo el NOMBRE de la tabla
+                Grupo grupo = gestor.verGrupo(nombre);
+                gestor.borrarGrupo(grupo);
+                this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos()); //muestra los datos en la tabla.
+                JOptionPane.showMessageDialog(ventana, "El grupo ha sido borrado.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(ventana, "Para borrar un grupo primero debe seleccionarlo.");
+        }
+
+        //Si el arrayList de grupos está vacio entonces deshabilita los botones de Borrar y Modificar.
+        if (gestor.verGrupos().isEmpty()) {
+            this.ventana.verBtnBorrar().setEnabled(false);
+            this.ventana.verBtnModificar().setEnabled(false);
+        }
     }
 
     @Override
@@ -80,7 +106,17 @@ public class ControladorGrupos implements IControladorGrupos{
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        GestorGrupos gestor = GestorGrupos.instanciar();
+        String nombre = this.ventana.verTxtNombre().getText().trim();
+        List<Grupo> gruposIguales = new ArrayList<>();
+
+        if (!nombre.isEmpty()) {
+            gruposIguales = gestor.buscarGrupos(nombre);
+            //MUESTRA LOS GRUPOS QUE TIENEN EL nombre INGRESADO EN EL CAMPO DE TEXTO.
+            this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos(gruposIguales));
+        } else {
+            this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos());
+        }
     }
 
     @Override
@@ -90,7 +126,10 @@ public class ControladorGrupos implements IControladorGrupos{
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        char tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_ENTER) {
+            ventana.verBtnBuscar().doClick();
+        }
     }
 
     public VentanaGrupos verVentana() {

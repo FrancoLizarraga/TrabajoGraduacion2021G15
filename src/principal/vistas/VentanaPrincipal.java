@@ -75,6 +75,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnPublicaciones.setMnemonic('P');
         btnPublicaciones.setText("Publicaciones");
+        btnPublicaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPublicacionesClic(evt);
+            }
+        });
 
         btnTipos.setMnemonic('T');
         btnTipos.setText("Tipos");
@@ -144,6 +149,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnGruposClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposClic
         this.controlador.btnGruposClic(evt);
     }//GEN-LAST:event_btnGruposClic
+
+    private void btnPublicacionesClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesClic
+        this.controlador.btnPublicacionesClic(evt);
+    }//GEN-LAST:event_btnPublicacionesClic
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutores;

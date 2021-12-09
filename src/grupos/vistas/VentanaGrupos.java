@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class VentanaGrupos extends JDialog {
     ArrayList<Grupo> grupos = new ArrayList<>();
@@ -58,6 +59,11 @@ public class VentanaGrupos extends JDialog {
         jLabel1.setText("Nombre:");
 
         txtNombre.setToolTipText("Nombre del grupo");
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombrePresionarTecla(evt);
+            }
+        });
 
         btnVolver.setMnemonic('V');
         btnVolver.setText("Volver");
@@ -162,12 +168,6 @@ public class VentanaGrupos extends JDialog {
 
     private void btnVolverClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverClic
         this.controlador.btnVolverClic(evt);
-//        String nombre = this.txtNombre.getText().trim();
-//        String descripcion = this.txtDescripcion.getText().trim();
-//        Grupo grupo = new Grupo(nombre, descripcion);
-//        grupos.add(grupo);
-//        for (Grupo g : grupos)
-//            g.mostrar();
     }//GEN-LAST:event_btnVolverClic
 
     private void btnNuevoClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClic
@@ -186,6 +186,10 @@ public class VentanaGrupos extends JDialog {
         this.controlador.btnBuscarClic(evt);
     }//GEN-LAST:event_btnBuscarClic
 
+    private void txtNombrePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePresionarTecla
+        this.controlador.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombrePresionarTecla
+
     public JTable verTablaGrupos() {
         return tablaGrupos;
     }
@@ -196,6 +200,14 @@ public class VentanaGrupos extends JDialog {
 
     public JButton verBtnModificar() {
         return btnModificar;
+    }
+
+    public JTextField verTxtNombre() {
+        return txtNombre;
+    }
+
+    public JButton verBtnBuscar() {
+        return btnBuscar;
     }
 
 

@@ -9,9 +9,11 @@ import autores.controladores.ControladorVentanaAutores;
 import grupos.controladores.ControladorGrupos;
 import interfaces.IControladorGrupos;
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorPublicaciones;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
+import publicaciones.controladores.ControladorPublicaciones;
 
 /**
  *
@@ -79,7 +81,9 @@ public class ControladorVentanaPrincipal implements IControladorPrincipal {
 
     @Override
     public void btnPublicacionesClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ControladorPublicaciones cp = ControladorPublicaciones.instanciar();
+        cp.verVentana().setTitle(IControladorPublicaciones.TITULO);
+        cp.verVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
     }
     
     

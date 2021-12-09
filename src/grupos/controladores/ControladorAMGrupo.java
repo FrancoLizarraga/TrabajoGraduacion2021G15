@@ -11,6 +11,7 @@ import grupos.modelos.ModeloTablaGrupos;
 import grupos.vistas.VentanaAMGrupo;
 import interfaces.IControladorAMGrupo;
 import interfaces.IControladorGrupos;
+import interfaces.IControladorModificarMiembros;
 import interfaces.IGestorGrupos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -47,7 +48,7 @@ public class ControladorAMGrupo implements IControladorAMGrupo{
         String descripcion = this.ventana.verTxtDescripcion().getText().trim();
         String mensaje;
         
-        //creo una referencia a la ventana autores para poder usarla.
+        //creo una referencia a la ventana grupos para poder usarla.
         ControladorGrupos cg = ControladorGrupos.instanciar();
         
         //Hago esto si se presiona en el boton "Nuevo"
@@ -96,7 +97,15 @@ public class ControladorAMGrupo implements IControladorAMGrupo{
 
     @Override
     public void btnModificarMiembrosClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ControladorModificarMiembros controlador = ControladorModificarMiembros.instanciar();
+        
+        //Creo una referencia a la ventana grupos para poder sacar el nombre del grupo y ponerlo de titulo en la ventana.
+        ControladorGrupos cg = ControladorGrupos.instanciar();
+        JTable tablaGrupos = cg.verVentana().verTablaGrupos();
+        int filaSeleccionada = tablaGrupos.getSelectedRow();
+        String nombreSeleccionado = tablaGrupos.getValueAt(filaSeleccionada, 0).toString();
+        controlador.verVentana().setTitle(nombreSeleccionado);
+        controlador.verVentana().setVisible(true);
     }
 
     @Override

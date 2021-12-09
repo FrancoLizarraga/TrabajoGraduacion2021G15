@@ -13,29 +13,21 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Usuario
  */
-public class ModeloTablaGrupos extends AbstractTableModel{
+public class ModeloTablaAMGrupo extends AbstractTableModel{
     private ArrayList<String> nombresColumnas = new ArrayList<>();
-    private List<Grupo> grupos = new ArrayList<>();
+    private List<Grupo> miembros = new ArrayList<>();
     
     //QUIEN SE ENCARGA DE ASIGNARLE EL NOMBRE
-    public ModeloTablaGrupos() {
+    public ModeloTablaAMGrupo() {
         this.nombresColumnas.add("Nombre");
-        this.nombresColumnas.add("Descripción");
+        this.nombresColumnas.add("Rol");
 
-        this.grupos = GestorGrupos.instanciar().verGrupos(); //ahora grpos ve el arrayList cargado en el gestor.
-
-    }
-    //CREO OTRO CONSTRUCTOR (LO SOBRECARGO) PARA PASARLE EL ARRAYLIST FILTRADO CON LOS APELLIDOS
-    public ModeloTablaGrupos(List<Grupo> listaFiltrada) {
-        this.nombresColumnas.add("Nombre");
-        this.nombresColumnas.add("Descripción");
-
-        this.grupos = listaFiltrada; //ahora grupos ve el arrayList filtrado en ControladorGrupos.
+        this.miembros = GestorGrupos.instanciar().verGrupos(); //ahora grpos ve el arrayList cargado en el gestor.
 
     }
     @Override
     public int getRowCount() {
-        return this.grupos.size();  //cantidad de filas
+        return this.miembros.size();  //cantidad de filas
     }
 
     @Override
@@ -43,10 +35,9 @@ public class ModeloTablaGrupos extends AbstractTableModel{
         return this.nombresColumnas.size(); //cantidad de columnas
     }
 
-    //Se encarga de mostrar celda a celda el valor de los atributos de cada grupo.
     @Override
     public Object getValueAt(int fila, int columna) {
-        Grupo grupo = this.grupos.get(fila);
+        Grupo grupo = this.miembros.get(fila);
         switch (columna) {
             case 0:
                 return grupo.verNombre();
@@ -59,7 +50,7 @@ public class ModeloTablaGrupos extends AbstractTableModel{
 
     @Override
     public String getColumnName(int columna) {
-       return this.nombresColumnas.get(columna);
+        return this.nombresColumnas.get(columna);
     }
     
 }

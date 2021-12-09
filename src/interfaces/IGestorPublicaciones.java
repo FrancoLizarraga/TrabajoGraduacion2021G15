@@ -37,17 +37,7 @@ public interface IGestorPublicaciones {
     public boolean existeEstaPublicacion(Publicacion publicacion);
     public List<Publicacion> verPublicaciones();
     public Publicacion verPublicacion(String titulo);
-    
-//    public String nuevaPublicacion(String titulo, MiembroEnGrupo miembroEnGrupo,
-//            LocalDate fechaPublicacion, Tipo tipo, Idioma idioma, Lugar lugar,
-//            List<PalabraClave> palabrasClaves, String enlace, String resumen);
-//    
-//    public String modificarPublicacion(Publicacion publicacion, MiembroEnGrupo
-//            miembroEnGrupo, LocalDate fechaPublicacion, Tipo tipo, Idioma idioma, Lugar lugar,
-//            List<PalabraClave> palabrasClaves, String enlace, String resumen);
-    
     public String borrarPublicacion(Publicacion publicacion);
     public List<Publicacion> buscarPublicaciones(String titulo);
-//    public List<Publicacion> verPublicaciones();
     
 }
