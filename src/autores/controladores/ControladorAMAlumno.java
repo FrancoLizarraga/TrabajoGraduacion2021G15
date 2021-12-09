@@ -15,6 +15,7 @@ import interfaces.IControladorAMAlumno;
 import interfaces.IGestorAutores;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -192,4 +193,11 @@ public class ControladorAMAlumno implements IControladorAMAlumno {
         passClaveRepetida.setText("");
     }
 
+    //NUEVO PARA PARCIAL 2
+    @Override
+    public void ventanaObtenerFoco(WindowEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }

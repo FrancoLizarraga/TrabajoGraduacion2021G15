@@ -9,10 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 
-/**
- *
- * @author Usuario
- */
 public interface IControladorPublicaciones {
     public static final String PUBLICACION_NUEVA = "Nueva Publicación";
     public static final String PUBLICACION_MODIFICAR = "Modificar Publicación";

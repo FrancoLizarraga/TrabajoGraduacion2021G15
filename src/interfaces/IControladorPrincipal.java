@@ -7,10 +7,7 @@ package interfaces;
 
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author Usuario
- */
+
 public interface IControladorPrincipal {
     public static final String CONFIRMACION = "¿Desea terminar la sesión?";
     public static final String TITULO = "Repositorios";

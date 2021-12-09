@@ -153,7 +153,7 @@ public class GestorPublicaciones implements IGestorPublicaciones{
         return this.publicaciones;
     }
 
-    @Override
+//    @Override     LO COMENTÉ PORQUE ESTE MÉTODO NO ESTABA EN LA ULTIMA INTERFACE QUE NOS DIERON.
     public Publicacion verPublicacion(String titulo) {
         for (Publicacion p : this.publicaciones) {
             if (p.verTitulo().equals(titulo)) {

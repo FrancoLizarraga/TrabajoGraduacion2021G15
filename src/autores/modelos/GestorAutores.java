@@ -248,6 +248,16 @@ public class GestorAutores implements IGestorAutores{
         }
         return false;
     }
-    
+
+    //METODOS NUEVOS PARA PARCIAL 2
+    @Override
+    public String agregarGrupos(Autor autor, List<MiembroEnGrupo> grupos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String quitarGrupos(Autor autor, List<MiembroEnGrupo> grupos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
