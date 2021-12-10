@@ -11,7 +11,6 @@ import autores.modelos.ModeloComboCargos;
 import autores.modelos.ModeloTablaProfesores;
 import autores.modelos.Profesor;
 import autores.vistas.VentanaAMProfesor;
-import autores.vistas.VentanaModificarProfesor;
 import interfaces.IControladorAMProfesor;
 import interfaces.IGestorAutores;
 import java.awt.event.ActionEvent;
@@ -29,7 +28,6 @@ import javax.swing.JTextField;
 public class ControladorAMProfesor implements IControladorAMProfesor {
 
     private VentanaAMProfesor ventana;
-//    private VentanaModificarProfesor ventanaModificar; REVISAR BIEN.
 
     //INICIO PATRON SINGLETON.
     private static ControladorAMProfesor instanciador;  //Variable de clase

@@ -49,11 +49,11 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR GRUPOS");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorGrupos g=GestorGrupos.instanciar();
+        IGestorGrupos g=GestorGrupos.instanciar();
 //        System.out.println("\n\tmethod nuevoGrupo\n");
 //        
-//        System.out.println(g.nuevoGrupo("grupo1", "descripcion1"));
-//        System.out.println(g.nuevoGrupo("grupo2", "descripcion2"));
+        System.out.println(g.nuevoGrupo("grupo1", "descripcion1"));
+        System.out.println(g.nuevoGrupo("a", "descripcion2"));
 //        System.out.println(g.nuevoGrupo("grupo1", "descripcion3"));//repetido
 //        System.out.println(g.nuevoGrupo("", "descripcion1"));//vacia
 //        System.out.println(g.nuevoGrupo("alumnos", "descripcion12"));//nuevo grupo para tp6
@@ -226,7 +226,7 @@ public class ControladorPrincipal {
 //        System.out.println("\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR AUTORES");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorAutores ga=GestorAutores.instanciar();
+        IGestorAutores ga=GestorAutores.instanciar();
 //        System.out.println("\n\tmethod nuevoAutor (Para profesores)\n");
 //        
 ////      PROFESORES
@@ -242,6 +242,9 @@ public class ControladorPrincipal {
 //        System.out.println(ga.nuevoAutor(5, "apellido1", null, Cargo.ASOCIADO, "clave1", "clave1"));//nombre null
 //        System.out.println(ga.nuevoAutor(6, "apellido6", "nombre6", Cargo.ADJUNTO, "clave6", "clave6"));//se agrega
 //
+        ga.nuevoAutor(621, "Lizarraga", "Franco Tomás", Cargo.JTP, "clave6", "clave6");
+        ga.verAutor(621).agregarGrupo(g.verGrupo("grupo1"), Rol.COLABORADOR);
+        ga.verAutor(621).agregarGrupo(g.verGrupo("a"), Rol.ADMINISTRADOR);
 ////      ALUMNOS
 //        System.out.println("\n\tmethod nuevoAutor (Para alumnos)\n");
 //        System.out.println(ga.nuevoAutor(5, "apellido1", "nombre1", "cx1", "clave1", "clave1"));//se agrega

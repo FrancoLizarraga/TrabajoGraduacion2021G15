@@ -9,15 +9,19 @@ import autores.modelos.Alumno;
 import autores.modelos.Autor;
 import autores.modelos.GestorAutores;
 import autores.modelos.ModeloTablaAlumnos;
+import autores.modelos.ModeloTablaGruposAutor;
 import autores.modelos.ModeloTablaProfesores;
 import autores.modelos.Profesor;
 import autores.vistas.VentanaAutores;
+import grupos.modelos.ModeloTablaGrupos;
 import interfaces.IControladorAutores;
+import interfaces.IGestorAutores;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -44,9 +48,17 @@ public class ControladorVentanaAutores implements IControladorAutores {
     @Override
     public void btnNuevoProfesorClic(ActionEvent evt) {
         ControladorAMProfesor cp = ControladorAMProfesor.instanciar();
+        //ESTAS TRES LINEAS SON PARA LA TABLA !!!!! CHEAQUEAR
+        cp.verVentana().verScrollPane().setVisible(false);
+        cp.verVentana().setSize(500, 300);
+        cp.verVentana().setLocationRelativeTo(null);
+        //HASTA ACA
+        
         cp.verVentana().setTitle(PROFESOR_NUEVO);
         cp.verVentana().verTxtDNI().setEnabled(true);
         cp.verVentana().setVisible(true);
+        
+        
     }
 
     @Override
@@ -63,6 +75,21 @@ public class ControladorVentanaAutores implements IControladorAutores {
         if (this.ventana.verTablaProfesor().getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(ventana, "Para modificar un profesor primero debe seleccionarlo.");
         } else {
+            //ESTAS TRES LINEAS SON PARA LA TABLA !!!!! CHEAQUEAR
+            cp.verVentana().verScrollPane().setVisible(true);
+            cp.verVentana().setSize(500, 500);
+            cp.verVentana().setLocationRelativeTo(null);
+//            cp.verVentana().verTablaGruposAutor().setModel(new ModeloTablaGrupos());
+            //HASTA ACA!
+            
+            //ESTABLEZCO MODELO DE LA TABLA
+            IGestorAutores ga = GestorAutores.instanciar();
+            JTable tablaProfesor = this.ventana.verTablaProfesor();
+            int filaSeleccionada = tablaProfesor.getSelectedRow();
+            int dniSeleccionado = Integer.parseInt(tablaProfesor.getValueAt(filaSeleccionada, 0).toString());
+            Profesor profesor = (Profesor) ga.verAutor(dniSeleccionado);
+            cp.verVentana().verTablaGruposAutor().setModel(new ModeloTablaGruposAutor(profesor));
+            //HASTA ACA!
             cp.verVentana().setTitle(PROFESOR_MODIFICAR); //le agrego el titulo
             cp.verVentana().setVisible(true); //la hago visible
             cp.verVentana().verTxtDNI().setEnabled(false); //Deshabilito el campo de txt de dni para no poder modificarlo.

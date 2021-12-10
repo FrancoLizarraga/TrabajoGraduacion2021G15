@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class VentanaAMProfesor extends JDialog {
@@ -59,6 +61,8 @@ public class VentanaAMProfesor extends JDialog {
         jLabel5 = new javax.swing.JLabel();
         txtRepetirPassClave = new javax.swing.JPasswordField();
         btnCancelarClic = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
+        tablaGruposAutor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -127,6 +131,19 @@ public class VentanaAMProfesor extends JDialog {
             }
         });
 
+        tablaGruposAutor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrollPane.setViewportView(tablaGruposAutor);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,6 +151,7 @@ public class VentanaAMProfesor extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -144,7 +162,7 @@ public class VentanaAMProfesor extends JDialog {
                             .addComponent(jLabel5))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                            .addComponent(txtNombres)
                             .addComponent(txtDNI)
                             .addComponent(txtApellidos)
                             .addComponent(txtPassClave)
@@ -184,7 +202,9 @@ public class VentanaAMProfesor extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(txtRepetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelarClic))
@@ -250,6 +270,14 @@ public class VentanaAMProfesor extends JDialog {
         return this.btnGuardar;
     }
 
+    public JScrollPane verScrollPane() {
+        return scrollPane;
+    }
+
+    public JTable verTablaGruposAutor() {
+        return tablaGruposAutor;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarClic;
     private javax.swing.JButton btnGuardar;
@@ -260,6 +288,8 @@ public class VentanaAMProfesor extends JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTable tablaGruposAutor;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombres;
