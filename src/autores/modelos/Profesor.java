@@ -6,13 +6,12 @@
 package autores.modelos;
 
 import grupos.modelos.MiembroEnGrupo;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.List;
 
 public class Profesor extends Autor implements Comparable<Profesor>{
 
     private Cargo cargo;
-    private ArrayList<MiembroEnGrupo> miembrosEnGrupo; // QUIZAS DEBA SER UN "LIST" COMO EN EN PUBLICACION.
+    private List<MiembroEnGrupo> miembrosEnGrupo;
 
     public Profesor(int dni, String apellidos, String nombres, String clave, Cargo cargo) {
         super(dni, apellidos, nombres, clave);

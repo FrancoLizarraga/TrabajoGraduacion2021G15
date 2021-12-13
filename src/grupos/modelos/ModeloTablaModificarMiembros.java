@@ -22,14 +22,16 @@ import javax.swing.table.TableColumn;
  */
 public class ModeloTablaModificarMiembros extends AbstractTableModel{
     private ArrayList<String> nombresColumnas = new ArrayList<>();
-    private List<Autor> miembros = new ArrayList<>();
+    private List<Autor> autores = new ArrayList<>();
     private boolean[] editables = {false, true};
+    private VentanaModificarMiembros ventana;
     
     //QUIEN SE ENCARGA DE ASIGNARLE EL NOMBRE
     public ModeloTablaModificarMiembros(VentanaModificarMiembros ventana) {
+        this.ventana = ventana;
         this.nombresColumnas.add("Nombre");
         this.nombresColumnas.add("Rol");
-        this.miembros = GestorAutores.instanciar().verAutores(); //ahora grpos ve el arrayList cargado en el gestor.
+        this.autores = GestorAutores.instanciar().verAutores(); //ahora grpos ve el arrayList cargado en el gestor.
 
     }
 
@@ -41,7 +43,7 @@ public class ModeloTablaModificarMiembros extends AbstractTableModel{
     
     @Override
     public int getRowCount() {
-        return this.miembros.size();  //cantidad de filas
+        return this.autores.size();  //cantidad de filas
     }
 
     @Override
@@ -51,21 +53,17 @@ public class ModeloTablaModificarMiembros extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int fila, int columna) {
-        Autor autor = this.miembros.get(fila);
-        
-//        ControladorModificarMiembros c = ControladorModificarMiembros.instanciar();
-//        TableColumn columnaRol = c.verVentana().verTablaModificar().getColumnModel().getColumn(1);
-//        JComboBox combo = new JComboBox();
-//        combo.setModel(new ModeloComboRoles());
-//        columnaRol.setCellEditor(new DefaultCellEditor(combo));
-//        c.verVentana().verTablaModificar().getColumnModel().getColumn(1).get;
+        Autor autor = this.autores.get(fila);
+        //La unica manera que se me ocurrió tomar el comboBox de la ventana para mostrar el Rol seleccionado en la tabla.
+        Rol rol = ((ModeloComboRoles)this.ventana.verComboBox().getModel()).obtenerRol();
+//        int selec = this.ventana.verTablaModificar().getSelectedRow();
         switch (columna) {
             case 0:
-                return autor.verApellidos() + ", " + autor.verNombres() + "(" + autor.verDni() + ")";
+                return autor.verApellidos() + ", " + autor.verNombres() + " (" + autor.verDni() + ")";
             case 1:
-                return Rol.ADMINISTRADOR; //FALTA HACER ESTO.
+                    return rol;
             default:
-                return autor.verApellidos();
+                return "";
         }
     }
 

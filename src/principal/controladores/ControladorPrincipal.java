@@ -169,7 +169,7 @@ public class ControladorPrincipal {
         System.out.println(pc.nuevaPalabraClave("Software"));
         System.out.println(pc.nuevaPalabraClave("Física"));
         System.out.println(pc.nuevaPalabraClave("Electrónica"));
-        System.out.println(pc.nuevaPalabraClave("IT"));
+        System.out.println(pc.nuevaPalabraClave("Java"));
 //        
 //        System.out.println("\n\tmethod verPalabrasClaves\n");
 //        System.out.println("Las palabras claves son:");
@@ -243,6 +243,7 @@ public class ControladorPrincipal {
 //        System.out.println(ga.nuevoAutor(6, "apellido6", "nombre6", Cargo.ADJUNTO, "clave6", "clave6"));//se agrega
 //
         ga.nuevoAutor(621, "Lizarraga", "Franco Tomás", Cargo.JTP, "clave6", "clave6");
+        ga.nuevoAutor(622, "Juarez", "Tatiana Jimena", Cargo.TITULAR, "clave2", "clave2");
         ga.verAutor(621).agregarGrupo(g.verGrupo("grupo1"), Rol.COLABORADOR);
         ga.verAutor(621).agregarGrupo(g.verGrupo("a"), Rol.ADMINISTRADOR);
 ////      ALUMNOS
@@ -317,10 +318,11 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR PUBLICACIONES");
 //        System.out.println("\t----------------------------------------------");
-//        IGestorPublicaciones gp=GestorPublicaciones.instanciar();
+        IGestorPublicaciones gp=GestorPublicaciones.instanciar();
 //        
 //        System.out.println("\n\tmethod nuevaPublicacion\n");
 //        
+        gp.nuevaPublicacion("Titulo 1", new MiembroEnGrupo(ga.verAutor(622),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Articulo"), gi.verIdioma("Español"), gl.verLugar("Anfiteatro"), pc.verPalabrasClaves(), "enlace 1", "resumen1");
 //        System.out.println(gp.nuevaPublicacion("Titulo 1", new MiembroEnGrupo(ga.verAutor(1),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Tipo1"), gi.verIdioma("idioma1"), gl.verLugar("lugar1"), pc.verPalabrasClaves(), "enlace 1", "resumen1"));//lo agrega
 //        System.out.println(gp.nuevaPublicacion("", new MiembroEnGrupo(ga.verAutor(1),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Tipo1"), gi.verIdioma("idioma1"), gl.verLugar("lugar1"), pc.verPalabrasClaves(), "enlace 1", "resumen1"));//titulo vacio
 //        System.out.println(gp.nuevaPublicacion(null, new MiembroEnGrupo(ga.verAutor(1),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Tipo1"), gi.verIdioma("idioma1"), gl.verLugar("lugar1"), pc.verPalabrasClaves(), "enlace 1", "resumen1"));// titulo null

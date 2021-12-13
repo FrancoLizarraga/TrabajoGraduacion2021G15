@@ -6,6 +6,10 @@
 package publicaciones.vistas;
 
 import interfaces.IControladorPublicaciones;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import publicaciones.modelos.ModeloTablaPublicaciones;
 
 /**
  *
@@ -17,8 +21,9 @@ public class VentanaPublicaciones extends javax.swing.JDialog {
      * Creates new form VentanaPublicaciones
      */
     public VentanaPublicaciones(IControladorPublicaciones controlador) {
-        this.controlador = controlador;
         initComponents();
+        this.controlador = controlador;
+        this.tablaPublicaciones.setModel(new ModeloTablaPublicaciones());
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -73,17 +78,31 @@ public class VentanaPublicaciones extends javax.swing.JDialog {
 
         btnModificar.setMnemonic('M');
         btnModificar.setText("Modificar");
-        btnModificar.setEnabled(false);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarClic(evt);
+            }
+        });
 
         btnBorrar.setMnemonic('B');
         btnBorrar.setText("Borrar");
-        btnBorrar.setEnabled(false);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarClic(evt);
+            }
+        });
 
         btnVolver.setMnemonic('V');
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverClic(evt);
+            }
+        });
+
+        txtTitulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTituloPresionarTecla(evt);
             }
         });
 
@@ -143,9 +162,38 @@ public class VentanaPublicaciones extends javax.swing.JDialog {
         this.controlador.btnVolverClic(evt);
     }//GEN-LAST:event_btnVolverClic
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnBorrarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarClic
+        this.controlador.btnBorrarClic(evt);
+    }//GEN-LAST:event_btnBorrarClic
+
+    private void btnModificarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClic
+        this.controlador.btnModificarClic(evt);
+    }//GEN-LAST:event_btnModificarClic
+
+    private void txtTituloPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTituloPresionarTecla
+        this.controlador.txtTituloPresionarTecla(evt);
+    }//GEN-LAST:event_txtTituloPresionarTecla
+
+    public JButton verBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JButton verBtnBorrar() {
+        return btnBorrar;
+    }
+    
+    public JButton verBtnModificar() {
+        return btnModificar;
+    }
+
+    public JTable verTablaPublicaciones() {
+        return tablaPublicaciones;
+    }
+
+    public JTextField verTxtTitulo() {
+        return txtTitulo;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;

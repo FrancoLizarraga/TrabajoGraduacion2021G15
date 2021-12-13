@@ -7,10 +7,12 @@ package publicaciones.vistas;
 
 import com.toedter.calendar.JDateChooser;
 import interfaces.IControladorAMPublicacion;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import publicaciones.modelos.ModeloComboGrupos;
 import publicaciones.modelos.ModeloComboIdiomas;
 import publicaciones.modelos.ModeloComboLugares;
@@ -31,6 +33,7 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
         initComponents();
         this.controlador = controlador;
         this.tablaPalabrasClaves.setModel(new ModeloTablaPalabrasClaves());
+        this.tablaPalabrasClaves.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);// Permite seleccionar múltiples filas no contiguas.
         this.comboTipos.setModel(new ModeloComboTipos());
         this.comboIdiomas.setModel(new ModeloComboIdiomas());
         this.comboLugares.setModel(new ModeloComboLugares());
@@ -62,7 +65,7 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
         txtTitulo = new javax.swing.JTextField();
         txtEnlace = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtAreaResumen = new javax.swing.JTextArea();
+        txtResumen = new javax.swing.JTextArea();
         btnTodas = new javax.swing.JButton();
         btnNinguna = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -71,7 +74,7 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
         comboLugares = new javax.swing.JComboBox<>();
         comboTipos = new javax.swing.JComboBox<>();
         comboIdiomas = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateChooser = new com.toedter.calendar.JDateChooser();
         btnAbrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -107,18 +110,33 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tablaPalabrasClaves);
 
-        txtAreaResumen.setColumns(20);
-        txtAreaResumen.setRows(5);
-        jScrollPane2.setViewportView(txtAreaResumen);
+        txtResumen.setColumns(20);
+        txtResumen.setRows(5);
+        jScrollPane2.setViewportView(txtResumen);
 
         btnTodas.setMnemonic('o');
         btnTodas.setText("Todas");
+        btnTodas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodasLasPalabrasClavesClic(evt);
+            }
+        });
 
         btnNinguna.setMnemonic('i');
         btnNinguna.setText("Ninguna");
+        btnNinguna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNingunaPalabraClaveClic(evt);
+            }
+        });
 
         btnGuardar.setMnemonic('G');
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarClic(evt);
+            }
+        });
 
         btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
@@ -172,7 +190,7 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(comboGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -208,12 +226,13 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel8)
-                        .addComponent(txtEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnAbrir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8)
+                            .addComponent(txtEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -260,6 +279,18 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
         this.controlador.btnAbrirClic(evt);
     }//GEN-LAST:event_btnAbrirClic
 
+    private void btnTodasLasPalabrasClavesClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodasLasPalabrasClavesClic
+        this.controlador.btnTodasLasPalabrasClavesClic(evt);
+    }//GEN-LAST:event_btnTodasLasPalabrasClavesClic
+
+    private void btnNingunaPalabraClaveClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNingunaPalabraClaveClic
+        this.controlador.btnNingunaPalabraClaveClic(evt);
+    }//GEN-LAST:event_btnNingunaPalabraClaveClic
+
+    private void btnGuardarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClic
+        this.controlador.btnGuardarClic(evt);
+    }//GEN-LAST:event_btnGuardarClic
+
     /**
      * @param args the command line arguments
      */
@@ -289,15 +320,23 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
     }
 
     public JDateChooser verjDateChooser1() {
-        return jDateChooser1;
+        return dateChooser;
     }
 
     public JTable verTablaPalabrasClaves() {
         return tablaPalabrasClaves;
     }
 
-    public JTextArea verTxtAreaResumen() {
-        return txtAreaResumen;
+    public JTextArea verTxtResumen() {
+        return txtResumen;
+    }
+
+    public JDateChooser verDateChooser() {
+        return dateChooser;
+    }
+
+    public JButton verBtnNinguna() {
+        return btnNinguna;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -310,7 +349,7 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboIdiomas;
     private javax.swing.JComboBox<String> comboLugares;
     private javax.swing.JComboBox<String> comboTipos;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -323,8 +362,8 @@ public class VentanaAMPublicacion extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tablaPalabrasClaves;
-    private javax.swing.JTextArea txtAreaResumen;
     private javax.swing.JTextField txtEnlace;
+    private javax.swing.JTextArea txtResumen;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

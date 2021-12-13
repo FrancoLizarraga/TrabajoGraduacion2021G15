@@ -5,23 +5,43 @@
  */
 package publicaciones.controladores;
 
+import autores.modelos.Autor;
+import autores.modelos.GestorAutores;
 import grupos.modelos.Grupo;
+import grupos.modelos.MiembroEnGrupo;
+import grupos.modelos.ModeloTablaGrupos;
 import idiomas.modelos.Idioma;
 import interfaces.IControladorAMPublicacion;
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorPublicaciones;
 import interfaces.IGestorPublicaciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
+import javax.swing.table.TableModel;
 import lugares.modelos.Lugar;
+import palabrasclaves.modelos.GestorPalabrasClaves;
+import palabrasclaves.modelos.PalabraClave;
 import publicaciones.modelos.GestorPublicaciones;
 import publicaciones.modelos.ModeloComboGrupos;
 import publicaciones.modelos.ModeloComboIdiomas;
 import publicaciones.modelos.ModeloComboLugares;
 import publicaciones.modelos.ModeloComboTipos;
+import publicaciones.modelos.ModeloTablaPalabrasClaves;
+import publicaciones.modelos.ModeloTablaPublicaciones;
+import publicaciones.modelos.Publicacion;
 import publicaciones.vistas.VentanaAMPublicacion;
 import tipos.modelos.Tipo;
 
@@ -48,20 +68,99 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        IGestorPublicaciones gestor = GestorPublicaciones.instanciar();
+        GestorPublicaciones gestor = GestorPublicaciones.instanciar();
+        ControladorPublicaciones cp = ControladorPublicaciones.instanciar(); //Para actualizar los datos de la tabla,etc.
+        GestorAutores ga = GestorAutores.instanciar(); //Para ver los grupos del primer autor.
         
-        String titulo = ventana.verTxtTitulo().getText().trim();
-        String enlace = ventana.verTxtEnlace().getText().trim();
-        Tipo tipo =((ModeloComboTipos) ventana.verComboTipos().getModel()).obtenerTipo();
-        Idioma idioma = ((ModeloComboIdiomas) ventana.verComboIdiomas().getModel()).obtenerIdioma();
-        Lugar lugar = ((ModeloComboLugares) ventana.verComboLugares().getModel()).obtenerLugar();
-        Grupo grupo = ((ModeloComboGrupos) ventana.verComboGrupos().getModel()).obtenerGrupo();
-//        String mensaje= gestor.nuevaPublicacion(titulo, grupo.vermiembroEnGrupo, LocalDate.EPOCH, tipo, idioma, lugar, palabrasClaves, enlace, enlace);
+        //Hago un bloque try/catch para asegurrme que ingrese una fecha válida y, si no lo hace, capturar la excepcion.
+        try {
+            JTable tabla = this.ventana.verTablaPalabrasClaves();
+            String titulo = ventana.verTxtTitulo().getText().trim();
+            String enlace = ventana.verTxtEnlace().getText().trim();
+            String resumen = ventana.verTxtResumen().getText().trim();
+            Tipo tipo =((ModeloComboTipos) ventana.verComboTipos().getModel()).obtenerTipo();
+            Idioma idioma = ((ModeloComboIdiomas) ventana.verComboIdiomas().getModel()).obtenerIdioma();
+            Lugar lugar = ((ModeloComboLugares) ventana.verComboLugares().getModel()).obtenerLugar();
+            Grupo grupo = ((ModeloComboGrupos) ventana.verComboGrupos().getModel()).obtenerGrupo();
+            String mensaje;
+
+            /*Lee la fecha indicada.*/
+            Date d = ventana.verDateChooser().getCalendar().getTime(); //dateChooser es el nombre del componente JDateChooser
+            LocalDate fechaPublicacion = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            /*Hasta acá.*/
+
+            /*Tomo las palabras claves seleccionadas en la tabla.*/
+            int[] filasSeleccionadas = tabla.getSelectedRows();
+            List<PalabraClave> palabrasClaves = GestorPalabrasClaves.instanciar().verPalabrasClaves();
+            List<PalabraClave> palabrasClavesSeleccionadas = new ArrayList<>();
+            for (int i = 0; i < filasSeleccionadas.length; i++) {
+                //Carga la Lista con las palabras claves seleccionadas en la tabla.
+                palabrasClavesSeleccionadas.add(palabrasClaves.get(filasSeleccionadas[i])); 
+            }
+            /*Hasta acá.*/
+
+            /*Busco el primer profesor para tomarlo como autor en MiembroEnGrupo.*/
+            Autor primerProfesor  = ga.verProfesores().get(0);
+            MiembroEnGrupo miembro = new MiembroEnGrupo(primerProfesor, grupo, primerProfesor.verRol(primerProfesor));
+            /*Hasta acá.*/
+
+            //Hago esto si se presiona en el boton "Nuevo"
+            if(this.ventana.getTitle().equals(TITULO_NUEVA)){
+                mensaje= gestor.nuevaPublicacion(titulo, miembro, fechaPublicacion, tipo, idioma, lugar,
+                        palabrasClavesSeleccionadas, enlace, resumen);
+                if(mensaje.equals("Los datos de la publicación deben ser validos.")){
+                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+                }
+                if(mensaje.equals("Ya existe una publicación con este titulo.")){
+                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+                }
+                if(mensaje.equals("Publicación creada y guardada.")){
+                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+                    cp.verVentana().verTablaPublicaciones().setModel(new ModeloTablaPublicaciones()); //muestra los datos en la tabla.
+                    cp.verVentana().verBtnBorrar().setEnabled(true); //una vez cargado una publicacion habilita el boton borrar. 
+                    cp.verVentana().verBtnModificar().setEnabled(true); //una vez cargada una publicacion habilita el boton modificar.
+                    this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
+
+                    gestor.verPublicacion(titulo).mostrar(); //¡¡ESTO ES PARA  VER LOS DATOS NADA MAS, BORRAR!!!!
+
+                    ventana.dispose(); //cierro la ventana.
+                }
+            }
+            //Hago esto si se presiona en el boton "Modificar"
+            //Las interfaces no tienen escritas de igual manera el titulo "Modificar Publicacion", comparo en minusc.
+            if(this.ventana.getTitle().toLowerCase().equals(IControladorPublicaciones.PUBLICACION_MODIFICAR.toLowerCase())){
+                JTable tablaPublicaciones = cp.verVentana().verTablaPublicaciones();
+                int filaSeleccionada = tablaPublicaciones.getSelectedRow();
+                String tituloSeleccionado = tablaPublicaciones.getValueAt(filaSeleccionada, 0).toString();
+                Publicacion publicacion = gestor.verPublicacion(tituloSeleccionado);
+                
+                mensaje = gestor.modificarPublicacion(publicacion, miembro, fechaPublicacion, tipo, idioma, lugar, 
+                        palabrasClavesSeleccionadas, enlace, resumen);
+                
+                if(mensaje.equals("Los datos a modificar deben ser validos.")){
+                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+                }else{
+                    JOptionPane.showMessageDialog(this.ventana, mensaje);
+                    cp.verVentana().verTablaPublicaciones().setModel(new ModeloTablaPublicaciones()); //muestra los datos en la tabla.
+                    this.limpiar(); //Hago que los campos de txt de la ventana quedan vacios.
+                    
+                    System.out.println("Publicacion modificada:");
+                    gestor.verPublicacion(titulo).mostrar(); //¡¡ESTO ES PARA  VER LOS DATOS NADA MAS, BORRAR!!!!
+                    
+                    ventana.verBtnNinguna().doClick(); //No deja marcada ninguna fila antes de cerrar la ventana.
+                    ventana.dispose(); //Cierro la ventana.
+                }
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this.ventana,"Debe ingresar una fecha.");
+        }
     }
 
     @Override
     public void btnCancelarClic(ActionEvent evt) {
-        this.ventana.dispose();
+        this.limpiar(); //Hago que los campos de txt de la ventana quedan vacios.
+        this.ventana.verBtnNinguna().doClick(); //No deja marcada ninguna fila antes de cerrar la ventana.
+        this.ventana.dispose(); //Cierro la ventana.
     }
 
     @Override
@@ -71,12 +170,17 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
 
     @Override
     public void btnTodasLasPalabrasClavesClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JTable tabla = this.ventana.verTablaPalabrasClaves();
+        ModeloTablaPalabrasClaves mtpc = (ModeloTablaPalabrasClaves)tabla.getModel();
+        ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
+        modeloSeleccion.addSelectionInterval(0, mtpc.getRowCount() - 1);
     }
 
     @Override
     public void btnNingunaPalabraClaveClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JTable tabla = this.ventana.verTablaPalabrasClaves();
+        ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
+        modeloSeleccion.clearSelection();
     }
 
     @Override
@@ -113,4 +217,14 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
         return ventana;
     }
     
+    //Metodo auxiliar para limpiar los campos de texto de las ventana "Nuevo/Modificar".
+    public void limpiar() {
+        JTextField txtNombre = ventana.verTxtTitulo();
+        JTextField txtEnlace = ventana.verTxtEnlace();
+        JTextArea txtResumen = ventana.verTxtResumen();
+
+        txtNombre.setText("");
+        txtEnlace.setText("");
+        txtResumen.setText("");
+    }
 }

@@ -5,9 +5,12 @@
  */
 package grupos.controladores;
 
+import grupos.modelos.ModeloTablaModificarMiembros;
 import grupos.vistas.VentanaModificarMiembros;
 import interfaces.IControladorModificarMiembros;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -31,12 +34,17 @@ public class ControladorModificarMiembros implements IControladorModificarMiembr
 
     @Override
     public void btnTodosClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JTable tabla = this.ventana.verTablaModificar();
+        ModeloTablaModificarMiembros mtpc = (ModeloTablaModificarMiembros)tabla.getModel();
+        ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
+        modeloSeleccion.addSelectionInterval(0, mtpc.getRowCount() - 1);
     }
 
     @Override
     public void btnNingunoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JTable tabla = this.ventana.verTablaModificar();
+        ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
+        modeloSeleccion.clearSelection();
     }
 
     @Override
@@ -46,7 +54,7 @@ public class ControladorModificarMiembros implements IControladorModificarMiembr
 
     @Override
     public void btnCancelarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.ventana.dispose();
     }
 
     public VentanaModificarMiembros verVentana() {

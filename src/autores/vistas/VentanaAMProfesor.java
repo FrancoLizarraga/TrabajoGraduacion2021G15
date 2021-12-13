@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -63,6 +64,7 @@ public class VentanaAMProfesor extends JDialog {
         btnCancelarClic = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
         tablaGruposAutor = new javax.swing.JTable();
+        labelGrupos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -144,6 +146,8 @@ public class VentanaAMProfesor extends JDialog {
         ));
         scrollPane.setViewportView(tablaGruposAutor);
 
+        labelGrupos.setText("Grupos:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,7 +176,10 @@ public class VentanaAMProfesor extends JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelarClic)))
+                        .addComponent(btnCancelarClic))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelGrupos)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -202,9 +209,11 @@ public class VentanaAMProfesor extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(txtRepetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
+                .addComponent(labelGrupos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelarClic))
@@ -278,6 +287,10 @@ public class VentanaAMProfesor extends JDialog {
         return tablaGruposAutor;
     }
 
+    public JLabel verLabelGrupos() {
+        return labelGrupos;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarClic;
     private javax.swing.JButton btnGuardar;
@@ -288,6 +301,7 @@ public class VentanaAMProfesor extends JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel labelGrupos;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTable tablaGruposAutor;
     private javax.swing.JTextField txtApellidos;

@@ -48,10 +48,12 @@ public class ControladorVentanaAutores implements IControladorAutores {
     @Override
     public void btnNuevoProfesorClic(ActionEvent evt) {
         ControladorAMProfesor cp = ControladorAMProfesor.instanciar();
-        //ESTAS TRES LINEAS SON PARA LA TABLA !!!!! CHEAQUEAR
-        cp.verVentana().verScrollPane().setVisible(false);
-        cp.verVentana().setSize(500, 300);
-        cp.verVentana().setLocationRelativeTo(null);
+        
+        //ESTAS LINEAS SON NO MOSTRAR LA TABLA Y CONFIGURAR CÓMO QUIERO QUE APAREZCA LA VENTANA!!
+        cp.verVentana().verLabelGrupos().setVisible(false); //Tomo el label "Grupos:" y la hago invisible.
+        cp.verVentana().verScrollPane().setVisible(false);  //Tomo el scrollPane que contiene a la tabla y la hago invisible.
+        cp.verVentana().setSize(500, 283);                  //Pongo el tamaño a la ventana, width: 500 && height: 283.
+        cp.verVentana().setLocationRelativeTo(null);        //La centro a la ventana.
         //HASTA ACA
         
         cp.verVentana().setTitle(PROFESOR_NUEVO);
@@ -64,6 +66,13 @@ public class ControladorVentanaAutores implements IControladorAutores {
     @Override
     public void btnNuevoAlumnoClic(ActionEvent evt) {
         ControladorAMAlumno ca = ControladorAMAlumno.instanciar();
+        
+        //ESTAS LINEAS SON NO MOSTRAR LA TABLA Y CONFIGURAR CÓMO QUIERO QUE APAREZCA LA VENTANA!!
+        ca.verVentana().verLabelGrupos().setVisible(false); //Tomo el label "Grupos:" y la hago invisible.
+        ca.verVentana().verScrollPane().setVisible(false);  //Tomo el scrollPane que contiene a la tabla y la hago invisible.
+        ca.verVentana().setSize(500, 283);                  //Pongo el tamaño a la ventana, width: 500 && height: 283.
+        ca.verVentana().setLocationRelativeTo(null);        //La centro a la ventana.
+        //HASTA ACA
         ca.verVentana().setTitle(ALUMNO_NUEVO);
         ca.verVentana().verTxtDNI().setEnabled(true);
         ca.verVentana().setVisible(true);
@@ -75,21 +84,22 @@ public class ControladorVentanaAutores implements IControladorAutores {
         if (this.ventana.verTablaProfesor().getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(ventana, "Para modificar un profesor primero debe seleccionarlo.");
         } else {
-            //ESTAS TRES LINEAS SON PARA LA TABLA !!!!! CHEAQUEAR
-            cp.verVentana().verScrollPane().setVisible(true);
-            cp.verVentana().setSize(500, 500);
-            cp.verVentana().setLocationRelativeTo(null);
-//            cp.verVentana().verTablaGruposAutor().setModel(new ModeloTablaGrupos());
+            //ESTAS LINEAS SON MOSTRAR LA TABLA Y CONFIGURAR CÓMO QUIERO QUE APAREZCA LA VENTANA!!
+            cp.verVentana().verLabelGrupos().setVisible(true); //Tomo el label "Grupos:" y la hago visible.
+            cp.verVentana().verScrollPane().setVisible(true);  //Tomo el scrollPane que contiene a la tabla y la hago visible.
+            cp.verVentana().setSize(500, 500);                 //Pongo el tamaño a la ventana, width: 500 && height: 500.
+            cp.verVentana().setLocationRelativeTo(null);       //La centro a la ventana.
             //HASTA ACA!
             
             //ESTABLEZCO MODELO DE LA TABLA
             IGestorAutores ga = GestorAutores.instanciar();
             JTable tablaProfesor = this.ventana.verTablaProfesor();
-            int filaSeleccionada = tablaProfesor.getSelectedRow();
-            int dniSeleccionado = Integer.parseInt(tablaProfesor.getValueAt(filaSeleccionada, 0).toString());
+            int filaSeleccionada = tablaProfesor.getSelectedRow(); //De la tabla profesor tomola fila que seleccioné.
+            int dniSeleccionado = Integer.parseInt(tablaProfesor.getValueAt(filaSeleccionada, 0).toString()); //Tomo el dni del profesor seleccionado para buscar los datos del profesor.
             Profesor profesor = (Profesor) ga.verAutor(dniSeleccionado);
             cp.verVentana().verTablaGruposAutor().setModel(new ModeloTablaGruposAutor(profesor));
             //HASTA ACA!
+            
             cp.verVentana().setTitle(PROFESOR_MODIFICAR); //le agrego el titulo
             cp.verVentana().setVisible(true); //la hago visible
             cp.verVentana().verTxtDNI().setEnabled(false); //Deshabilito el campo de txt de dni para no poder modificarlo.
@@ -102,6 +112,21 @@ public class ControladorVentanaAutores implements IControladorAutores {
         if (this.ventana.verTablaAlumno().getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(ventana, "Para modificar un alumno primero debe seleccionarlo.");
         } else {
+            //ESTAS LINEAS SON MOSTRAR LA TABLA Y CONFIGURAR CÓMO QUIERO QUE APAREZCA LA VENTANA!!
+            cp.verVentana().verLabelGrupos().setVisible(true); //Tomo el label "Grupos:" y la hago visible.
+            cp.verVentana().verScrollPane().setVisible(true);  //Tomo el scrollPane que contiene a la tabla y la hago visible.
+            cp.verVentana().setSize(500, 500);                 //Pongo el tamaño a la ventana, width: 500 && height: 500.
+            cp.verVentana().setLocationRelativeTo(null);       //La centro a la ventana.
+            //HASTA ACA!
+            
+            //ESTABLEZCO MODELO DE LA TABLA
+            IGestorAutores ga = GestorAutores.instanciar();
+            JTable tablaAlumno = this.ventana.verTablaAlumno();
+            int filaSeleccionada = tablaAlumno.getSelectedRow(); //De la tabla profesor tomola fila que seleccioné.
+            int dniSeleccionado = Integer.parseInt(tablaAlumno.getValueAt(filaSeleccionada, 0).toString()); //Tomo el dni del profesor seleccionado para buscar los datos del profesor.
+            Alumno alumno = (Alumno) ga.verAutor(dniSeleccionado);
+            cp.verVentana().verTablaGruposAutor().setModel(new ModeloTablaGruposAutor(alumno));
+            //HASTA ACA!
             cp.verVentana().setTitle(ALUMNO_MODIFICAR); //le agrego el titulo
             cp.verVentana().setVisible(true); //la hago visible
             cp.verVentana().verTxtDNI().setEnabled(false); //Deshabilito el campo de txt de dni para no poder modificarlo.

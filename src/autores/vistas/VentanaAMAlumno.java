@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class VentanaAMAlumno extends JDialog {
@@ -55,9 +58,11 @@ public class VentanaAMAlumno extends JDialog {
         jLabel5 = new javax.swing.JLabel();
         txtRepetirPassClave = new javax.swing.JPasswordField();
         btnCancelar = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
+        tablaGruposAutor = new javax.swing.JTable();
+        labelGrupos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alumnos");
         setResizable(false);
 
         jLabel1.setText("Apellidos:");
@@ -128,6 +133,21 @@ public class VentanaAMAlumno extends JDialog {
             }
         });
 
+        tablaGruposAutor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrollPane.setViewportView(tablaGruposAutor);
+
+        labelGrupos.setText("Grupos:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,6 +155,7 @@ public class VentanaAMAlumno extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -145,12 +166,15 @@ public class VentanaAMAlumno extends JDialog {
                             .addComponent(jLabel6))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                            .addComponent(txtNombres)
                             .addComponent(txtDNI)
                             .addComponent(txtApellidos)
                             .addComponent(txtCX)
                             .addComponent(txtPassClave)
                             .addComponent(txtRepetirPassClave)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelGrupos)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
@@ -185,11 +209,15 @@ public class VentanaAMAlumno extends JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(txtRepetirPassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
+                .addComponent(labelGrupos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -255,6 +283,18 @@ public class VentanaAMAlumno extends JDialog {
         return this.btnGuardar;
     }
 
+    public JLabel verLabelGrupos() {
+        return labelGrupos;
+    }
+
+    public JScrollPane verScrollPane() {
+        return scrollPane;
+    }
+
+    public JTable verTablaGruposAutor() {
+        return tablaGruposAutor;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
@@ -264,6 +304,9 @@ public class VentanaAMAlumno extends JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel labelGrupos;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTable tablaGruposAutor;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCX;
     private javax.swing.JTextField txtDNI;

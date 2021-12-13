@@ -8,6 +8,7 @@ package grupos.vistas;
 import grupos.modelos.ModeloTablaAMGrupo;
 import interfaces.IControladorAMGrupo;
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -21,8 +22,8 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
      * Creates new form VentanaGrupos
      */
     public VentanaAMGrupo(IControladorAMGrupo controlador) {
-        this.controlador = controlador;
         initComponents();
+        this.controlador = controlador;
         this.setLocationRelativeTo(null);
         this.tablaAMGrupo.setModel(new ModeloTablaAMGrupo());
         this.setVisible(true);
@@ -173,6 +174,10 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
 
     public JTextField verTxtDescripcion() {
         return txtDescripcion;
+    }
+
+    public JTable verTablaAMGrupo() {
+        return tablaAMGrupo;
     }
     
 

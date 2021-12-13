@@ -29,17 +29,6 @@ public class ModeloTablaPalabrasClaves extends AbstractTableModel {
 
     }
 
-    //CREO OTRO CONSTRUCTOR (LO SOBRECARGO) PARA PASARLE EL ARRAYLIST FILTRADO CON LOS APELLIDOS
-//    public ModeloTablaPalabrasClaves(ArrayList<Alumno> filtroAlumnos) {
-//        this.nombresColumnas.add("DNI");
-//        this.nombresColumnas.add("Apellidos");
-//        this.nombresColumnas.add("Nombres");
-//        this.nombresColumnas.add("CX");
-//
-//        this.alumnos = filtroAlumnos; //ahora alumnos ve el arrayList filtrado en ControladorVentanaAutores.
-//
-//    }
-
     @Override
     public int getRowCount() {
         return this.palabras.size(); //cantidad de filas
@@ -65,5 +54,9 @@ public class ModeloTablaPalabrasClaves extends AbstractTableModel {
     @Override
     public String getColumnName(int columna) {
         return this.nombresColumnas.get(columna);
+    }
+    
+    public PalabraClave verPalabraClave(int posicion){
+        return palabras.get(posicion);
     }
 }

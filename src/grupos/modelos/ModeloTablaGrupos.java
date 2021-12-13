@@ -25,7 +25,7 @@ public class ModeloTablaGrupos extends AbstractTableModel{
         this.grupos = GestorGrupos.instanciar().verGrupos(); //ahora grpos ve el arrayList cargado en el gestor.
 
     }
-    //CREO OTRO CONSTRUCTOR (LO SOBRECARGO) PARA PASARLE EL ARRAYLIST FILTRADO CON LOS APELLIDOS
+    //CREO OTRO CONSTRUCTOR (LO SOBRECARGO) PARA PASARLE EL ARRAYLIST FILTRADO CON LOS NOMBRES.
     public ModeloTablaGrupos(List<Grupo> listaFiltrada) {
         this.nombresColumnas.add("Nombre");
         this.nombresColumnas.add("Descripción");

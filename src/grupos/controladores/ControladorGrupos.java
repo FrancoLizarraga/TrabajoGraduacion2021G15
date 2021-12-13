@@ -7,6 +7,7 @@ package grupos.controladores;
 
 import grupos.modelos.GestorGrupos;
 import grupos.modelos.Grupo;
+import grupos.modelos.ModeloTablaAMGrupo;
 import grupos.modelos.ModeloTablaGrupos;
 import grupos.vistas.VentanaGrupos;
 import interfaces.IControladorAMGrupo;
@@ -44,6 +45,7 @@ public class ControladorGrupos implements IControladorGrupos{
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         ControladorAMGrupo cg = ControladorAMGrupo.instanciar();
+        cg.verVentana().verTablaAMGrupo().setVisible(false); ////Para que se muestren los datos en la tabla.
         cg.verVentana().setTitle(IControladorAMGrupo.TITULO_NUEVO);
         cg.verVentana().verBtnModificarMiembros().setEnabled(false);
         cg.verVentana().verTxtNombre().setEnabled(true);
@@ -53,6 +55,7 @@ public class ControladorGrupos implements IControladorGrupos{
     @Override
     public void btnModificarClic(ActionEvent evt) {
         ControladorAMGrupo cg = ControladorAMGrupo.instanciar();
+        GestorGrupos gestor = GestorGrupos.instanciar();
         if(this.verVentana().verTablaGrupos().getSelectedRow() == -1){
                 JOptionPane.showMessageDialog(ventana, "Para modificar un grupo primero debe seleccionarlo.");
         }
@@ -63,7 +66,10 @@ public class ControladorGrupos implements IControladorGrupos{
             String nombreSeleccionado = tablaGrupos.getValueAt(filaSeleccionada, 0).toString();
             JTextField txtNombre = cg.verVentana().verTxtNombre();
             txtNombre.setText(nombreSeleccionado);
-            /*HASTA ACÁ*/
+            /*Hasta acá.*/
+            /*Le doy el modelo de la tabla para veer los miembros del grupo seleccionado.*/
+            cg.verVentana().verTablaAMGrupo().setModel(new ModeloTablaAMGrupo(gestor.verGrupo(nombreSeleccionado)));
+            cg.verVentana().verTablaAMGrupo().setVisible(true); ////Para que se muestren los datos en la tabla.
             
             cg.verVentana().setTitle(IControladorAMGrupo.TITULO_MODIFICAR);
             cg.verVentana().verTxtNombre().setEnabled(false);
@@ -76,23 +82,28 @@ public class ControladorGrupos implements IControladorGrupos{
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         GestorGrupos gestor = GestorGrupos.instanciar();
-         int filaSeleccionada = this.ventana.verTablaGrupos().getSelectedRow();
+        int filaSeleccionada = this.ventana.verTablaGrupos().getSelectedRow();
 
         if (filaSeleccionada != -1) {
             int opcion = JOptionPane.showOptionDialog(ventana, CONFIRMACION, "Borrar Grupo",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sí", "No"}, "No");
             if (opcion == JOptionPane.YES_OPTION) {
-                String nombre = this.ventana.verTablaGrupos().getValueAt(filaSeleccionada, 0).toString();//obtengo el NOMBRE de la tabla
+                String nombre = this.ventana.verTablaGrupos().getValueAt(filaSeleccionada, 0).toString();//obtengo de la tabla el NOMBRE del grupo.
                 Grupo grupo = gestor.verGrupo(nombre);
-                gestor.borrarGrupo(grupo);
-                this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos()); //muestra los datos en la tabla.
-                JOptionPane.showMessageDialog(ventana, "El grupo ha sido borrado.");
+                String mensaje = gestor.borrarGrupo(grupo);
+                if(mensaje.equals("No se pudo borrar el grupo ya que hay autores con el mismo.")){
+                    JOptionPane.showMessageDialog(ventana, mensaje);
+                }
+                else{
+                    this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos()); //Refresca los datos en la tabla.
+                    JOptionPane.showMessageDialog(ventana, "El grupo ha sido borrado.");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(ventana, "Para borrar un grupo primero debe seleccionarlo.");
         }
 
-        //Si el arrayList de grupos está vacio entonces deshabilita los botones de Borrar y Modificar.
+        //Si el arrayList de grupos está vacío entonces deshabilita los botones de Borrar y Modificar.
         if (gestor.verGrupos().isEmpty()) {
             this.ventana.verBtnBorrar().setEnabled(false);
             this.ventana.verBtnModificar().setEnabled(false);
@@ -112,7 +123,7 @@ public class ControladorGrupos implements IControladorGrupos{
 
         if (!nombre.isEmpty()) {
             gruposIguales = gestor.buscarGrupos(nombre);
-            //MUESTRA LOS GRUPOS QUE TIENEN EL nombre INGRESADO EN EL CAMPO DE TEXTO.
+            //MUESTRA LOS GRUPOS QUE TIENEN EL NOMBRE INGRESADO EN EL CAMPO DE TEXTO.
             this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos(gruposIguales));
         } else {
             this.ventana.verTablaGrupos().setModel(new ModeloTablaGrupos());

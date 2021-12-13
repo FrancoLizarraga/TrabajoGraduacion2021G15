@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import publicaciones.controladores.ControladorAMPublicacion;
+import publicaciones.modelos.ModeloComboGrupos;
 
 /**
  *
@@ -109,7 +111,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                         ventana.dispose(); //cierro la ventana.
                     }
                 }
-            } 
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this.ventana, "El documento debe ser un numero.");
         }

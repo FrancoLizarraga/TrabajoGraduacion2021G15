@@ -5,6 +5,7 @@
  */
 package grupos.modelos;
 
+import autores.modelos.Autor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -14,37 +15,46 @@ import javax.swing.table.AbstractTableModel;
  * @author Usuario
  */
 public class ModeloTablaAMGrupo extends AbstractTableModel{
+    private GestorGrupos gestor = GestorGrupos.instanciar();
     private ArrayList<String> nombresColumnas = new ArrayList<>();
-    private List<Grupo> miembros = new ArrayList<>();
+    private List<MiembroEnGrupo> miembroEnGrupo = new ArrayList<>();
     
-    //QUIEN SE ENCARGA DE ASIGNARLE EL NOMBRE
+    //QUIEN SE ENCARGA DE ASIGNARLE EL NOMBRE.
     public ModeloTablaAMGrupo() {
         this.nombresColumnas.add("Nombre");
         this.nombresColumnas.add("Rol");
-
-        this.miembros = GestorGrupos.instanciar().verGrupos(); //ahora grpos ve el arrayList cargado en el gestor.
-
+    }
+    
+    //CREO OTRO CONSTRUCTOR (LO SOBRECARGO) PARA PASARLE EL GRUPO A MODIFICAR.
+    public ModeloTablaAMGrupo(Grupo grupoParaModificar) {
+        this.nombresColumnas.add("Nombre");
+        this.nombresColumnas.add("Rol");
+        
+        /*Le asigno los miembros del grupo a modificar.*/
+        this.miembroEnGrupo = gestor.verGrupo(grupoParaModificar.verNombre()).verMiembros();
     }
     @Override
     public int getRowCount() {
-        return this.miembros.size();  //cantidad de filas
+        return this.miembroEnGrupo.size();  //Cantidad de filas.
     }
 
     @Override
     public int getColumnCount() {
-        return this.nombresColumnas.size(); //cantidad de columnas
+        return this.nombresColumnas.size(); //Cantidad de columnas.
     }
 
+    /*Este metodo se encarga de mostrar los datos en la tabla, celda por celda*/
     @Override
     public Object getValueAt(int fila, int columna) {
-        Grupo grupo = this.miembros.get(fila);
+        MiembroEnGrupo miembro = this.miembroEnGrupo.get(fila);
+        Autor autor = miembro.verAutor();
         switch (columna) {
             case 0:
-                return grupo.verNombre();
+                return autor.verApellidos() + ", " + autor.verNombres();
             case 1:
-                return grupo.verDescripcion();
+                return miembro.verRol(); //Toma el rol del autor actual.
             default:
-                return grupo.verDescripcion();
+                return miembro.verRol();
         }
     }
 

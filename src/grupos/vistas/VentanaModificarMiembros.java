@@ -11,6 +11,7 @@ import interfaces.IControladorModificarMiembros;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
@@ -20,23 +21,25 @@ import javax.swing.table.TableColumnModel;
  */
 public class VentanaModificarMiembros extends javax.swing.JDialog {
     private IControladorModificarMiembros controlador;
+    //Lo puse para poder tomar el comboBox de esta ventana en ModeloTablaModificarMiembros y poder mostrar en la tabla 
+    //el Rol seleccionado.
+    private JComboBox comboBox;
 
     /**
      * Creates new form VentanaModificarMiembros
      */
     public VentanaModificarMiembros(IControladorModificarMiembros controlador) {
-        this.controlador = controlador;
         initComponents();
+        this.controlador = controlador;
         this.tablaModificar.setModel(new ModeloTablaModificarMiembros(this));
-//        TableColumn columnaRol = this.tablaModificar.getColumnModel().getColumn(1);
-//        JComboBox combo = new JComboBox();
-//        combo.setModel(new ModeloComboRoles());
-//        columnaRol.setCellEditor(new DefaultCellEditor(combo));
-//        this.tablaModificar.setModel(new ModeloTablaModificarMiembros(this));
+        this.tablaModificar.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);// Permite seleccionar múltiples filas.
+        TableColumn columnaRol = this.tablaModificar.getColumnModel().getColumn(1);
+        JComboBox combo = new JComboBox();
+        combo.setModel(new ModeloComboRoles());
+        this.comboBox = combo;
+        columnaRol.setCellEditor(new DefaultCellEditor(combo));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        
-        
     }
 
     /**
@@ -76,15 +79,35 @@ public class VentanaModificarMiembros extends javax.swing.JDialog {
 
         btnTodos.setMnemonic('T');
         btnTodos.setText("Todos");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosClic(evt);
+            }
+        });
 
         btnNinguno.setMnemonic('N');
         btnNinguno.setText("Ninguno");
+        btnNinguno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNingunoClic(evt);
+            }
+        });
 
         btnAceptar.setMnemonic('A');
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarClic(evt);
+            }
+        });
 
         btnCancelar.setMnemonic('C');
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarClic(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,23 +153,29 @@ public class VentanaModificarMiembros extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnTodosClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosClic
+        this.controlador.btnTodosClic(evt);
+    }//GEN-LAST:event_btnTodosClic
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnNingunoClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNingunoClic
+        this.controlador.btnNingunoClic(evt);
+    }//GEN-LAST:event_btnNingunoClic
+
+    private void btnAceptarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarClic
+        this.controlador.btnAceptarClic(evt);
+    }//GEN-LAST:event_btnAceptarClic
+
+    private void btnCancelarClic(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClic
+        this.controlador.btnCancelarClic(evt);
+    }//GEN-LAST:event_btnCancelarClic
+
     public JTable verTablaModificar() {
         return tablaModificar;
     }
-    
-//    public void asignarCombo(){
-//        TableColumn columnaRol = this.tablaModificar.getColumnModel().getColumn(1);
-//        JComboBox combo = new JComboBox();
-//        combo.setModel(new ModeloComboRoles());
-//        columnaRol.setCellEditor(new DefaultCellEditor(combo));
-//    }
+
+    public JComboBox verComboBox() {
+        return comboBox;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
