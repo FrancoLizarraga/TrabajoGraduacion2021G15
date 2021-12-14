@@ -7,11 +7,12 @@ package grupos.controladores;
 
 import grupos.modelos.GestorGrupos;
 import grupos.modelos.Grupo;
+import grupos.modelos.MiembroEnGrupo;
 import grupos.modelos.ModeloTablaGrupos;
+import grupos.modelos.ModeloTablaModificarMiembros;
 import grupos.vistas.VentanaAMGrupo;
 import interfaces.IControladorAMGrupo;
 import interfaces.IControladorGrupos;
-import interfaces.IControladorModificarMiembros;
 import interfaces.IGestorGrupos;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -19,6 +20,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -98,14 +100,34 @@ public class ControladorAMGrupo implements IControladorAMGrupo{
     @Override
     public void btnModificarMiembrosClic(ActionEvent evt) {
         ControladorModificarMiembros controlador = ControladorModificarMiembros.instanciar();
-        
         //Creo una referencia a la ventana grupos para poder sacar el nombre del grupo y ponerlo de titulo en la ventana.
         ControladorGrupos cg = ControladorGrupos.instanciar();
         JTable tablaGrupos = cg.verVentana().verTablaGrupos();
         int filaSeleccionada = tablaGrupos.getSelectedRow();
         String nombreSeleccionado = tablaGrupos.getValueAt(filaSeleccionada, 0).toString();
+        /*Busco el grupo que se seleccionó y le paso al constructor del modelo de la tabla para ver...*/
+        Grupo grupoParaModificarMiembros = GestorGrupos.instanciar().verGrupo(nombreSeleccionado);
+        controlador.auxiliar(grupoParaModificarMiembros);
+        /*Hasta acá.*/
+        
+        /*Para seleccionar los miembros que pertenecen a este grupo*/
+        JTable tabla = controlador.verVentana().verTablaModificar();
+        ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
+        ModeloTablaModificarMiembros modeloTabla = (ModeloTablaModificarMiembros)tabla.getModel();
+        for(MiembroEnGrupo miembro : grupoParaModificarMiembros.verMiembros()) {
+            for(int fila = 0; fila < modeloTabla.getRowCount(); fila++) {
+                MiembroEnGrupo m = modeloTabla.verMiembroEnGrupo(fila);
+                if (miembro.equals(m)) {
+                    modeloSeleccion.addSelectionInterval(fila, fila);
+                    break;
+                }
+            }
+        }
+        /*Hasta acá*/
+        
         controlador.verVentana().setTitle(nombreSeleccionado);
         controlador.verVentana().setVisible(true);
+        
     }
 
     @Override

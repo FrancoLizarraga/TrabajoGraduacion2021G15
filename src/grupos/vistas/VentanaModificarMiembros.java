@@ -9,6 +9,7 @@ import grupos.modelos.ModeloComboRoles;
 import grupos.modelos.ModeloTablaModificarMiembros;
 import interfaces.IControladorModificarMiembros;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -23,7 +24,7 @@ public class VentanaModificarMiembros extends javax.swing.JDialog {
     private IControladorModificarMiembros controlador;
     //Lo puse para poder tomar el comboBox de esta ventana en ModeloTablaModificarMiembros y poder mostrar en la tabla 
     //el Rol seleccionado.
-    private JComboBox comboBox;
+//    private JComboBox comboBox;
 
     /**
      * Creates new form VentanaModificarMiembros
@@ -31,13 +32,13 @@ public class VentanaModificarMiembros extends javax.swing.JDialog {
     public VentanaModificarMiembros(IControladorModificarMiembros controlador) {
         initComponents();
         this.controlador = controlador;
-        this.tablaModificar.setModel(new ModeloTablaModificarMiembros(this));
-        this.tablaModificar.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);// Permite seleccionar múltiples filas.
-        TableColumn columnaRol = this.tablaModificar.getColumnModel().getColumn(1);
-        JComboBox combo = new JComboBox();
-        combo.setModel(new ModeloComboRoles());
-        this.comboBox = combo;
-        columnaRol.setCellEditor(new DefaultCellEditor(combo));
+////        this.tablaModificar.setModel(new ModeloTablaModificarMiembros(this));
+//        this.tablaModificar.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);// Permite seleccionar múltiples filas.
+//        TableColumn columnaRol = this.tablaModificar.getColumnModel().getColumn(1);
+//        JComboBox combo = new JComboBox();
+//        combo.setModel(new ModeloComboRoles());
+////        this.comboBox = combo;
+//        columnaRol.setCellEditor(new DefaultCellEditor(combo));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -173,8 +174,12 @@ public class VentanaModificarMiembros extends javax.swing.JDialog {
         return tablaModificar;
     }
 
-    public JComboBox verComboBox() {
-        return comboBox;
+//    public JComboBox verComboBox() {
+//        return comboBox;
+//    }
+
+    public JButton verBtnNinguno() {
+        return btnNinguno;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -67,7 +67,7 @@ public class ControladorGrupos implements IControladorGrupos{
             JTextField txtNombre = cg.verVentana().verTxtNombre();
             txtNombre.setText(nombreSeleccionado);
             /*Hasta acá.*/
-            /*Le doy el modelo de la tabla para veer los miembros del grupo seleccionado.*/
+            /*Le doy el modelo de la tabla para ver los miembros del grupo seleccionado.*/
             cg.verVentana().verTablaAMGrupo().setModel(new ModeloTablaAMGrupo(gestor.verGrupo(nombreSeleccionado)));
             cg.verVentana().verTablaAMGrupo().setVisible(true); ////Para que se muestren los datos en la tabla.
             

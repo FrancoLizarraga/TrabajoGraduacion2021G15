@@ -90,11 +90,10 @@ public class Grupo implements Comparable<Grupo>{
     }
 
     public void quitarMiembro(Autor miembro) {
-        for (MiembroEnGrupo m : miembrosEnGrupo) {
-            if (m.verAutor().equals(miembro)) {
-                miembrosEnGrupo.remove(m);
-                miembro.quitarGrupo(this);
-            }
+        MiembroEnGrupo meg = new MiembroEnGrupo(miembro, this, null);
+        if (this.miembrosEnGrupo.contains(meg)){
+            this.miembrosEnGrupo.remove(meg);
+            miembro.quitarGrupo(this);
         }
     }
 

@@ -246,6 +246,8 @@ public class ControladorPrincipal {
         ga.nuevoAutor(622, "Juarez", "Tatiana Jimena", Cargo.TITULAR, "clave2", "clave2");
         ga.verAutor(621).agregarGrupo(g.verGrupo("grupo1"), Rol.COLABORADOR);
         ga.verAutor(621).agregarGrupo(g.verGrupo("a"), Rol.ADMINISTRADOR);
+        ga.verAutor(622).agregarGrupo(g.verGrupo("grupo1"), Rol.ADMINISTRADOR);
+        
 ////      ALUMNOS
 //        System.out.println("\n\tmethod nuevoAutor (Para alumnos)\n");
 //        System.out.println(ga.nuevoAutor(5, "apellido1", "nombre1", "cx1", "clave1", "clave1"));//se agrega

@@ -24,8 +24,8 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
     public VentanaAMGrupo(IControladorAMGrupo controlador) {
         initComponents();
         this.controlador = controlador;
-        this.setLocationRelativeTo(null);
         this.tablaAMGrupo.setModel(new ModeloTablaAMGrupo());
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

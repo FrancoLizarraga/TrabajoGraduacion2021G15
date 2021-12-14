@@ -152,7 +152,8 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
                 }
             }
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this.ventana,"Debe ingresar una fecha.");
+            //Si captura la excepcion, muestra el mensaje.
+            JOptionPane.showMessageDialog(this.ventana,"Debe ingresar una fecha valida.");
         }
     }
 

@@ -133,9 +133,16 @@ public class GestorGrupos implements IGestorGrupos{
     public String quitarMiembros(Grupo grupo, List<MiembroEnGrupo> miembros) {
         if (this.existeEsteGrupo(grupo)) {
             if( (miembros!=null) && (!miembros.isEmpty()) ) {
-                for(MiembroEnGrupo m: miembros){
-                    if(grupo.verMiembros().contains(m))
-                        grupo.quitarMiembro(m.verAutor());
+                /*No puedo recorrer una Lista y modificarla a la vez con este iterador, por eso uso el otro for.*/
+                /*Codigo viejo pero lo dejo para poder saber después qué era lo que fallaba.*/
+//                for(MiembroEnGrupo m: miembros){
+//                    if(grupo.verMiembros().contains(m))
+//                        grupo.quitarMiembro(m.verAutor());
+//                }
+                /*Hasta acá.*/
+                for(int i=0; i<miembros.size(); i++){
+                    if(grupo.verMiembros().contains(miembros.get(i)))
+                        grupo.quitarMiembro(miembros.get(i).verAutor());
                 }
                 return "Miembros quitados con éxito.";
             }

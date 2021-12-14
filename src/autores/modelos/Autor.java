@@ -114,11 +114,10 @@ public abstract class Autor {
     }
 
     public void quitarGrupo(Grupo grupo) {
-        for (MiembroEnGrupo m : miembrosEnGrupo) {
-            if (m.verGrupo().equals(grupo)) {
-                miembrosEnGrupo.remove(m);
-                grupo.quitarMiembro(this);
-            }
+    MiembroEnGrupo meg = new MiembroEnGrupo(this, grupo, null);
+        if (this.miembrosEnGrupo.contains(meg)){
+            this.miembrosEnGrupo.remove(meg);      
+            grupo.quitarMiembro(this);
         }
     }
 
