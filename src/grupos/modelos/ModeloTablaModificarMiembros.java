@@ -55,7 +55,7 @@ public class ModeloTablaModificarMiembros extends AbstractTableModel{
         for(int indiceMiembro=0;indiceMiembro<grupoParaModificarMiembros.verMiembros().size();indiceMiembro++){
         this.miembrosEnGrupo.add(grupoParaModificarMiembros.verMiembros().get(indiceMiembro));
         }
-        //Ordeno la lista de miembros para que coincida con los autores de la columna
+        //Ordeno la lista de miembros para que coincida con los autores de la columna, como en GestorAutores.
         Comparator<MiembroEnGrupo> comparador =(MiembroEnGrupo miembro1, MiembroEnGrupo miembro2) -> 
                 (miembro1.verAutor().verApellidos().concat(miembro1.verAutor().verNombres())).toLowerCase().
                 compareTo(miembro2.verAutor().verApellidos().concat(miembro2.verAutor().verNombres()).toLowerCase());

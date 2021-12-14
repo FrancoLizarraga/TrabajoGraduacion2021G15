@@ -13,6 +13,7 @@ import autores.modelos.ModeloTablaGruposAutor;
 import autores.modelos.ModeloTablaProfesores;
 import autores.modelos.Profesor;
 import autores.vistas.VentanaAutores;
+import grupos.modelos.MiembroEnGrupo;
 import grupos.modelos.ModeloTablaGrupos;
 import interfaces.IControladorAutores;
 import interfaces.IGestorAutores;
@@ -22,6 +23,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import publicaciones.modelos.GestorPublicaciones;
 
 /**
  *
@@ -144,10 +146,18 @@ public class ControladorVentanaAutores implements IControladorAutores {
             if (opcion == JOptionPane.YES_OPTION) {
                 int dni = Integer.parseInt(this.ventana.verTablaProfesor().getValueAt(filaSeleccionada, 0).toString());//obtengo el DNI de la tabla
                 Autor profesor = ga.verAutor(dni);
-
-                ga.borrarAutor(profesor); //Agregué este metodo en gestorAutores para borrar el autor.
-                this.ventana.verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
+                /*Veo si hay publicaciones con el autor para recien saber si lo borro o no.*/
+                boolean mensaje = GestorPublicaciones.instanciar().hayPublicacionesConEsteAutor(profesor);
+                if(!mensaje){
+                    /*Quito al autor de los grupos a los cuales pertenece y luego lo borro al autor.*/
+                    ga.quitarGrupos(profesor, profesor.devolverMiembros()); //Agregué este metodo en gestorAutores para borrar el autor.
+                    ga.borrarAutor(profesor); //Agregué este metodo en gestorAutores para borrar el autor.
+                    this.ventana.verTablaProfesor().setModel(new ModeloTablaProfesores()); //muestra los datos en la tabla.
                 JOptionPane.showMessageDialog(ventana, "El profesor ha sido borrado.");
+                }
+                else{
+                    JOptionPane.showMessageDialog(ventana, "No se pudo borrar el autor ya que hay publicaciones con el mismo.");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(ventana, "Para borrar un profesor primero debe seleccionarlo.");
@@ -171,10 +181,19 @@ public class ControladorVentanaAutores implements IControladorAutores {
             if (opcion == JOptionPane.YES_OPTION) {
                 int dni = Integer.parseInt(this.ventana.verTablaAlumno().getValueAt(filaSeleccionada, 0).toString());//obtengo el DNI de la tabla
                 Autor alumno = ga.verAutor(dni);
-
-                ga.borrarAutor(alumno); //Agregué este metodo en gestorAutores para borrar el autor.
-                this.ventana.verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
-                JOptionPane.showMessageDialog(ventana, "El alumno ha sido borrado.");
+                /*Veo si hay publicaciones con el autor para recien saber si lo borro o no.*/
+                boolean mensaje = GestorPublicaciones.instanciar().hayPublicacionesConEsteAutor(alumno);
+                if(!mensaje){
+                    /*Quito al autor de los grupos a los cuales pertenece y luego lo borro al autor.*/
+                    ga.quitarGrupos(alumno, alumno.devolverMiembros()); //Agregué este metodo en gestorAutores para borrar el autor.
+                    ga.borrarAutor(alumno); //Agregué este metodo en gestorAutores para borrar el autor.
+                    this.ventana.verTablaAlumno().setModel(new ModeloTablaAlumnos()); //muestra los datos en la tabla.
+                    JOptionPane.showMessageDialog(ventana, "El alumno ha sido borrado.");
+                }
+                else{
+                    JOptionPane.showMessageDialog(ventana, "No se pudo borrar el autor ya que hay publicaciones con el mismo.");
+                }
+                
             }
         } else {
             JOptionPane.showMessageDialog(ventana, "Para borrar un alumno primero debe seleccionarlo.");

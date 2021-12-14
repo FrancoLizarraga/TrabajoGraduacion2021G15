@@ -8,6 +8,7 @@ package grupos.vistas;
 import grupos.modelos.ModeloTablaAMGrupo;
 import interfaces.IControladorAMGrupo;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -39,7 +40,7 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelDescripcion = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -53,7 +54,19 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
 
         jLabel1.setText("Nombre:");
 
-        jLabel2.setText("Descripcion:");
+        labelDescripcion.setText("Descripcion:");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombrePresionarTecla(evt);
+            }
+        });
+
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionPresionarTecla(evt);
+            }
+        });
 
         jLabel3.setText("Miembros:");
 
@@ -114,7 +127,7 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                    .addComponent(labelDescripcion))
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNombre)
@@ -134,7 +147,7 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(labelDescripcion)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
@@ -164,6 +177,14 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
         this.controlador.btnModificarMiembrosClic(evt);
     }//GEN-LAST:event_btnModificarMiembrosClic
 
+    private void txtDescripcionPresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionPresionarTecla
+        this.controlador.txtDescripcionPresionarTecla(evt);
+    }//GEN-LAST:event_txtDescripcionPresionarTecla
+
+    private void txtNombrePresionarTecla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePresionarTecla
+        this.controlador.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombrePresionarTecla
+
     public JButton verBtnModificarMiembros() {
         return btnModificarMiembros;
     }
@@ -179,6 +200,14 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
     public JTable verTablaAMGrupo() {
         return tablaAMGrupo;
     }
+
+    public JButton verBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public JLabel verLabelDescripcion() {
+        return labelDescripcion;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,9 +215,9 @@ public class VentanaAMGrupo extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificarMiembros;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDescripcion;
     private javax.swing.JTable tablaAMGrupo;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;

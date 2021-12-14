@@ -132,17 +132,24 @@ public class ControladorAMGrupo implements IControladorAMGrupo{
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        char tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_ENTER) {
+            ventana.verLabelDescripcion().transferFocus();
+        }
     }
 
     @Override
     public void txtDescripcionPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        char tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_ENTER) {
+            ventana.verBtnGuardar().doClick();
+        }
     }
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //FALTA ESTE METODO
+        //NO SUPE QUÉ HACER EN ESTE...
     }
 
     public VentanaAMGrupo verVentana() {

@@ -88,7 +88,7 @@ public class ControladorModificarMiembros implements IControladorModificarMiembr
     @Override
     public void btnAceptarClic(ActionEvent evt) {
         GestorGrupos gestor = GestorGrupos.instanciar();
-        ControladorAMGrupo camp = ControladorAMGrupo.instanciar(); // Para poder refrescar la tabla.
+        ControladorAMGrupo camp = ControladorAMGrupo.instanciar(); //Para poder refrescar la tabla.
         int opcion = JOptionPane.showOptionDialog(this.ventana, CONFIRMACION, TITULO,JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"Si", "No"}, this);
 
         if (opcion == JOptionPane.YES_OPTION){
@@ -107,15 +107,6 @@ public class ControladorModificarMiembros implements IControladorModificarMiembr
 //            }
             gestor.quitarMiembros(this.grupoModificar, grupoModificar.verMiembros());
             /*Hasta acá.*/
-            /*Ellos*/
-//            int nFilas = this.ventana.getTablaMiembrosGrupo().getSelectedRowCount();//guardo el numero de filas
-//            int[] indice = this.ventana.getTablaMiembrosGrupo().getSelectedRows();//el vector contiene el indice de cada fila seleccionada
-//            List<MiembroEnGrupo> miembrosSeleccionados = new ArrayList<>();
-////            modeloTabla=new ModeloTablaMiembroGrupo(grupoAModificar);
-//            for(int fila = 0; fila < nFilas; fila++) 
-////                miembrosSeleccionados.add(this.grupoModificar.verMiembros().get(indice[fila])); //////Exception in thread "AWT-EventQueue-0" java.lang.IndexOutOfBoundsException:
-//                miembrosSeleccionados.add(new MiembroEnGrupo(modeloTabla.verAutor(indice[fila]), grupoAModificar, modeloTabla.verRol(indice[fila])));///// <-- Solución
-            /*Hasta acá ellos.*/
             /*Tomo los miebros seleccionados en la tabla.*/
             int[] filasSeleccionadas = this.ventana.verTablaModificar().getSelectedRows();
             ModeloTablaModificarMiembros modeloTabla = (ModeloTablaModificarMiembros)this.ventana.verTablaModificar().getModel();

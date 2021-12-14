@@ -47,21 +47,24 @@ public class ControladorPublicaciones implements IControladorPublicaciones{
     
     @Override
     public void btnNuevaClic(ActionEvent evt) {
-        ControladorAMPublicacion camp = ControladorAMPublicacion.instanciar();
-        
-        //Cada vez que haga clic en Nueva vuelve a buscar si hay un NUEVO PRIMER profesor para mostrar 
-        //los grupos a los que peretenece ese PRIMER profesor ordenado alfabeticamente.
-        camp.verVentana().verComboGrupos().setModel(new ModeloComboGrupos());
-        
-        /*Este bloque de código quita la selección de las filas en caso de que se haya creado una anteriormente.*/
-        JTable tabla = camp.verVentana().verTablaPalabrasClaves();
-        ModeloTablaPalabrasClaves mtpc = (ModeloTablaPalabrasClaves)tabla.getModel();
-        ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
-        modeloSeleccion.clearSelection();
-        /*Hasta acá.*/
-        camp.verVentana().setTitle(IControladorAMPublicacion.TITULO_NUEVA);
-        camp.verVentana().verTxtTitulo().setEnabled(true); //HABILITO EL CAMPO DE TEXTO DE TITULO.
-        camp.verVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
+        try {
+            ControladorAMPublicacion camp = ControladorAMPublicacion.instanciar();
+            //Cada vez que haga clic en Nueva vuelve a buscar si hay un NUEVO PRIMER profesor para mostrar 
+            //los grupos a los que peretenece ese PRIMER profesor ordenado alfabeticamente.
+            camp.verVentana().verComboGrupos().setModel(new ModeloComboGrupos());
+
+            /*Este bloque de código quita la selección de las filas en caso de que se haya creado una anteriormente.*/
+            JTable tabla = camp.verVentana().verTablaPalabrasClaves();
+            ModeloTablaPalabrasClaves mtpc = (ModeloTablaPalabrasClaves)tabla.getModel();
+            ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
+            modeloSeleccion.clearSelection();
+            /*Hasta acá.*/
+            camp.verVentana().setTitle(IControladorAMPublicacion.TITULO_NUEVA);
+            camp.verVentana().verTxtTitulo().setEnabled(true); //HABILITO EL CAMPO DE TEXTO DE TITULO.
+            camp.verVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(ventana, "Antes de crear una publicación debe crear al menos un Profesor.");
+        }
     }
 
     @Override

@@ -60,16 +60,20 @@ public class ControladorGrupos implements IControladorGrupos{
                 JOptionPane.showMessageDialog(ventana, "Para modificar un grupo primero debe seleccionarlo.");
         }
         else{
-            /*Este bloque de codigo es para dejar ene l campo de texto el nombre del grupo que se va a modificar*/
+            /*Este bloque de codigo es para dejar en el campo de texto el nombre del grupo que se va a modificar*/
             JTable tablaGrupos = this.verVentana().verTablaGrupos();
             int filaSeleccionada = tablaGrupos.getSelectedRow();
             String nombreSeleccionado = tablaGrupos.getValueAt(filaSeleccionada, 0).toString();
             JTextField txtNombre = cg.verVentana().verTxtNombre();
             txtNombre.setText(nombreSeleccionado);
+                //Voy a dejar la descripción también.
+            String descripcionSeleccionada = tablaGrupos.getValueAt(filaSeleccionada, 1).toString();
+            JTextField txtDescripcion = cg.verVentana().verTxtDescripcion();
+            txtDescripcion.setText(descripcionSeleccionada);
             /*Hasta acá.*/
             /*Le doy el modelo de la tabla para ver los miembros del grupo seleccionado.*/
             cg.verVentana().verTablaAMGrupo().setModel(new ModeloTablaAMGrupo(gestor.verGrupo(nombreSeleccionado)));
-            cg.verVentana().verTablaAMGrupo().setVisible(true); ////Para que se muestren los datos en la tabla.
+            cg.verVentana().verTablaAMGrupo().setVisible(true); //Para que se muestren los datos en la tabla.
             
             cg.verVentana().setTitle(IControladorAMGrupo.TITULO_MODIFICAR);
             cg.verVentana().verTxtNombre().setEnabled(false);
@@ -132,7 +136,8 @@ public class ControladorGrupos implements IControladorGrupos{
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //FALTA ESTE METODO
+        //NO SUPE QUÉ HACER EN ESTE...
     }
 
     @Override

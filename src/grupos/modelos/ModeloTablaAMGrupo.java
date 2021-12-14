@@ -7,6 +7,8 @@ package grupos.modelos;
 
 import autores.modelos.Autor;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -17,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaAMGrupo extends AbstractTableModel{
     private GestorGrupos gestor = GestorGrupos.instanciar();
     private ArrayList<String> nombresColumnas = new ArrayList<>();
-    private List<MiembroEnGrupo> miembroEnGrupo = new ArrayList<>();
+    private List<MiembroEnGrupo> miembrosEnGrupo = new ArrayList<>();
     
     //QUIEN SE ENCARGA DE ASIGNARLE EL NOMBRE.
     public ModeloTablaAMGrupo() {
@@ -31,11 +33,17 @@ public class ModeloTablaAMGrupo extends AbstractTableModel{
         this.nombresColumnas.add("Rol");
         
         /*Le asigno los miembros del grupo a modificar.*/
-        this.miembroEnGrupo = gestor.verGrupo(grupoParaModificar.verNombre()).verMiembros();
+        this.miembrosEnGrupo = gestor.verGrupo(grupoParaModificar.verNombre()).verMiembros();
+        //Ordeno la lista de miembros para que coincida con los autores de la columna, como en GestorAutores.
+        Comparator<MiembroEnGrupo> comparador =(MiembroEnGrupo miembro1, MiembroEnGrupo miembro2) -> 
+                (miembro1.verAutor().verApellidos().concat(miembro1.verAutor().verNombres())).toLowerCase().
+                compareTo(miembro2.verAutor().verApellidos().concat(miembro2.verAutor().verNombres()).toLowerCase());
+        
+        Collections.sort(this.miembrosEnGrupo,comparador);
     }
     @Override
     public int getRowCount() {
-        return this.miembroEnGrupo.size();  //Cantidad de filas.
+        return this.miembrosEnGrupo.size();  //Cantidad de filas.
     }
 
     @Override
@@ -46,7 +54,7 @@ public class ModeloTablaAMGrupo extends AbstractTableModel{
     /*Este metodo se encarga de mostrar los datos en la tabla, celda por celda*/
     @Override
     public Object getValueAt(int fila, int columna) {
-        MiembroEnGrupo miembro = this.miembroEnGrupo.get(fila);
+        MiembroEnGrupo miembro = this.miembrosEnGrupo.get(fila);
         Autor autor = miembro.verAutor();
         switch (columna) {
             case 0:

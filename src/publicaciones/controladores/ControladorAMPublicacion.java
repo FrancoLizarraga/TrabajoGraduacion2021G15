@@ -71,8 +71,8 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
         GestorPublicaciones gestor = GestorPublicaciones.instanciar();
         ControladorPublicaciones cp = ControladorPublicaciones.instanciar(); //Para actualizar los datos de la tabla,etc.
         GestorAutores ga = GestorAutores.instanciar(); //Para ver los grupos del primer autor.
-        
-        //Hago un bloque try/catch para asegurrme que ingrese una fecha válida y, si no lo hace, capturar la excepcion.
+        //Hago un bloque try/catch para asegurrme que ingrese una fecha válida y, si no lo hace
+        //O asegurar que le asigne al menos un grupo al profesor logueado.
         try {
             JTable tabla = this.ventana.verTablaPalabrasClaves();
             String titulo = ventana.verTxtTitulo().getText().trim();
@@ -120,9 +120,8 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
                     cp.verVentana().verBtnBorrar().setEnabled(true); //una vez cargado una publicacion habilita el boton borrar. 
                     cp.verVentana().verBtnModificar().setEnabled(true); //una vez cargada una publicacion habilita el boton modificar.
                     this.limpiar(); //hago que los campos de txt de la ventana quedan vacios.
-
-                    gestor.verPublicacion(titulo).mostrar(); //¡¡ESTO ES PARA  VER LOS DATOS NADA MAS, BORRAR!!!!
-
+                    cp.verVentana().verBtnBorrar().setEnabled(true);
+                    cp.verVentana().verBtnModificar().setEnabled(true);
                     ventana.dispose(); //cierro la ventana.
                 }
             }
@@ -143,17 +142,13 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
                     JOptionPane.showMessageDialog(this.ventana, mensaje);
                     cp.verVentana().verTablaPublicaciones().setModel(new ModeloTablaPublicaciones()); //muestra los datos en la tabla.
                     this.limpiar(); //Hago que los campos de txt de la ventana quedan vacios.
-                    
-                    System.out.println("Publicacion modificada:");
-                    gestor.verPublicacion(titulo).mostrar(); //¡¡ESTO ES PARA  VER LOS DATOS NADA MAS, BORRAR!!!!
-                    
                     ventana.verBtnNinguna().doClick(); //No deja marcada ninguna fila antes de cerrar la ventana.
                     ventana.dispose(); //Cierro la ventana.
                 }
             }
         } catch (NullPointerException e) {
             //Si captura la excepcion, muestra el mensaje.
-            JOptionPane.showMessageDialog(this.ventana,"Debe ingresar una fecha valida.");
+            JOptionPane.showMessageDialog(this.ventana,"Debe ingresar una fecha valida o asignarle al menos un grupo al profesor logueado.");
         }
     }
 
@@ -166,7 +161,10 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
 
     @Override
     public void txtTituloPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        char tecla = evt.getKeyChar();
+        if (tecla == KeyEvent.VK_ENTER) {
+            ventana.verDateChooser().transferFocus();
+        }
     }
 
     @Override

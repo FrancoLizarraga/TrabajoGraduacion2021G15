@@ -257,7 +257,18 @@ public class GestorAutores implements IGestorAutores{
 
     @Override
     public String quitarGrupos(Autor autor, List<MiembroEnGrupo> grupos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.existeEsteAutor(autor)) {
+            if( (grupos!=null) && (!grupos.isEmpty()) ) {
+                for(int i=0; i<grupos.size(); i++){
+                    if(autor.devolverMiembros().contains(grupos.get(i)))
+                        autor.quitarGrupo(grupos.get(i).verGrupo());
+                }
+                return "Grupos quitados con éxito.";
+            }
+            else
+                return "No se especificaron grupos a quitar.";
+        }
+        return "No existe el autor especificado.";
     }
     
 }

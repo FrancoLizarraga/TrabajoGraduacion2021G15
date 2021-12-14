@@ -49,11 +49,13 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR GRUPOS");
 //        System.out.println("\t----------------------------------------------");
-        IGestorGrupos g=GestorGrupos.instanciar();
+//        IGestorGrupos g=GestorGrupos.instanciar();
 //        System.out.println("\n\tmethod nuevoGrupo\n");
 //        
-        System.out.println(g.nuevoGrupo("grupo1", "descripcion1"));
-        System.out.println(g.nuevoGrupo("a", "descripcion2"));
+//        System.out.println(g.nuevoGrupo("Grupo 1", "descripcion 1"));
+//        System.out.println(g.nuevoGrupo("Grupo 2", "Descripcion 2"));
+//        System.out.println(g.nuevoGrupo("Grupo 3", "descripcion 3"));
+//        System.out.println(g.nuevoGrupo("Grupo 4", "Descripcion 4"));
 //        System.out.println(g.nuevoGrupo("grupo1", "descripcion3"));//repetido
 //        System.out.println(g.nuevoGrupo("", "descripcion1"));//vacia
 //        System.out.println(g.nuevoGrupo("alumnos", "descripcion12"));//nuevo grupo para tp6
@@ -133,6 +135,7 @@ public class ControladorPrincipal {
         System.out.println(gl.nuevoLugar("Aula"));
         System.out.println(gl.nuevoLugar("Anfiteatro"));
         System.out.println(gl.nuevoLugar("Laboratorio"));
+        System.out.println(gl.nuevoLugar("Biblioteca"));
 //        
 //        System.out.println("\n\tmethod verLugares\n");
 //        System.out.println("Los lugares son:");
@@ -204,6 +207,7 @@ public class ControladorPrincipal {
         System.out.println(gt.nuevoTipo("Texto cientifico"));
         System.out.println(gt.nuevoTipo("Articulo"));
         System.out.println(gt.nuevoTipo("Extras"));
+        System.out.println(gt.nuevoTipo("Revista"));
 //     
 //        System.out.println("\n\tmethod verTipos\n");
 //        System.out.println("Los tipos son:");
@@ -226,7 +230,7 @@ public class ControladorPrincipal {
 //        System.out.println("\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR AUTORES");
 //        System.out.println("\t----------------------------------------------");
-        IGestorAutores ga=GestorAutores.instanciar();
+//        IGestorAutores ga=GestorAutores.instanciar();
 //        System.out.println("\n\tmethod nuevoAutor (Para profesores)\n");
 //        
 ////      PROFESORES
@@ -242,12 +246,12 @@ public class ControladorPrincipal {
 //        System.out.println(ga.nuevoAutor(5, "apellido1", null, Cargo.ASOCIADO, "clave1", "clave1"));//nombre null
 //        System.out.println(ga.nuevoAutor(6, "apellido6", "nombre6", Cargo.ADJUNTO, "clave6", "clave6"));//se agrega
 //
-        ga.nuevoAutor(621, "Lizarraga", "Franco Tomás", Cargo.JTP, "clave6", "clave6");
-        ga.nuevoAutor(622, "Juarez", "Tatiana Jimena", Cargo.TITULAR, "clave2", "clave2");
-        ga.verAutor(621).agregarGrupo(g.verGrupo("grupo1"), Rol.COLABORADOR);
-        ga.verAutor(621).agregarGrupo(g.verGrupo("a"), Rol.ADMINISTRADOR);
-        ga.verAutor(622).agregarGrupo(g.verGrupo("grupo1"), Rol.ADMINISTRADOR);
-        
+//////        ga.nuevoAutor(621, "Lizarraga", "Franco Tomás", Cargo.JTP, "clave6", "clave6");
+//////        ga.nuevoAutor(622, "Juarez", "Tatiana Jimena", Cargo.TITULAR, "clave2", "clave2");
+//////        ga.verAutor(621).agregarGrupo(g.verGrupo("Grupo 1"), Rol.COLABORADOR);
+//////        ga.verAutor(621).agregarGrupo(g.verGrupo("Grupo 2"), Rol.ADMINISTRADOR);
+//////        ga.verAutor(622).agregarGrupo(g.verGrupo("Grupo 1"), Rol.ADMINISTRADOR);
+//////        
 ////      ALUMNOS
 //        System.out.println("\n\tmethod nuevoAutor (Para alumnos)\n");
 //        System.out.println(ga.nuevoAutor(5, "apellido1", "nombre1", "cx1", "clave1", "clave1"));//se agrega
@@ -320,11 +324,11 @@ public class ControladorPrincipal {
 //        System.out.println("\n\t----------------------------------------------");
 //        System.out.println("\t\t\tGESTOR PUBLICACIONES");
 //        System.out.println("\t----------------------------------------------");
-        IGestorPublicaciones gp=GestorPublicaciones.instanciar();
+//        IGestorPublicaciones gp=GestorPublicaciones.instanciar();
 //        
 //        System.out.println("\n\tmethod nuevaPublicacion\n");
 //        
-        gp.nuevaPublicacion("Titulo 1", new MiembroEnGrupo(ga.verAutor(622),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Articulo"), gi.verIdioma("Español"), gl.verLugar("Anfiteatro"), pc.verPalabrasClaves(), "enlace 1", "resumen1");
+//        gp.nuevaPublicacion("Titulo 1", new MiembroEnGrupo(ga.verAutor(622),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Articulo"), gi.verIdioma("Español"), gl.verLugar("Anfiteatro"), pc.verPalabrasClaves(), "enlace 1", "resumen1");
 //        System.out.println(gp.nuevaPublicacion("Titulo 1", new MiembroEnGrupo(ga.verAutor(1),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Tipo1"), gi.verIdioma("idioma1"), gl.verLugar("lugar1"), pc.verPalabrasClaves(), "enlace 1", "resumen1"));//lo agrega
 //        System.out.println(gp.nuevaPublicacion("", new MiembroEnGrupo(ga.verAutor(1),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Tipo1"), gi.verIdioma("idioma1"), gl.verLugar("lugar1"), pc.verPalabrasClaves(), "enlace 1", "resumen1"));//titulo vacio
 //        System.out.println(gp.nuevaPublicacion(null, new MiembroEnGrupo(ga.verAutor(1),g.verGrupo("grupo1"),Rol.COLABORADOR), LocalDate.of(2020, 06, 24), gt.verTipo("Tipo1"), gi.verIdioma("idioma1"), gl.verLugar("lugar1"), pc.verPalabrasClaves(), "enlace 1", "resumen1"));// titulo null
