@@ -45,7 +45,7 @@ public class ControladorGrupos implements IControladorGrupos{
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         ControladorAMGrupo cg = ControladorAMGrupo.instanciar();
-        cg.verVentana().verTablaAMGrupo().setVisible(false); ////Para que se muestren los datos en la tabla.
+        cg.verVentana().verTablaAMGrupo().setVisible(false); //Para que no se muestren los datos en la tabla.
         cg.verVentana().setTitle(IControladorAMGrupo.TITULO_NUEVO);
         cg.verVentana().verBtnModificarMiembros().setEnabled(false);
         cg.verVentana().verTxtNombre().setEnabled(true);

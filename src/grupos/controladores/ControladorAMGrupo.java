@@ -105,7 +105,7 @@ public class ControladorAMGrupo implements IControladorAMGrupo{
         JTable tablaGrupos = cg.verVentana().verTablaGrupos();
         int filaSeleccionada = tablaGrupos.getSelectedRow();
         String nombreSeleccionado = tablaGrupos.getValueAt(filaSeleccionada, 0).toString();
-        /*Busco el grupo que se seleccionó y le paso al constructor del modelo de la tabla para ver...*/
+        /*Busco el grupo que se seleccionó y le paso al constructor del modelo de la tabla*/
         Grupo grupoParaModificarMiembros = GestorGrupos.instanciar().verGrupo(nombreSeleccionado);
         controlador.auxiliar(grupoParaModificarMiembros);
         /*Hasta acá.*/

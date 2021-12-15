@@ -113,7 +113,7 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
                 }
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this.ventana, "El documento debe ser un numero.");
+            JOptionPane.showMessageDialog(this.ventana, "El documento debe ser un número.");
         }
     }
 
@@ -185,7 +185,8 @@ public class ControladorAMProfesor implements IControladorAMProfesor {
     //NUEVO PARA EL PARCIAL 2
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //FALTA ESTE METODO
+        //NO SUPE QUÉ HACER EN ESTE...
     }
 
 }

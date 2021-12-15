@@ -196,7 +196,8 @@ public class ControladorAMAlumno implements IControladorAMAlumno {
     //NUEVO PARA PARCIAL 2
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //FALTA ESTE METODO
+        //NO SUPE QUÉ HACER EN ESTE...
     }
 
     

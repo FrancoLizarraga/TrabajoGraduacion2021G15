@@ -38,24 +38,24 @@ public class ModeloTablaModificarMiembros extends AbstractTableModel{
         this.nombresColumnas.add("Nombre");
         this.nombresColumnas.add("Rol");
         
-        Grupo grupoAuxiliar = new Grupo("Grupo Auxiliar","Descripcion Auxiliar");
-        boolean mismoAutor=false;
+        Grupo grupoAuxiliar = new Grupo("G","D");
+        boolean mismoAutor = false;
         //Cargar Autores a los miembros con un Grupo Auxiliar 
         //(Si se selecciona se cambiar el Grupo Auxiliar por el Grupo a Modificar)
         for(Autor a: this.autores){
             for(int indiceMiembro=0;indiceMiembro<grupoParaModificarMiembros.verMiembros().size();indiceMiembro++){
-                if((a.verApellidos().concat(a.verNombres())).equals((grupoParaModificarMiembros.verMiembros().get(indiceMiembro).verAutor().verApellidos().concat(grupoParaModificarMiembros.verMiembros().get(indiceMiembro).verAutor().verNombres())))){
-                mismoAutor=true;
+                if(a.equals(grupoParaModificarMiembros.verMiembros().get(indiceMiembro).verAutor())){
+                mismoAutor = true;
                     }
                 }
             if(!mismoAutor){this.miembrosEnGrupo.add(new MiembroEnGrupo(a,grupoAuxiliar,null));}
-            else{mismoAutor=false;}
+            else{mismoAutor = false;}
             }
         //Agregar los miembros de Grupo a Modificar a los mimebros
-        for(int indiceMiembro=0;indiceMiembro<grupoParaModificarMiembros.verMiembros().size();indiceMiembro++){
+        for(int indiceMiembro = 0;indiceMiembro<grupoParaModificarMiembros.verMiembros().size();indiceMiembro++){
         this.miembrosEnGrupo.add(grupoParaModificarMiembros.verMiembros().get(indiceMiembro));
         }
-        //Ordeno la lista de miembros para que coincida con los autores de la columna, como en GestorAutores.
+        //Ordeno la lista de miembros, como en GestorAutores, para que coincida con los autores de la columna.
         Comparator<MiembroEnGrupo> comparador =(MiembroEnGrupo miembro1, MiembroEnGrupo miembro2) -> 
                 (miembro1.verAutor().verApellidos().concat(miembro1.verAutor().verNombres())).toLowerCase().
                 compareTo(miembro2.verAutor().verApellidos().concat(miembro2.verAutor().verNombres()).toLowerCase());
@@ -65,7 +65,7 @@ public class ModeloTablaModificarMiembros extends AbstractTableModel{
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return editables[columnIndex]; 
+        return editables[columnIndex]; //Hago editable la columna 1. 
     }
     
     @Override

@@ -101,11 +101,12 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
 
             /*Busco el primer profesor para tomarlo como autor en MiembroEnGrupo.*/
             Autor primerProfesor  = ga.verProfesores().get(0);
+            String nombreProfesor = (primerProfesor.verApellidos()+ ", " + primerProfesor.verNombres());
             MiembroEnGrupo miembro = new MiembroEnGrupo(primerProfesor, grupo, primerProfesor.verRol(primerProfesor));
             /*Hasta acá.*/
 
             //Hago esto si se presiona en el boton "Nuevo"
-            if(this.ventana.getTitle().equals(TITULO_NUEVA)){
+            if(this.ventana.getTitle().equals(TITULO_NUEVA + " - " + nombreProfesor)){
                 mensaje= gestor.nuevaPublicacion(titulo, miembro, fechaPublicacion, tipo, idioma, lugar,
                         palabrasClavesSeleccionadas, enlace, resumen);
                 if(mensaje.equals("Los datos de la publicación deben ser validos.")){
@@ -127,7 +128,8 @@ public class ControladorAMPublicacion implements IControladorAMPublicacion{
             }
             //Hago esto si se presiona en el boton "Modificar"
             //Las interfaces no tienen escritas de igual manera el titulo "Modificar Publicacion", comparo en minusc.
-            if(this.ventana.getTitle().toLowerCase().equals(IControladorPublicaciones.PUBLICACION_MODIFICAR.toLowerCase())){
+            String tituloVentanaModificar = (IControladorPublicaciones.PUBLICACION_MODIFICAR + " - " + nombreProfesor);
+            if(this.ventana.getTitle().toLowerCase().equals(tituloVentanaModificar.toLowerCase())){
                 JTable tablaPublicaciones = cp.verVentana().verTablaPublicaciones();
                 int filaSeleccionada = tablaPublicaciones.getSelectedRow();
                 String tituloSeleccionado = tablaPublicaciones.getValueAt(filaSeleccionada, 0).toString();

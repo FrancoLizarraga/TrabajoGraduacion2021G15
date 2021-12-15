@@ -110,7 +110,7 @@ public class ControladorVentanaAutores implements IControladorAutores {
 
     @Override
     public void btnModificarAlumnoClic(ActionEvent evt) {
-        ControladorAMAlumno cp = ControladorAMAlumno.instanciar(); //crea una instancia y muestra la ventana.
+        ControladorAMAlumno cp = ControladorAMAlumno.instanciar(); //Crea una instancia y muestra la ventana.
         if (this.ventana.verTablaAlumno().getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(ventana, "Para modificar un alumno primero debe seleccionarlo.");
         } else {

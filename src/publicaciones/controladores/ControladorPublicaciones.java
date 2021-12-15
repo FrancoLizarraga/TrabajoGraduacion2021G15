@@ -5,6 +5,8 @@
  */
 package publicaciones.controladores;
 
+import autores.modelos.Autor;
+import autores.modelos.GestorAutores;
 import interfaces.IControladorAMPublicacion;
 import interfaces.IControladorPublicaciones;
 import java.awt.event.ActionEvent;
@@ -30,6 +32,7 @@ import publicaciones.vistas.VentanaPublicaciones;
  */
 public class ControladorPublicaciones implements IControladorPublicaciones{
     private VentanaPublicaciones ventana;
+    private String nombreProfesor;
     
     //INICIO PATRON SINGLETON.
     private static ControladorPublicaciones instanciador;
@@ -49,6 +52,12 @@ public class ControladorPublicaciones implements IControladorPublicaciones{
     public void btnNuevaClic(ActionEvent evt) {
         try {
             ControladorAMPublicacion camp = ControladorAMPublicacion.instanciar();
+            /*Este bloque es solo para darle el titulo a la VentanaAMPublicacion con el nombre del profesor logueado.*/
+            GestorAutores gestor = GestorAutores.instanciar();
+            Autor primerProfesor = gestor.verProfesores().get(0);
+            this.nombreProfesor = (primerProfesor.verApellidos()+ ", " + primerProfesor.verNombres());
+            /*Hasta acá.*/
+            
             //Cada vez que haga clic en Nueva vuelve a buscar si hay un NUEVO PRIMER profesor para mostrar 
             //los grupos a los que peretenece ese PRIMER profesor ordenado alfabeticamente.
             camp.verVentana().verComboGrupos().setModel(new ModeloComboGrupos());
@@ -59,7 +68,7 @@ public class ControladorPublicaciones implements IControladorPublicaciones{
             ListSelectionModel modeloSeleccion = tabla.getSelectionModel();
             modeloSeleccion.clearSelection();
             /*Hasta acá.*/
-            camp.verVentana().setTitle(IControladorAMPublicacion.TITULO_NUEVA);
+            camp.verVentana().setTitle(IControladorAMPublicacion.TITULO_NUEVA + " - " + this.nombreProfesor);
             camp.verVentana().verTxtTitulo().setEnabled(true); //HABILITO EL CAMPO DE TEXTO DE TITULO.
             camp.verVentana().setVisible(true); //HAGO QUE SI ABRE MAS DE UNA VEZ, SE VUELVA A MOSTRAR.
         } catch (IndexOutOfBoundsException e) {
@@ -101,8 +110,9 @@ public class ControladorPublicaciones implements IControladorPublicaciones{
                 }
             }
             /*Hasta acá*/
-            
-            camp.verVentana().setTitle(IControladorPublicaciones.PUBLICACION_MODIFICAR);
+            /*El boton modificar no va a estar habilitado hasta que no se cree una publicación, entonces
+              ya deberia tener el nombre del profesor logueado la variable nombreProfesor.*/
+            camp.verVentana().setTitle(IControladorPublicaciones.PUBLICACION_MODIFICAR + " - " + this.nombreProfesor);
             camp.verVentana().verTxtTitulo().setEnabled(false);
             camp.verVentana().setVisible(true);
             
